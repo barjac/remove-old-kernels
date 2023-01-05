@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-KeywordsList: \n"
 
 msgid  "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Welcome to 'rok' Interactive"
+msgstr "Welcome to 'remove-old-kernels' Interactive"
 
 msgid  "Keep"
 msgstr "Keep"
@@ -42,10 +42,9 @@ msgid  "kernels"
 msgstr "kernels"
 
 # For languages where y/N/i is not appropriate DO NOT change "y/N/i"
-# but add (y=yes N=no i=confirm) with only 'yes' and 'no' translated.
-# See fr_FR.po as example
+# but edit (y=yes N=no i=confirm) with only 'yes' and 'no' translated.
 msgid  "y/N/i (i=confirm for each)"
-msgstr "y/N/i (i=confirm for each)"
+msgstr "y/N/i (y=yes N=no i=confirm for each)"
 
 msgid  "y/N/q  (q=quit)"
 msgstr "y/N/q  (q=quit)"

@@ -1,0 +1,48 @@
+# remove-old-kernels_N.cfg.template
+
+# NOTE: This is a default template to use for 'alternative' .cfg files
+#       All settings in here are the default as used in the main configuration file.
+
+#===========================================
+# This file may be copied as /etc/remove-old-kernels_N.cfg and edited as desired.
+# N must only be a single digit from 1 to 9.
+#===========================================
+
+# If dnf is installed then 'remove-old-kernels' will always
+# keep at least the number of kernels set in /etc/dnf/dnf.conf
+# which defaults to three.
+
+# Number of kernels of each flavour to keep - Must be 2 or greater.
+NBK=3
+
+# Handy info: https://misc.flogisoft.com/bash/tip_colors_and_formatting#colors
+# Colours for display     Defaults                      Used for
+Normal="\e[0m"
+KeepCol="\e[92m"        # Light Green                   Keep text
+RemvCol="\e[91m"        # Light Red                     Remove text
+InfoCol="\e[33m"        # Orange                        Information text
+HdBgCol="\e[102;30m"    # Light Green Background        Heading background
+WarnBgCol="\e[101m"     # Light Red Background          Warnings in heading
+ClearLine="\r\e[2K"     # Clear the line
+
+# Kernel types to test for removal - keep the same order i.e. kernels before -devel etc. or leave alone.
+LISTK=\
+"kernel-desktop586
+kernel-desktop
+kernel-desktop-devel
+kernel-server
+kernel-server-devel
+kernel-source
+kernel-tmb-desktop
+kernel-tmb-desktop-devel
+kernel-tmb-source
+kernel-linus
+kernel-linus-devel
+kernel-linus-source
+"
+
+# Allow cron to run 'remove-old-kernels' weekly. Replace 'y' with 'n' (lower case) to disable it.
+CRON=y
+
+# Turn on the advanced mode. [0|1] (1 is ON)
+QA=0

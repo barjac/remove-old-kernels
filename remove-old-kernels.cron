@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+
+# cron job to remove old kernels
+# this runs remove-old-kernels to remove old kernels according
+# to the settings in /etc/remove-old-kernels.cfg
+
+if [[ -x /usr/sbin/remove-old-kernels ]]; then
+# Trim log before starting remove-old-kernels with colours disabled
+    if [[ -f /var/log/remove-old-kernels.log ]]; then
+        keeplines=1000; fail=""
+        roktmplog=$(mktemp)
+        ( tail -n $keeplines /var/log/remove-old-kernels.log > $roktmplog && \
+        cat $roktmplog > /var/log/remove-old-kernels.log && rm -f $roktmplog ) || fail="WARNING: log trim failed"
+    fi
+echo -e "\n=========================== $(date +%d/%m/%Y-%H:%M) ===========================\n$fail" >> /var/log/remove-old-kernels.log
+# Use -c option to check that CRON=y is in the cfg file before running in auto mode.
+    /usr/sbin/remove-old-kernels -c -m >> /var/log/remove-old-kernels.log
+fi

@@ -1,0 +1,23 @@
+You have installed or updated remove-old-kernels which will automatically remove obsolete system kernels safely, using urpme.
+
+A large accumulation of these can break systems with limited disk space.
+See: https://bugs.mageia.org/show_bug.cgi?id=24403
+
+By default it will do this weekly and will leave two previous kernels plus the one in use,
+of each flavour installed. e.g. If you have 3 kernel-desktops and 3 kernel-linus installed
+then nothing will be removed. If there are 4 of one flavour then the one installed FIRST will
+be removed, or suggested for removal in interactive mode.
+
+It is intended primarily for regular users and those without the technical knowledge or motivation
+to do this manually.
+
+It also has an advanced mode to suit developers and testers. Please read the -h help or, for full details
+the man page.
+
+If this is NOT what you want, then there are several options:
+
+1. Use the available options to adjust the settings to be more appropriate for your use.
+Such as, turning off the automatic mode, invoking the advanced mode or increasing the number to keep.
+Please read the man page.
+
+2. Uninstall the remove-old-kernels package, but first explore it's capabilities, you may find it useful!

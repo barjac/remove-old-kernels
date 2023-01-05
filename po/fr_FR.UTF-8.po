@@ -1,0 +1,159 @@
+msgid  ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Project-Id-Version: remove-old-kernels\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Google\n"
+"Language-Team: Google\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr_FR\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: \n"
+
+msgid  "Welcome to 'remove-old-kernels' Interactive"
+msgstr "Bienvenue sur 'remove-old-kernels' Interactive"
+
+msgid  "Keep"
+msgstr "Garder"
+
+msgid  "KEEP"
+msgstr "GARDER"
+
+msgid  "Remove"
+msgstr "Enlever"
+
+msgid  "AUTO"
+msgstr "AUTO"
+
+msgid  "Must be root to allow removal"
+msgstr "Doit être root pour permettre enlever"
+
+msgid  "Must be root to edit configuration"
+msgstr "Doit être root pour modifier la configuration"
+
+msgid  "kernel"
+msgstr "noyau"
+
+msgid  "kernels"
+msgstr "noyaux"
+
+msgid  "y/N/i (i=confirm for each)"
+msgstr "y/N/i (y=oui N=non i=confirmer pour chaque)"
+
+msgid  "y/N/q (q=quit)"
+msgstr "y/N/q (y=oui N=non q=quitter)"
+
+msgid  "interactive"
+msgstr "interactif"
+
+msgid  "abort"
+msgstr "abandonner"
+
+msgid  "quit"
+msgstr "quitter"
+
+msgid  "Kernels in"
+msgstr "Noyaux dans"
+
+msgid  "Gain"
+msgstr "Gain"
+
+msgid  "Tap spacebar to exit"
+msgstr "Appuyez sur la barre d'espace pour quitter"
+
+msgid  "Tap spacebar"
+msgstr "Appuyez sur la barre d'espace"
+
+msgid  "In use now"
+msgstr "En usage maintenant"
+
+msgid  "Test mode is on - kernels will not be removed"
+msgstr "Le mode test est activé - les noyaux ne seront pas supprimés"
+
+msgid  "DEBUG: Could execute: urpme"
+msgstr "DEBUG : Peut s'exécuter : urpme"
+
+msgid  "Command that would be used"
+msgstr "Commande qui serait utilisée"
+
+msgid  "Commands that would be used"
+msgstr "Commandes qui seraient utilisées"
+
+msgid  "Your alternative configuration file does not exist:"
+msgstr "Votre fichier de configuration alternatif n'existe pas :"
+
+msgid  "Either replace it or set ALTCFG=0 in"
+msgstr "Remplacez-le ou définissez ALTCFG=0 dans"
+
+msgid  "FATAL: Failed to read:"
+msgstr "FATAL : Échec de la lecture :"
+
+msgid  "No such alternative configuration file:"
+msgstr "Aucun fichier de configuration alternatif de ce type :"
+
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Usage: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n numéro] [-N numéro] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+
+msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
+msgstr "    -a = automatique, pas de questions. Interactif si non spécifié. (doit être root)"
+
+msgid  "    -A value = y or n to turn ON or OFF automatic weekly removal of kernels. (e.g. -Ay)"
+msgstr "    -A valeur = y ou n pour activer ou désactiver la suppression automatique des noyaux. (e.g. -Ay)"
+
+msgid  "    -c = as automatic but also checks for CRON=y in the cfg file or exits. (must be root)"
+msgstr "    -c = comme automatique mais vérifie également CRON=y dans le fichier cfg ou quitte. (doit être root)"
+
+msgid  "    -t = Test mode, nothing is removed, urpme is simulated."
+msgstr "    -t = Mode test, rien n'est supprimé, urpme est simulé."
+
+msgid  "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
+msgstr "    -f valeur = numéro du fichier .cfg alternatif à utiliser cette fois uniquement. Quitte si manquant."
+
+msgid  "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
+msgstr "    -F valeur = numéro du fichier alt .cfg à utiliser. Cela modifie le paramètre ALTCFG= dans le fichier .cfg principal."
+
+msgid  "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
+msgstr "    -n valeur = nombre de noyaux à conserver cette fois seulement. (-n5 ou -n 5 conserve 5 noyaux), Min=2, Default=3"
+
+msgid  "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
+msgstr "    -N valeur = nombre de noyaux à conserver. Cela modifie le paramètre du fichier de configuration. (e.g. -N 5)"
+
+msgid  "    -p = preview the urpme commands which would be used."
+msgstr "    -p = prévisualisez les commandes urpme qui seraient utilisées."
+
+msgid  "    -q = advanced mode, this time only - see man page."
+msgstr "    -q = mode avancé, cette fois uniquement - voir la page de manuel."
+
+msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q 1)"
+msgstr "    -Q valeur = 1 ou 0 (1 = ON) mode avancé, persistant. (e.g. -Q 1)"
+
+msgid  "    -l = list the last 1000 lines of the log."
+msgstr "    -l = liste les 1000 dernières lignes du journal."
+
+msgid  "    -m = mono. No colours in screen output."
+msgstr "    -m = mono. Pas de couleurs dans la sortie d'écran."
+
+msgid  "    -v = version."
+msgstr "    -v = version."
+
+msgid  "    -? or -h = show this help."
+msgstr "    -? or -h = montrer cette aide."
+
+msgid  "KEY for column 3:"
+msgstr "LÉGENDE pour la colonne 3 :"
+
+msgid  "     U = curently (U)sed running kernel."
+msgstr "     U = noyau en cours d'exécution actuellement."
+
+msgid  "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgstr "     V = à conserver pour (V)irtualbox -latest. (uniquement en mode avancé)"
+
+msgid  "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgstr "     X = à conserver pour (X)tables-addons -latest. (uniquement en mode avancé)"
+
+msgid  "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr "     K = conserver kernel-*-devel pour le noyau installé. (uniquement en mode avancé)"

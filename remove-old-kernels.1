@@ -1,0 +1,187 @@
+.TH remove-old-kernels "22 Nov 2022"
+.SH NAME
+remove-old-kernels \- Utility to remove obsolete kernels in Mageia Systems using urpme.
+.SH SYNOPSIS
+\fBremove-old-kernels\fP [\fI\-option\fP]
+
+\fBrok\fP [\fI\-option\fP] 
+
+.SH DESCRIPTION
+\fBremove-old-kernels\fR runs automatically under cron.weekly using configuration settings in /etc/remove-old-kernels.cfg. This is the default in order to avoid system failure due to old kernels filling the root file system.
+.br
+For most users it can be left, as installed, to do it's job without any user intervention or concern.
+
+.br
+It keeps the default (3) kernels of EACH kernel flavour, NOT 3 in total. If there are kernels of various flavours installed, then only the flavours with more than 3 would see any removed.
+
+.br
+It will never remove the running kernel.
+
+.br
+If the running kernel has been accidentally removed by some utility since boot then it will report the error and abort, removing nothing.
+
+\fBremove-old-kernels\fP also allows interactive command\-line removal of kernel packages using various options.
+
+\fBremove-old-kernels\fR with no arguments as a regular user, will display the current kernel(s) installed, the one in use, marked with 'U', and the ones it suggests to remove in red, if any.
+.br
+This is a good way to make a quick check without any risk of error. 
+
+\fBremove-old-kernels\fP is also available from the Mageia main menu system in graphical desktops for ease of use by users unfamiliar with the command line. Usually found under Tools -> System Tools. It will ask for the root password.
+
+\fBIn automatic mode a log is kept at /var/log/remove-old-kernels.log. The log is limited to 1000 lines (up to a year) and will then start to remove the oldest entries whilst adding new ones. See the -l option to view the log.
+ 
+.SH DISPLAY
+
+.TP 
+\fB\The header bar.
+This shows:
+.br
+The system release information.
+.br
+The number of kernels found in the /boot directory
+.br
+Whether the automatic mode is on or off. OFF is highlighted in red as a warning.
+.br
+The number of kernels to be kept per flavour.
+.br
+Whether in advanced mode. Not shown when OFF. e.g. Q:1
+.br
+The configuration file in use. Not shown for the main configuration file. e.g. F:1 
+
+.TP 
+\fB\The list columns.
+.br
+Column 1 shows the number of kernels found of each flavour.
+.br
+Column 2 indicates whether the kernel will be kept or removed.
+.br
+Column 3 shows a key letter to indicate the reason for keeping. Run 'rok -h' for key.
+.br
+Column 4 shows the full kernel package name concerned.
+.br
+Column 5 shows the date and time that the kernel was installed.
+
+.SH CONFIGURATION
+
+\fBThe configuration file is /etc/remove-old-kernels.cfg which may be edited manually if desired.
+.br
+\fBThere are several options below which can also be used more conveniently to change settings in the configuration file
+from the command line when run as root.
+.br
+.br
+Several alternative configuration files may be added manually if desired. They must be named as follows:
+.br
+/etc/remove-old-kernels_N.cfg where N is a digit from 1 to 9.
+.br
+A template configuration file is provided containing default values which may be copied:
+/usr/share/doc/remove-old-kernels/remove-old-kernels_N.cfg.template.
+.br
+To use a new alternative configuration file for the current run you can use the -f N option, or -F N to switch to it persistently.
+NOTE that any changes like auto ON/OFF, or the number of kernels to keep, that are made while running an alternative configuration
+will be saved to THAT configuration file. They will not affect the default 'main' configuration.
+.br
+To switch back to the original configuration use -F 0.
+
+.SH OPTIONS
+
+.TP
+\fI\-h -?\fP help
+
+Displays the available options and a key to column 3 of the display.
+
+.TP
+\fI\-n N\fP Set the number of kernels to keep. ONLY for the current run.
+
+This parameter sets the number of kernels to keep (this time) in interactive mode. It must be 2 or more, it's value may be restricted by the setting in etc/dnf/dnf.conf if dnf is installed, in which case there is an on-screen warning. dnf sets a default value of 3. 
+
+.TP
+\fI\-N N\fP Like -n but stores the 'number of kernels to keep' persistently in the config file. e.g. -N 4
+
+It must be run as root to take effect.
+
+.TP
+\fI\-a\fP automatic mode. Run once with no questions asked.
+
+Similar to the weekly cron job and will use settings from /etc/remove-old-kernels.cfg.
+.br
+It may be used with the -n N option if desired. NOTE: No output is sent to the log when run manually.
+
+.TP
+\fI\-A [y|n]\fP Automatic mode ON/OFF switch.
+
+This switches the automatic weekly run ON (y) or OFF (n).
+It directly edits /etc/remove-old-kernels.cfg, setting CRON=y or CRON=n so must be run as root to have any effect.
+
+.TP
+\fI\-c\fP Special option for system automatic mode. This option is NOT intended for manual use.
+
+Checks if CRON=y is in /etc/remove-old-kernels.cfg before running, or exits. The output is logged to /var/log/remove-old-kernels.log.
+It is run by /etc/cron.weekly/remove-old-kernels.cron which also trims the log to 1000 lines if it is greater. This equates to something over one year of use for basic systems.
+See the -l option for viewing the log.
+
+.TP
+\fI\-f N\fP Switch to an alternative configuration file. ONLY for the current run.
+
+N is any number from 1 to 9. Alternative configuration files need to be prepared in advance.
+
+.TP
+\fI\-F N\fP Switch to an alternative configuration file. Persistently. (Must be root)
+
+N is any number from 1 to 9. Alternative configuration files need to be prepared in advance.
+
+.TP
+\fI\-t\fP Test mode.
+
+A test mode where nothing is removed, to see what would be done.
+
+.TP
+\fI\-p\fP Preview mode.
+
+Dry run showing the urpme commands that would be used.
+
+.TP
+\fI\-q\fP Advanced mode, run once.
+
+An advanced mode (developed for Mageia QA testers).
+.br
+In addition to the regular mode, when ON this will also NOT remove:
+.br
+A kernel devel package of the same version as a corresponding installed kernel, unless the kernel is going to be removed as well.
+.br
+A kernel potentially needed by an installed virtualbox kernel latest.
+.br
+A kernel potentially needed by an installed xtables-addons kernel latest.
+
+.TP
+\fI\-Q N\fP Advanced mode, persistent. OFF by default.
+When ON, "Q:ON" is displayed near the right end of the header bar.
+
+N = 1 for enable, 0 to disable. Default disabled.
+
+.TP
+\fI\-l N\fP Display the log file. (Only created by the weekly automatic runs)
+.br
+The last 1000 lines of the log are retained. If no log has yet been created then it will exit.
+
+.TP
+\fI\-v\fP Show the version of the installed remove-old-kernels package.
+
+.SH EXAMPLES
+\fBrok\fP
+.br
+A shorthand link to 'remove-old-kernels'. Run as root to remove kernels or change settings.
+
+\fBremove-old-kernels -n4\fP
+.br
+Remove old kernels interactively, this time, keeping 4 kernels of each flavour.
+
+\fBrok -l\fP
+.br
+Display the log file.
+
+.SH BUGS 
+None known. Report any issues with the program or documentation to https://bugs.mageia.org/
+
+.SH AUTHOR
+\fBremove-old-kernels is by Pierre Jarillon (2018-2021) Jean-Baptiste Biernacki (2021) Barry C Jackson (2022)\fP
+This document is by Barry C Jackson <barjac@mageia.org>.

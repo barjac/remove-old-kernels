@@ -1,0 +1,22 @@
+[Desktop Entry]
+Comment=Removal tool for obsolete system kernels
+Comment[en_GB]=Removal tool for obsolete system kernels
+Exec=/usr/sbin/remove-old-kernels-pkexec
+GenericName=Remove Old Kernels
+GenericName[en_GB]=Remove Old Kernels
+GenericName[fr]=Enlever les noyaux superflus
+Icon=/usr/share/icons/hicolor/scalable/apps/remove-old-kernels.svg
+MimeType=
+Name=Remove Old Kernels
+Name[en]=Remove Old Kernels
+Name[en_GB]=Remove Old Kernels
+Name[fr]=Enlever les noyaux superflus
+StartupNotify=true
+Terminal=true
+Type=Application
+Categories=System;Utility;X-Mageia-CrossDesktop;
+X-DBUS-ServiceName=
+X-DBUS-StartupType=none
+X-KDE-SubstituteUID=false
+X-KDE-Username=
+X-KeepTerminal=false

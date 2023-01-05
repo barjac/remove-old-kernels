@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Recreates ALL .mo binaries from .po text files in po directory
+
+[[ -d locale ]] && rm -r locale
+
+mkdir locale
+
+cd po
+
+for po in *.po; do
+
+echo $po
+
+molang=$(echo $po|rev|cut -d. -f2-|rev)
+
+mkdir -p ../locale/$molang/LC_MESSAGES
+
+msgfmt -vco ../locale/$molang/LC_MESSAGES/remove-old-kernels.mo $po
+
+done
+
+cd ..

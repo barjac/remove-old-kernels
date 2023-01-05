@@ -1,0 +1,499 @@
+#!/usr/bin/bash
+#
+# Remove old kernels safely and cleanly using urpme.
+#
+# LISTK contains the list of kernels to analyse
+# The script keeps NBK most recent kernels
+# (c) Pierre Jarillon - 2018-04-03 - 2021-11-27
+# (c) Jean-Baptiste Biernacki 2021
+# (c) Barry C Jackson 2022-2023
+####################################
+#
+# Do not edit the values below unless you know 'exactly' what you are doing.
+# You can pass parameters on the command line to acheive the same functionality.
+NBK=3      # Default number of kernels to keep.
+DEBUG=0    # 1 for test mode, urpme is simulated and not applied
+MODE="I"   # mode A)utomatic, I)nteractve (DO NOT CHANGE THIS)
+VISU=0     # If VISU=1, show commands which can be used
+LANG=$(echo $LANGUAGE|cut -d: -f1)
+
+# Colours for display     Defaults                  Used for
+Normal="\e[0m"          # System default f/g colour
+KeepCol="\e[92m"        # Light Green               Keep text
+RemvCol="\e[91m"        # Light Red                 Remove text
+InfoCol="\e[33m"        # Orange                    Information text
+HdBgCol="\e[102;30m"    # Light Green Background    Heading background
+WarnBgCol="\e[101m"     # Light Red Background      Warnings in heading
+ClearLine="\r\e[2K"     # Clear the line
+
+# List of kernel types to include.
+# This list is only used if LISTK is omitted from the .cfg file in use.
+LISTK=\
+"kernel-desktop586
+kernel-desktop
+kernel-desktop-devel
+kernel-server
+kernel-server-devel
+kernel-source
+kernel-tmb-desktop
+kernel-tmb-desktop-devel
+kernel-tmb-source
+kernel-linus
+kernel-linus-devel
+kernel-linus-source
+"
+prog="remove-old-kernels"
+cfgpath="/etc/"
+maincfg="${cfgpath}${prog}.cfg"
+currcfg=${maincfg}
+
+# Perform translations
+i18n() {
+gettext $prog "$1"
+}
+
+# Display -help
+usage() {
+echo "$(i18n "Usage: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]")"
+echo "$(i18n "    -a = automatic, no questions. Interactive if not specified. (must be root)")"
+echo "$(i18n "    -A value = y or n to turn ON or OFF automatic weekly removal of kernels. (e.g. -Ay)")"
+echo "$(i18n "    -c = as automatic but also checks for CRON=y in the cfg file or exits. (must be root)")"
+echo "$(i18n "    -t = Test mode, nothing is removed, urpme is simulated.")"
+echo "$(i18n "    -f value = number of the alternate .cfg file to use this time only. Exits if missing.")"
+echo "$(i18n "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file.")"
+echo "$(i18n "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3")"
+echo "$(i18n "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)")"
+echo "$(i18n "    -p = preview the urpme commands which would be used.")"
+echo "$(i18n "    -q = advanced mode, this time only - see man page.")"
+echo "$(i18n "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q 1)")"
+echo "$(i18n "    -l = list the last 1000 lines of the log.")"
+echo "$(i18n "    -m = mono. No colours in screen output.")"
+echo "$(i18n "    -v = version.")"
+echo "$(i18n "    -? or -h = show this help.")"
+echo ""
+echo "$(i18n "KEY for column 3:")"
+echo "$(i18n "     U = curently (U)sed running kernel.")"
+echo "$(i18n "     V = keeping for (V)irtualbox -latest. (only in advanced mode)")"
+echo "$(i18n "     X = keeping for (X)tables-addons -latest. (only in advanced mode)")"
+echo "$(i18n "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)")"
+echo ""
+}
+
+# Source main .cfg file if it exists, or issue warning and abort.
+source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; exit 1; }
+
+# If an alt .cfg is set in main .cfg
+if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
+    # Check it really exists
+    if [[ -f /etc/remove-old-kernels_$ALTCFG.cfg ]]; then
+        # Set current cfg to it
+        currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
+        source $currcfg
+    else
+        echo -e "${RemvCol}$(i18n "Your alternative configuration file does not exist:")${Normal}\
+        /etc/remove-old-kernels_$ALTCFG.cfg\n$(i18n "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
+        exit 1
+    fi
+fi
+
+# Check for CRON variable in config or add default. (Some users may have early version without this feature)
+if ! grep -q -e "CRON=" ${maincfg}; then
+   echo -e "\n# # Allow cron to run 'remove-old-kernels' weekly. Replace 'y' with 'n' (lower case) to disable it.\nCRON=y" >> ${maincfg}
+fi
+
+# Check dnf limit before option parsing
+dnfNBK=0; dnfmsg=false
+[[ -f /etc/dnf/dnf.conf ]] && dnfNBK=$(cat /etc/dnf/dnf.conf|grep "installonly_limit="|cut -d= -f2)
+
+# Check running as root
+chkroot() {
+if (((UID))); then
+   echo -e "${RemvCol}$(i18n "Must be root to edit configuration")${Normal}\nHit spacebar"
+   read -n1; echo -en "${ClearLine}"
+   exit 0
+fi
+}
+
+# Function to handle -f or -F options
+altcfg() {
+cfgno=$1
+# Called with f
+if [[ ed -ne 1 ]]; then
+        # Check for cfg 0
+        if [[ $cfgno -eq 0 ]]; then
+            source ${maincfg}
+            ALTCFG=${cfgno}
+        else
+            # If alt cfg file exists source it
+            if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
+                source /etc/remove-old-kernels_${cfgno}.cfg
+                ALTCFG=${cfgno}
+            else
+                echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
+                exit 1
+            fi
+        fi
+else
+        # Called with F
+        # If ALTCFG var is missing from the main .cfg file, add it
+        if ! cat ${maincfg} |grep -q "ALTCFG="; then
+            echo "ALTCFG=" >> ${maincfg}
+        fi
+        # Switch back to .cfg 0
+        if [[ $cfgno -eq 0 ]]; then
+            /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" ${maincfg}
+            source ${maincfg}; currcfg=${maincfg}
+        else
+                # If alt cfg file exists
+                if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
+                    # Add it in main .cfg
+                    /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" ${maincfg}
+                    ALTCFG=${cfgno}; 
+                    currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
+                    source $currcfg
+                else
+                    echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
+                    exit 1
+                fi
+        fi
+fi
+}
+
+# Parse arguments from command line which take precedence over script and cfg file
+if [[ ${#} -gt 0 ]] ; then
+    while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
+        case ${NAME} in
+            a)  MODE="A"
+                ;;
+            A)  chkroot
+            echo ${currcfg}
+                CRONN=${OPTARG} && [[ ${#CRONN} = 1 ]] && [[ "yn" =~ "$CRONN" ]] && \
+                /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" ${currcfg} && CRON=$CRONN
+                ;;
+            c)  MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "$CRON" == "y" ]] || exit 0
+                ;;
+            t)  DEBUG=1
+                ;;
+            f)  [[ ${OPTARG} =~ ^[0-9] ]] && altcfg ${OPTARG}
+                ;;
+            F)  chkroot
+                [[ ${OPTARG} =~ ^[0-9] ]] && ed=1 && altcfg ${OPTARG}
+                ;;
+            p)  VISU=1
+                ;;
+            q)  QA=1
+                ;;
+            Q)  chkroot
+                [[ ${OPTARG} =~ ^[0-1] ]] && QAN="${OPTARG}"
+                if cat ${currcfg}|grep -q "QA="; then
+                    /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" ${currcfg} && QA=${QAN}
+                else
+                    echo "QA=${QAN}" >> ${currcfg} && QA=${QAN}
+                fi
+                ;;
+            n)  [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK=${OPTARG}
+                ;;
+            N)  chkroot
+                NBKN=${OPTARG}
+                if [[ $NBKN =~ ^[0-9]+$ ]] && [[ $NBKN -ge $dnfNBK ]]; then
+                    /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" ${currcfg} && NBK=$NBKN
+                else
+                   dnfmsg=true
+                fi
+                ;;
+            l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar")\n"; read -n1; echo -en "${ClearLine}"; }
+                ;;
+            m)  Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
+                ;;
+            v)  printf "$(rpm -q remove-old-kernels)\n"
+                exit 2
+                ;;
+          ?|h)  clear; usage
+                exit 2
+                ;;
+        esac
+    done
+    # Don't allow NBK < 2
+    if (( NBK < 2 )); then
+        NBK=2
+    fi
+fi
+
+# Only use greeting in interactive mode
+if [[ $MODE == "I" ]]; then
+clear
+echo -e "                        $(i18n "Welcome to 'remove-old-kernels' Interactive")\n"
+
+fi
+
+# Use dnf kernel 'number to keep' if installed
+if [[ $dnfNBK -gt $NBK ]] || $dnfmsg; then
+    NBK=$dnfNBK
+    dnfmssg="${InfoCol}INFO: Number to keep is restricted to $dnfNBK, by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf${Normal}" 
+fi
+
+# Get info for status message
+if [[ "$CRON" == "y" ]]; then autostat="ON"; else autostat="${Normal}${WarnBgCol}OFF${HdBgCol}"; fi
+if [[ "$QA" == "1" ]]; then qamssg="| Q:ON "; fi
+if [[ $ALTCFG -gt 0 ]]; then cfgmssg="|${Normal}${WarnBgCol}F:${ALTCFG}${HdBgCol} "; fi
+
+# Check that the running kernel is still installed: https://bugs.mageia.org/show_bug.cgi?id=31015
+[[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}FATAL: Has the running kernel been uninstalled since last boot? - Aborting."; exit 1; }
+
+# Get the full name of the current running kernel
+CURK=$(rpm -qf /lib/modules/$(uname -r))
+
+# Storage for the list of kernels to remove
+TMPKTR=$(mktemp)
+
+# Check storage usage on root partition
+OCCDISK1=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
+
+# Pad translated strings for column 2
+    keepstr=$(i18n "Keep"); remstr=$(i18n "Remove")
+    if [[ ${#keepstr} != ${#remstr} ]]; then
+        if [[ ${#keepstr} > ${#remstr} ]]; then
+            while (( ${#remstr} < ${#keepstr} )); do remstr="${remstr} "; done
+        else
+            while (( ${#remstr} > ${#keepstr} )); do keepstr="${keepstr} "; done
+        fi
+    fi
+
+#========================= Analyse /boot/ =============================
+
+NK=$(ls /boot/vmlinuz*.mga* | wc -l)
+
+# In automatic mode exit immediately if kernels in boot <= number allowed to be removed
+   [[ $MODE = "A" ]] && [[ ${NK} -le ${NBK} ]] && exit 0
+
+#================================ Show status ==============================
+
+echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
+
+#================================= Analyse rpms =============================
+# Get master list from rpm -qa --last
+allkernels=$(rpm -qa --last|grep "kernel-")
+
+# Get the kernel version and release required by the installed virtualbox-flavour-latest
+get_vbox_kern() {
+if echo "$allkernels"|grep -q "virtualbox-${kernelType}-latest"; then
+     vb_latest_ver=$(echo "$allkernels"|grep "virtualbox-${kernelType}-latest"|cut -d- -f5-|rev|cut -d. -f2-|rev)
+else
+     qavkern=; return
+fi
+depkern=$(echo "$allkernels"|grep $vb_latest_ver|grep -v latest|grep virtualbox-kernel-[0-9])
+kern_ver=$(echo $depkern|cut -d- -f3-|cut -d- -f1) 
+kern_rel=$(echo $depkern|cut -d- -f5-|cut -d. -f1)
+[[ ${#kern_ver} > 0 ]] && [[ ${#kern_rel} > 0 ]] && qavkern="${kern_ver}-${kern_rel}"
+}
+
+# Get the kernel version and release required by the installed xtables-addons-flavour-latest
+get_xtables_kern() {
+if echo "$allkernels"|grep -q "xtables-addons-${kernelType}-latest"; then
+     xt_latest_ver=$(echo "$allkernels"|grep kernel-|grep "xtables-addons-kernel"|grep "latest"|cut -d- -f6-|rev|cut -d. -f2-|rev)
+else
+     qaxkern=; return
+fi
+depkern=$(echo "$allkernels"|grep $xt_latest_ver|grep xtables-addons-kernel-[0-9]|cut -d ' ' -f1)
+kern_ver=$(echo $depkern|cut -d- -f4) 
+kern_rel=$(echo $depkern|cut -d- -f6 -|cut -d. -f1)
+[[ ${#kern_ver} > 0 ]] && [[ ${#kern_rel} > 0 ]] && qaxkern="${kern_ver}-${kern_rel}"
+}
+
+# Keep the -devel package for any installed kernel package
+depdev()  {
+# Reset some vars
+pkg=; kpkgname=; nnk=""
+    # Is current pkg a -devel
+    if echo "${installedKernelPackage}" | grep -q "\-devel"; then
+        # Get matching kernel package name
+        kpkgname=$(echo "${installedKernelPackage}"| /usr/bin/sed -e 's/\-devel//')
+        # Find kernel in installed list without timestamp
+        for pkg in $(echo "$allkernels"|cut -d ' ' -f1); do
+            # Look through installed kernels for kernel package
+            if [[ ${pkg} == ${kpkgname} ]]; then
+                nnk="K"; REMVBL=0
+                # Is kernel flagged for removal?
+                if  cat ${TMPKTR} | grep -q $kpkgname ; then
+                    # Then this -devel is also removable
+                    nnk=""; REMVBL=1
+                fi
+            # We are done here
+            break
+            fi
+        done
+    fi
+}
+
+# Exclude 'latest' packages from installed kernel list
+rpmqaList=$(echo "$allkernels"|grep -v latest)
+
+# Loop through kernel types in LISTK
+for kernelType in ${LISTK}; do
+    [[ $QA -eq 1 ]] && get_vbox_kern && get_xtables_kern
+    installedKernelCounter=0;
+# Scan through installed kernels to match with kernel type in LISTK
+    echo "$rpmqaList"|grep "${kernelType}-[0-9]"|while read installedKernel; do
+        # Clear these for each loop
+        NOTA=""; REMVBL=1
+# Increment installedKernelCounter
+        installedKernelCounter=$((${installedKernelCounter} + 1))
+
+# Return to the line if there exists at least one installedKernel of this kernelType
+        if [[ ${installedKernelCounter} -eq 1 ]] ; then
+        echo -ne "\r ==> ${kernelType}"
+        echo ""
+        fi
+
+# Remove time stamp
+        installedKernelPackage=$(echo ${installedKernel} | cut -d ' ' -f 1 )
+
+# Check for current kernel
+        if [[ $(echo ${installedKernel} | grep ${CURK} | wc -l ) -eq 1 ]] ; then
+            NOTA="U"       # current kernel
+            REMVBL=0       # not removable
+        fi
+
+# Check if kernel is required by vbox latest kernel
+        if [[ $QA -eq 1 ]] && [[ ${#qavkern} -gt 0 ]] && [[ $(echo ${installedKernel} | grep "$qavkern" | wc -l ) -eq 1 ]]; then
+            NOTA="${NOTA}V"     # Required by VBox
+            REMVBL=0            # not removable
+        fi 
+
+# Check if kernel is required by xtables latest kernel    
+        if [[ $QA -eq 1 ]] && [[ ${#qaxkern} -gt 0 ]] && [[ $(echo ${installedKernel} | grep "$qaxkern" | wc -l ) -eq 1 ]]; then
+            NOTA="${NOTA}X"     # Required by xtables
+            REMVBL=0            # not removable
+        fi
+
+# If a kernel devel package has the corresponding kernel package keep it
+        if [[ $QA -eq 1 ]]; then
+            depdev
+            NOTA="${NOTA}${nnk}"
+        fi
+
+# Pad NOTA to 4
+        while (( ${#NOTA} < 4 )); do NOTA="${NOTA} "; done
+
+# Pad installedKernelCounter (col 1) to 3
+        while (( ${#installedKernelCounter} < 3 )); do installedKernelCounter="${installedKernelCounter} "; done
+
+        if [[ ${installedKernelCounter} -gt $NBK ]]; then
+            if [[ ${REMVBL} -ne 1 ]] ; then
+                echo -e "\r ${installedKernelCounter}${KeepCol} : $keepstr: ${NOTA}: ${installedKernel} ${Normal}"
+            else
+                echo -e "\r ${installedKernelCounter}${RemvCol} : $remstr: ${NOTA}: ${installedKernel} ${Normal}"
+                # Add package to removal list
+                echo ${installedKernelPackage} >> ${TMPKTR}
+            fi
+        else
+                echo -e "\r ${installedKernelCounter}${KeepCol} : $keepstr: ${NOTA}: ${installedKernel} ${Normal}"
+        fi
+    done
+done
+
+# Position 'in use' key under symbol below column 3
+padUse=$((${#keepstr}+9)); padstr=""
+while (( ${#padstr} < $padUse )); do padstr="${padstr} "; done
+
+echo -en "${ClearLine}"
+echo -e "${padstr}${KeepCol}U${InfoCol} = $(i18n "In use now")${Normal}"
+if [[ ${#dnfmssg} > 0 ]];then echo -e "${dnfmssg}"; fi
+
+#================================= Mode of execution ===================
+
+nbt=$(cat ${TMPKTR} | wc -l)
+if [[ ${nbt} -ne 0 ]] ; then
+    (((UID))) && echo -e "${RemvCol}$(i18n "Must be root to allow removal")\n${Normal}"
+    if [[ ${VISU} -eq 1 ]]; then
+        plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
+        echo "$(i18n "Command${plural} that would be used"):"
+        for f in $(tac ${TMPKTR}); do
+            echo "urpme ${f}"
+        done
+        i18n "Tap spacebar to exit"
+        read -n1
+        echo -en "${ClearLine}"
+        rm -f ${TMPKTR}
+        exit 0
+    fi
+
+    if [[ ${MODE} != "A" ]] ; then
+        if [[ ${DEBUG} -eq 1 ]] ; then
+            echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
+        fi
+        plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
+        read -p "$(i18n "Remove") ${nbt} $(i18n "kernel${plural}") ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        if [[ -z ${response} ]] ; then response="n" ; fi
+            case ${response} in
+                [Yy])
+                    AUTO="--auto"
+                    ASK=0
+                    MODE="A"
+                    echo -e " \n"
+                    ;;
+                [Ii])
+                    AUTO="--auto"
+                    MODE="I"
+                    echo " $(i18n "interactive")"
+                    ;;
+                   *)
+                    echo -e "\n$(i18n "Aborted")\n"
+                    rm -f ${TMPKTR}
+                    exit 0
+                    ;;
+            esac
+        fi
+
+#================================= Execution ===========================
+
+    for installedKernelPackage in $(tac ${TMPKTR}) ; do
+        if [[ ${MODE} = "I" ]] ; then    # --- interactive mode ---
+            read -p "$(i18n "Remove") ${installedKernelPackage} ? $(i18n "y/N/q  (q=quit)") " -n 1 response
+            echo -e " \n"
+            if [[ -z ${response} ]]; then
+                response="N"
+            fi
+                case ${response} in
+                    [Yy])
+                        if [[ ${DEBUG} -eq 1 ]] ; then
+                            echo -e "\n${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
+                            nbt=$((${nbt} - 1))
+                        else
+                            urpme ${installedKernelPackage}
+                            nbt=$((${nbt} - 1))
+                        fi
+                        ;;
+                    [qQ])
+                        echo -e "\n$(i18n "Aborted")"
+                        rm -f ${TMPKTR};
+                        exit 0
+                        ;;
+                       *)
+                        echo " "
+                        ;;
+                esac
+        else             # --- automatic mode ---
+                if [[ ${DEBUG} -eq 1 ]] ; then
+                    echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
+                    nbt=$((${nbt} - 1))
+                else
+                    # echo "Auto execution"
+                    echo -ne 'y\n' | urpme ${AUTO} ${installedKernelPackage}
+                    nbt=$((${nbt} - 1))
+                fi
+        fi
+    done
+        NK=$(ls /boot/vmlinuz*.mga[0-9] | wc -l)
+        OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
+        echo -e "${HdBgCol} $(i18n "Gain") : $((OCCDISK1 - OCCDISK2)) MB  -  $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
+fi
+
+[[ $MODE == "I" ]] && { i18n "Tap spacebar to exit"; read -n1; echo -en "${ClearLine}"; }
+
+rm -f ${TMPKTR}
+
+# Run again if some removable kernels are left
+(((UID))) && exit 0            # Not root user so exit
+[ ${MODE} != "I" ] &&  exit 0  # Auto so exit
+[ ${nbt} -gt 0 ] && ${0}       # Root user and interactive so run again if removable kernels left

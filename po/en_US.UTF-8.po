@@ -146,7 +146,7 @@ msgstr "    -? or -h = show this help."
 msgid  "KEY for column 3:"
 msgstr "KEY for column 3:"
 
-msgid  "     U = currently (U)sed running kernel."
+msgid  "     U = curently (U)sed running kernel."
 msgstr "     U = currently (U)sed running kernel."
 
 msgid  "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"

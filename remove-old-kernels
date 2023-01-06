@@ -54,10 +54,10 @@ gettext $prog "$1"
 
 # Display -help
 usage() {
-echo "$(i18n "Usage: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]")"
+echo "$(i18n "Usage: <remove-old kernels|rok> [-a] [-A <1/0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]")"
 echo "$(i18n "    -a = automatic, no questions. Interactive if not specified. (must be root)")"
-echo "$(i18n "    -A value = y or n to turn ON or OFF automatic weekly removal of kernels. (e.g. -Ay)")"
-echo "$(i18n "    -c = as automatic but also checks for CRON=y in the cfg file or exits. (must be root)")"
+echo "$(i18n "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)")"
+echo "$(i18n "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)")"
 echo "$(i18n "    -t = Test mode, nothing is removed, urpme is simulated.")"
 echo "$(i18n "    -f value = number of the alternate .cfg file to use this time only. Exits if missing.")"
 echo "$(i18n "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file.")"
@@ -65,7 +65,7 @@ echo "$(i18n "    -n value = number of kernels to keep this time only. (-n5 or -
 echo "$(i18n "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)")"
 echo "$(i18n "    -p = preview the urpme commands which would be used.")"
 echo "$(i18n "    -q = advanced mode, this time only - see man page.")"
-echo "$(i18n "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q 1)")"
+echo "$(i18n "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)")"
 echo "$(i18n "    -l = list the last 1000 lines of the log.")"
 echo "$(i18n "    -m = mono. No colours in screen output.")"
 echo "$(i18n "    -v = version.")"
@@ -98,7 +98,7 @@ fi
 
 # Check for CRON variable in config or add default. (Some users may have early version without this feature)
 if ! grep -q -e "CRON=" ${maincfg}; then
-   echo -e "\n# # Allow cron to run 'remove-old-kernels' weekly. Replace 'y' with 'n' (lower case) to disable it.\nCRON=y" >> ${maincfg}
+   echo -e "\n# # Allow cron to run 'remove-old-kernels' weekly. Replace '1' with '0' to disable it.\nCRON=1" >> ${maincfg}
 fi
 
 # Check dnf limit before option parsing
@@ -166,11 +166,20 @@ if [[ ${#} -gt 0 ]] ; then
             a)  MODE="A"
                 ;;
             A)  chkroot
-            echo ${currcfg}
-                CRONN=${OPTARG} && [[ ${#CRONN} = 1 ]] && [[ "yn" =~ "$CRONN" ]] && \
-                /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" ${currcfg} && CRON=$CRONN
+            # Allow y/n and 0/1 for compatability with older versions
+                CRONN=${OPTARG}
+                if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ "$CRONN" ]]; then
+                    if [[ "ny" =~ "$CRONN" ]]; then
+                        echo "$(i18n "Please use 0 or 1 for OFF and ON")"
+                        exit 0
+                    else
+                        /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" ${currcfg} && CRON=$CRONN
+                    fi
+                else
+                    echo "$(i18n "Bad input value")"; exit 1
+                fi
                 ;;
-            c)  MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "$CRON" == "y" ]] || exit 0
+            c)  MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "1y" =~ "$CRON" ]] || exit 0
                 ;;
             t)  DEBUG=1
                 ;;
@@ -229,11 +238,11 @@ fi
 # Use dnf kernel 'number to keep' if installed
 if [[ $dnfNBK -gt $NBK ]] || $dnfmsg; then
     NBK=$dnfNBK
-    dnfmssg="${InfoCol}INFO: Number to keep is restricted to $dnfNBK, by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf${Normal}" 
+    dnfmssg="${InfoCol}$(i18n "INFO: Number to keep is restricted to ")${dnfNBK}$(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}" 
 fi
 
 # Get info for status message
-if [[ "$CRON" == "y" ]]; then autostat="ON"; else autostat="${Normal}${WarnBgCol}OFF${HdBgCol}"; fi
+if [[ "$CRON" == "1" ]]; then autostat="ON"; else autostat="${Normal}${WarnBgCol}OFF${HdBgCol}"; fi
 if [[ "$QA" == "1" ]]; then qamssg="| Q:ON "; fi
 if [[ $ALTCFG -gt 0 ]]; then cfgmssg="|${Normal}${WarnBgCol}F:${ALTCFG}${HdBgCol} "; fi
 

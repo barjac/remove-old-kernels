@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-KeywordsList: \n"
 
 msgid  "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Welkom bij 'oude kernels verwijderen' Interactive"
+msgstr "Welkom bij 'remove-old-kernels' Interactief"
 
 msgid  "Keep"
 msgstr "Houden"
@@ -95,17 +95,29 @@ msgstr "FATAL: Kan niet lezen:"
 msgid  "No such alternative configuration file:"
 msgstr "Geen dergelijk alternatief configuratiebestand:"
 
-msgid  "Usage: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Gebruik: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n nummer] [-N nummer] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgid  "Please use 0 or 1 for OFF and ON"
+msgstr "Gebruik 0 of 1 voor UIT en AAN"
+
+msgid  "Bad input value"
+msgstr "Slechte invoerwaarde"
+
+msgid  "INFO: Number to keep is restricted to "
+msgstr "INFO: Number to keep is restricted to "
+
+msgid  ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Gebruik: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n nummer] [-N nummer] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 msgstr "    -a = automatisch, geen vragen. Interactief indien niet gespecificeerd. (moet root zijn)"
 
-msgid  "    -A value = y or n to turn ON or OFF automatic weekly removal of kernels. (e.g. -Ay)"
-msgstr "    -A waarde = y of n om automatische wekelijkse verwijdering van kernels AAN of UIT te zetten. (bijv. -Ay)"
+msgid  "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -Ay)"
+msgstr "    -A waarde = 1 of 0 om automatische wekelijkse verwijdering van kernels AAN of UIT te zetten. (bijv. -A1)"
 
 msgid  "    -c = as automatic but also checks for CRON=y in the cfg file or exits. (must be root)"
-msgstr "    -c = als automatisch maar controleert ook op CRON=y in het cfg-bestand of sluit af. (moet root zijn)"
+msgstr "    -c = als automatisch maar controleert ook op CRON=1 in het cfg-bestand of sluit af. (moet root zijn)"
 
 msgid  "    -t = Test mode, nothing is removed, urpme is simulated."
 msgstr "    -t = Testmodus, niets wordt verwijderd, urpme wordt gesimuleerd."

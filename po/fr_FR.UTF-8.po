@@ -95,17 +95,29 @@ msgstr "FATAL : Échec de la lecture :"
 msgid  "No such alternative configuration file:"
 msgstr "Aucun fichier de configuration alternatif de ce type :"
 
-msgid  "Usage: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Usage: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n numéro] [-N numéro] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgid  "Please use 0 or 1 for OFF and ON"
+msgstr "Veuillez utiliser 0 ou 1 pour OFF et ON"
+
+msgid  "Bad input value"
+msgstr "Mauvaise valeur d'entrée"
+
+msgid  "INFO: Number to keep is restricted to "
+msgstr "INFO: Number to keep is restricted to "
+
+msgid  ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n numéro] [-N numéro] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 msgstr "    -a = automatique, pas de questions. Interactif si non spécifié. (doit être root)"
 
-msgid  "    -A value = y or n to turn ON or OFF automatic weekly removal of kernels. (e.g. -Ay)"
-msgstr "    -A valeur = y ou n pour activer ou désactiver la suppression automatique des noyaux. (e.g. -Ay)"
+msgid  "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
+msgstr "    -A valeur = 1 ou 0 pour activer ou désactiver la suppression automatique des noyaux. (e.g. -A1)"
 
-msgid  "    -c = as automatic but also checks for CRON=y in the cfg file or exits. (must be root)"
-msgstr "    -c = comme automatique mais vérifie également CRON=y dans le fichier cfg ou quitte. (doit être root)"
+msgid  "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
+msgstr "    -c = comme automatique mais vérifie également CRON=1 dans le fichier cfg ou quitte. (doit être root)"
 
 msgid  "    -t = Test mode, nothing is removed, urpme is simulated."
 msgstr "    -t = Mode test, rien n'est supprimé, urpme est simulé."
@@ -128,8 +140,8 @@ msgstr "    -p = prévisualisez les commandes urpme qui seraient utilisées."
 msgid  "    -q = advanced mode, this time only - see man page."
 msgstr "    -q = mode avancé, cette fois uniquement - voir la page de manuel."
 
-msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q 1)"
-msgstr "    -Q valeur = 1 ou 0 (1 = ON) mode avancé, persistant. (e.g. -Q 1)"
+msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr "    -Q valeur = 1 ou 0 (1 = ON) mode avancé, persistant. (e.g. -Q1)"
 
 msgid  "    -l = list the last 1000 lines of the log."
 msgstr "    -l = liste les 1000 dernières lignes du journal."

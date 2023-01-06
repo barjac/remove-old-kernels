@@ -41,8 +41,8 @@ kernel-linus-devel
 kernel-linus-source
 "
 
-# Allow cron to run 'remove-old-kernels' weekly. Replace 'y' with 'n' (lower case) to disable it.
-CRON=y
+# Allow cron to run 'remove-old-kernels' weekly. Replace '1' with '0' to disable it.
+CRON=1
 
 # Turn on the advanced mode. [0|1] (1 is ON)
 QA=0

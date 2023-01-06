@@ -1,4 +1,4 @@
-.TH remove-old-kernels "22 Nov 2022"
+.TH remove-old-kernels "6 Jan 2023"
 .SH NAME
 remove-old-kernels \- Utility to remove obsolete kernels in Mageia Systems using urpme.
 .SH SYNOPSIS
@@ -69,15 +69,15 @@ Column 5 shows the date and time that the kernel was installed.
 from the command line when run as root.
 .br
 .br
-Several alternative configuration files may be added manually if desired. They must be named as follows:
+Several alternate configuration files may be added manually if desired. They must be named as follows:
 .br
 /etc/remove-old-kernels_N.cfg where N is a digit from 1 to 9.
 .br
 A template configuration file is provided containing default values which may be copied:
 /usr/share/doc/remove-old-kernels/remove-old-kernels_N.cfg.template.
 .br
-To use a new alternative configuration file for the current run you can use the -f N option, or -F N to switch to it persistently.
-NOTE that any changes like auto ON/OFF, or the number of kernels to keep, that are made while running an alternative configuration
+To use a new alternate configuration file for the current run you can use the -f N option, or -F N to switch to it persistently.
+NOTE that any changes like auto ON/OFF, or the number of kernels to keep, that are made while running an alternate configuration
 will be saved to THAT configuration file. They will not affect the default 'main' configuration.
 .br
 To switch back to the original configuration use -F 0.
@@ -107,32 +107,32 @@ Similar to the weekly cron job and will use settings from /etc/remove-old-kernel
 It may be used with the -n N option if desired. NOTE: No output is sent to the log when run manually.
 
 .TP
-\fI\-A [y|n]\fP Automatic mode ON/OFF switch.
+\fI\-A [1|0]\fP Automatic mode ON/OFF switch.
 
-This switches the automatic weekly run ON (y) or OFF (n).
-It directly edits /etc/remove-old-kernels.cfg, setting CRON=y or CRON=n so must be run as root to have any effect.
+This switches the automatic weekly run ON (1) or OFF (0).
+It directly edits /etc/remove-old-kernels.cfg (or an alternate config file if it is currently in use), setting CRON=1 or CRON=0 so must be run as root to have any effect.
 
 .TP
 \fI\-c\fP Special option for system automatic mode. This option is NOT intended for manual use.
 
-Checks if CRON=y is in /etc/remove-old-kernels.cfg before running, or exits. The output is logged to /var/log/remove-old-kernels.log.
+Checks if CRON=1 is in /etc/remove-old-kernels.cfg before running, or exits. The output is logged to /var/log/remove-old-kernels.log.
 It is run by /etc/cron.weekly/remove-old-kernels.cron which also trims the log to 1000 lines if it is greater. This equates to something over one year of use for basic systems.
 See the -l option for viewing the log.
 
 .TP
-\fI\-f N\fP Switch to an alternative configuration file. ONLY for the current run.
+\fI\-f N\fP Switch to an alternate configuration file. ONLY for the current run.
 
-N is any number from 1 to 9. Alternative configuration files need to be prepared in advance.
+N is any number from 1 to 9. Alternate configuration files need to be prepared in advance.
 
 .TP
-\fI\-F N\fP Switch to an alternative configuration file. Persistently. (Must be root)
+\fI\-F N\fP Switch to an alternate configuration file. Persistently. (Must be root)
 
-N is any number from 1 to 9. Alternative configuration files need to be prepared in advance.
+N is any number from 0 to 9. (0 returns to main configuration file). Alternate configuration files need to be prepared in advance.
 
 .TP
 \fI\-t\fP Test mode.
 
-A test mode where nothing is removed, to see what would be done.
+A test mode where nothing is removed, to show what would be done.
 
 .TP
 \fI\-p\fP Preview mode.
@@ -159,9 +159,9 @@ When ON, "Q:ON" is displayed near the right end of the header bar.
 N = 1 for enable, 0 to disable. Default disabled.
 
 .TP
-\fI\-l N\fP Display the log file. (Only created by the weekly automatic runs)
+\fI\-l \fP Display the log file. (Only created by the weekly automatic runs)
 .br
-The last 1000 lines of the log are retained. If no log has yet been created then it will exit.
+The last ~1000 lines of the log are retained. If no log has yet been created then it will exit.
 
 .TP
 \fI\-v\fP Show the version of the installed remove-old-kernels package.

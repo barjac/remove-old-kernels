@@ -95,6 +95,18 @@ msgstr "FATAL: Falha de leitura:"
 msgid  "No such alternative configuration file:"
 msgstr "Não existe arquivo de configuração alternativo:"
 
+msgid  "Please use 0 or 1 for OFF and ON"
+msgstr "Please use 0 or 1 for OFF and ON"
+
+msgid  "Bad input value"
+msgstr "Bad input value"
+
+msgid  "INFO: Number to keep is restricted to "
+msgstr "INFO: Number to keep is restricted to "
+
+msgid  ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+
 msgid  "Usage: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 msgstr "Uso: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n número] [-N número] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
@@ -146,7 +158,7 @@ msgstr "    -? ou -h = mostra essa ajuda."
 msgid  "KEY for column 3:"
 msgstr "TECLA para coluna 3:"
 
-msgid  "     U = curently (U)sed running kernel."
+msgid  "     U = currently (U)sed running kernel."
 msgstr "     U = Kernel em execução (U)sado atualmente."
 
 msgid  "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"

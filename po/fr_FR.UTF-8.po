@@ -158,7 +158,7 @@ msgstr "    -? or -h = montrer cette aide."
 msgid  "KEY for column 3:"
 msgstr "LÉGENDE pour la colonne 3 :"
 
-msgid  "     U = curently (U)sed running kernel."
+msgid  "     U = currently (U)sed running kernel."
 msgstr "     U = noyau en cours d'exécution actuellement."
 
 msgid  "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"

@@ -158,7 +158,7 @@ msgstr "    -? or -h = laat deze hulp zien."
 msgid  "KEY for column 3:"
 msgstr "SLEUTEL voor kolom 3:"
 
-msgid  "     U = curently (U)sed running kernel."
+msgid  "     U = currently (U)sed running kernel."
 msgstr "     U = momenteel gebruikte lopende kernel."
 
 msgid  "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"

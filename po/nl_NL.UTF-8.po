@@ -53,6 +53,9 @@ msgstr "interactief"
 msgid  "abort"
 msgstr "abort"
 
+msgid  "Aborted"
+msgstr "afgebroken"
+
 msgid  "quit"
 msgstr "vertrekken"
 

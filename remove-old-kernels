@@ -98,7 +98,14 @@ fi
 
 # Check for CRON variable in config or add default. (Some users may have early version without this feature)
 if ! grep -q -e "CRON=" ${maincfg}; then
-   echo -e "\n# # Allow cron to run 'remove-old-kernels' weekly. Replace '1' with '0' to disable it.\nCRON=1" >> ${maincfg}
+    echo -e "\n# # Allow cron to run 'remove-old-kernels' weekly. Replace '1' with '0' to disable it.\nCRON=1" >> ${maincfg}
+fi
+
+# Check for CRON set to old y/n values and update
+if [[ ${#CRON} = 1 ]] && [[ "ny" =~ "$CRON" ]]; then
+    [[ $CRON == y ]] && CRON=1
+	[[ $CRON == n ]] && CRON=0
+	/usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" ${currcfg}
 fi
 
 # Check dnf limit before option parsing

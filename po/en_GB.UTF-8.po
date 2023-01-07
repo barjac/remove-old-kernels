@@ -55,6 +55,9 @@ msgstr "interactive"
 msgid  "abort"
 msgstr "abort"
 
+msgid  "Aborted"
+msgstr "Aborted"
+
 msgid  "quit"
 msgstr "quit"
 

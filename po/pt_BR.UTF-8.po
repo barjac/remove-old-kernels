@@ -53,6 +53,9 @@ msgstr "interativo"
 msgid  "abort"
 msgstr "abortar"
 
+msgid  "Aborted"
+msgstr "Abortado"
+
 msgid  "quit"
 msgstr "sair"
 

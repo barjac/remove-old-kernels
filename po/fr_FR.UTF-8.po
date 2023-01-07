@@ -53,6 +53,9 @@ msgstr "interactif"
 msgid  "abort"
 msgstr "abandonner"
 
+msgid  "Aborted"
+msgstr "Avorté"
+
 msgid  "quit"
 msgstr "quitter"
 

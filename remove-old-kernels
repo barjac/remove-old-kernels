@@ -91,28 +91,34 @@ if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
         source $currcfg
     else
         echo -e "${RemvCol}$(i18n "Your alternative configuration file does not exist:")${Normal}\
-        /etc/remove-old-kernels_$ALTCFG.cfg\n$(i18n "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
+/etc/remove-old-kernels_$ALTCFG.cfg\n$(i18n "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
         exit 1
     fi
 fi
 
-# Check for CRON variable in config or add default. (Some users may have early version without this feature)
-if ! grep -q -e "CRON=" ${maincfg}; then
-    echo -e "\n# # Allow cron to run 'remove-old-kernels' weekly. Replace '1' with '0' to disable it.\nCRON=1" >> ${maincfg}
-fi
+# The following config file checks need root to update files if needed
+if [[ ! (((UID))) ]]; then
+# Check for CRON variable in config or add default. (Some users may have early versions)
+    if ! grep -q -e "CRON=" ${currcfg}; then
+        echo -e "\n# Allow cron to run remove-old-kernels. 0=OFF 1=ON.\nCRON=1" >> ${currcfg}
+    fi
+
+# Update comment in config file if needed since $CRON change to 0|1
+    /usr/bin/sed -i 's/^.*\blower case\b.*$/# Allow cron to run remove-old-kernels. 0=OFF 1=ON./' ${currcfg}
 
 # Check for CRON set to old y/n values and update
-if [[ ${#CRON} = 1 ]] && [[ "ny" =~ "$CRON" ]]; then
-    [[ $CRON == y ]] && CRON=1
-	[[ $CRON == n ]] && CRON=0
-	/usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" ${currcfg}
+    if [[ ${#CRON} = 1 ]] && [[ "ny" =~ "$CRON" ]]; then
+        [[ $CRON == y ]] && CRON=1
+        [[ $CRON == n ]] && CRON=0
+        /usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" ${currcfg}
+    fi
 fi
 
 # Check dnf limit before option parsing
 dnfNBK=0; dnfmsg=false
 [[ -f /etc/dnf/dnf.conf ]] && dnfNBK=$(cat /etc/dnf/dnf.conf|grep "installonly_limit="|cut -d= -f2)
 
-# Check running as root
+# Function to check we are root or exit
 chkroot() {
 if (((UID))); then
    echo -e "${RemvCol}$(i18n "Must be root to edit configuration")${Normal}\nHit spacebar"

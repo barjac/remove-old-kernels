@@ -41,9 +41,12 @@ msgstr "noyau"
 msgid  "kernels"
 msgstr "noyaux"
 
+# For languages where "y/N" is not appropriate DO NOT change "y/N/i"
+# but only translate "yes", "no" and "confirm for each".
 msgid  "y/N/i (i=confirm for each)"
 msgstr "y/N/i (y=oui N=non i=confirmer pour chaque)"
 
+# Only translate "yes", "no" and "quit"
 msgid  "y/N/q (q=quit)"
 msgstr "y/N/q (y=oui N=non q=quitter)"
 
@@ -105,10 +108,13 @@ msgid  "Bad input value"
 msgstr "Mauvaise valeur d'entrée"
 
 msgid  "INFO: Number to keep is restricted to "
-msgstr "INFO: Number to keep is restricted to "
+msgstr "INFO : Le numéro à conserver est limité à "
 
 msgid  ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
-msgstr ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", par le dnf 'installonly_limit' défini dans /etc/dnf/dnf.conf"
+
+msgid  "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr "FATAL : le noyau en cours d'exécution a-t-il été désinstallé depuis le dernier démarrage ? - Abandonner."
 
 msgid  "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 msgstr "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n numéro] [-N numéro] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"

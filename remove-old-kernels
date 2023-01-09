@@ -260,7 +260,7 @@ if [[ "$QA" == "1" ]]; then qamssg="| Q:ON "; fi
 if [[ $ALTCFG -gt 0 ]]; then cfgmssg="|${Normal}${WarnBgCol}F:${ALTCFG}${HdBgCol} "; fi
 
 # Check that the running kernel is still installed: https://bugs.mageia.org/show_bug.cgi?id=31015
-[[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}FATAL: Has the running kernel been uninstalled since last boot? - Aborting."; exit 1; }
+[[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}$(i18n "FATAL: Has the running kernel been uninstalled since last boot? - Aborting.")"; exit 1; }
 
 # Get the full name of the current running kernel
 CURK=$(rpm -qf /lib/modules/$(uname -r))

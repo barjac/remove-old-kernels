@@ -1,4 +1,4 @@
-.TH remove-old-kernels "6 Jan 2023"
+.TH remove-old-kernels "10 Jan 2023"
 .SH NAME
 remove-old-kernels \- Utility to remove obsolete kernels in Mageia Systems using urpme.
 .SH SYNOPSIS
@@ -29,7 +29,10 @@ This is a good way to make a quick check without any risk of error.
 \fBremove-old-kernels\fP is also available from the Mageia main menu system in graphical desktops for ease of use by users unfamiliar with the command line. Usually found under Tools -> System Tools. It will ask for the root password.
 
 \fBIn automatic mode a log is kept at /var/log/remove-old-kernels.log. The log is limited to 1000 lines (up to a year) and will then start to remove the oldest entries whilst adding new ones. See the -l option to view the log.
- 
+.br
+NOTE: If the 'remove old kernels' package is uninstalled, then the log will also be removed,
+so if you need it, you must make a backup of /var/log/remove-old-kernels.log before uninstalling.
+
 .SH DISPLAY
 
 .TP 
@@ -40,13 +43,13 @@ The system release information.
 .br
 The number of kernels found in the /boot directory
 .br
-Whether the automatic mode is on or off. OFF is highlighted in red as a warning.
+Whether the automatic mode is on (1) or off (0). '0' is highlighted in red as a warning when off.
 .br
 The number of kernels to be kept per flavour.
 .br
-Whether in advanced mode. Not shown when OFF. e.g. Q:1
+Whether in advanced mode. e.g.| Q | Not shown when OFF.
 .br
-The configuration file in use. Not shown for the main configuration file. e.g. F:1 
+The alternate configuration file in use. Not shown for the main configuration file. e.g. F:1 
 
 .TP 
 \fB\The list columns.
@@ -154,7 +157,7 @@ A kernel potentially needed by an installed xtables-addons kernel latest.
 
 .TP
 \fI\-Q N\fP Advanced mode, persistent. OFF by default.
-When ON, "Q:ON" is displayed near the right end of the header bar.
+When ON, "Q" is displayed near the right end of the header bar.
 
 N = 1 for enable, 0 to disable. Default disabled.
 

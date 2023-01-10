@@ -299,11 +299,11 @@ allkernels=$(rpm -qa --last|grep "kernel-")
 # Get the kernel version and release required by the installed virtualbox-flavour-latest
 get_vbox_kern() {
 if echo "$allkernels"|grep -q "virtualbox-${kernelType}-latest"; then
-     vb_latest_ver=$(echo "$allkernels"|grep "virtualbox-${kernelType}-latest"|cut -d- -f5-|rev|cut -d. -f2-|rev)
+     vb_latest_ver=$(echo "$allkernels"|cut -d' ' -f1|grep "virtualbox-${kernelType}-latest"|cut -d- -f5-|rev|cut -d. -f2-|rev)
 else
      qavkern=; return
 fi
-depkern=$(echo "$allkernels"|grep $vb_latest_ver|grep -v latest|grep virtualbox-kernel-[0-9])
+depkern=$(echo "$allkernels"|cut -d' ' -f1|grep $vb_latest_ver|grep -v latest|grep virtualbox-kernel-[0-9])
 kern_ver=$(echo $depkern|cut -d- -f3-|cut -d- -f1) 
 kern_rel=$(echo $depkern|cut -d- -f5-|cut -d. -f1)
 [[ ${#kern_ver} > 0 ]] && [[ ${#kern_rel} > 0 ]] && qavkern="${kern_ver}-${kern_rel}"
@@ -312,11 +312,11 @@ kern_rel=$(echo $depkern|cut -d- -f5-|cut -d. -f1)
 # Get the kernel version and release required by the installed xtables-addons-flavour-latest
 get_xtables_kern() {
 if echo "$allkernels"|grep -q "xtables-addons-${kernelType}-latest"; then
-     xt_latest_ver=$(echo "$allkernels"|grep kernel-|grep "xtables-addons-kernel"|grep "latest"|cut -d- -f6-|rev|cut -d. -f2-|rev)
+     xt_latest_ver=$(echo "$allkernels"|cut -d' ' -f1|grep kernel-|grep "xtables-addons-kernel"|grep "latest"|cut -d- -f6-|rev|cut -d. -f2-|rev)
 else
      qaxkern=; return
 fi
-depkern=$(echo "$allkernels"|grep $xt_latest_ver|grep xtables-addons-kernel-[0-9]|cut -d ' ' -f1)
+depkern=$(echo "$allkernels"|cut -d' ' -f1|grep $xt_latest_ver|grep xtables-addons-kernel-[0-9]|cut -d ' ' -f1)
 kern_ver=$(echo $depkern|cut -d- -f4) 
 kern_rel=$(echo $depkern|cut -d- -f6 -|cut -d. -f1)
 [[ ${#kern_ver} > 0 ]] && [[ ${#kern_rel} > 0 ]] && qaxkern="${kern_ver}-${kern_rel}"

@@ -255,8 +255,8 @@ if [[ $dnfNBK -gt $NBK ]] || $dnfmsg; then
 fi
 
 # Get info for status message
-if [[ "$CRON" == "1" ]]; then autostat="ON"; else autostat="${Normal}${WarnBgCol}OFF${HdBgCol}"; fi
-if [[ "$QA" == "1" ]]; then qamssg="| Q:ON "; fi
+if [[ "$CRON" == "1" ]]; then autostat="1"; else autostat="${Normal}${WarnBgCol}0${HdBgCol}"; fi
+if [[ "$QA" == "1" ]]; then qamssg="| Q "; fi
 if [[ $ALTCFG -gt 0 ]]; then cfgmssg="|${Normal}${WarnBgCol}F:${ALTCFG}${HdBgCol} "; fi
 
 # Check that the running kernel is still installed: https://bugs.mageia.org/show_bug.cgi?id=31015

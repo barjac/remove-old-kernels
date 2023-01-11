@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+# Checks that all msgid strings in .po files are identical in the remove-old-kernels script.
+# On error, the string in the offending .po file is printed out.
+
+clear
+for pofile in po/*; do
+	echo "Checking - ${pofile}"
+	while read line ; do
+	    #echo $line
+		findstr="$(echo "$line" | grep 'msgid'|cut -d'"' -f2)"
+		# Skip these two strings as they include a variable in the script.
+		if echo "$findstr"|grep -q "that would be used"; then
+			continue
+		fi
+		if ! fgrep -q "$findstr" remove-old-kernels; then
+			echo "${pofile} - ${findstr}"
+		fi
+	done < "${pofile}"
+#	echo ""
+done
+	

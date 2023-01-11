@@ -47,8 +47,8 @@ msgid  "y/N/i (i=confirm for each)"
 msgstr "y/N/i (y=yes N=no i=confirm for each)"
 
 # Only translate "yes", "no" and "quit"
-msgid  "y/N/q  (q=quit)"
-msgstr "y/N/q  (q=quit)"
+msgid  "y/N/q (q=quit)"
+msgstr "y/N/q (q=quit)"
 
 msgid  "interactive"
 msgstr "interactive"
@@ -116,8 +116,8 @@ msgstr ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 msgid  "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
 msgstr "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
 
-msgid  "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 msgstr "    -a = automatic, no questions. Interactive if not specified. (must be root)"
@@ -149,8 +149,8 @@ msgstr "    -p = preview the urpme commands which would be used."
 msgid  "    -q = advanced mode, this time only - see man page."
 msgstr "    -q = advanced mode, this time only - see man page."
 
-msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q 1)"
-msgstr "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q 1)"
+msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
 
 msgid  "    -l = list the last 1000 lines of the log."
 msgstr "    -l = list the last 1000 lines of the log."

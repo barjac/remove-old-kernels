@@ -471,7 +471,7 @@ if [[ ${nbt} -ne 0 ]] ; then
 
     for installedKernelPackage in $(tac ${TMPKTR}) ; do
         if [[ ${MODE} = "I" ]] ; then    # --- interactive mode ---
-            read -p "$(i18n "Remove") ${installedKernelPackage} ? $(i18n "y/N/q  (q=quit)") " -n 1 response
+            read -p "$(i18n "Remove") ${installedKernelPackage} ? $(i18n "y/N/q (q=quit)") " -n 1 response
             echo -e " \n"
             if [[ -z ${response} ]]; then
                 response="N"

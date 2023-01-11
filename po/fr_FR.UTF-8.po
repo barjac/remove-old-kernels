@@ -116,8 +116,8 @@ msgstr ", par le dnf 'installonly_limit' défini dans /etc/dnf/dnf.conf"
 msgid  "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
 msgstr "FATAL : le noyau en cours d'exécution a-t-il été désinstallé depuis le dernier démarrage ? - Abandonner."
 
-msgid  "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n numéro] [-N numéro] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n numéro] [-N numéro] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 msgstr "    -a = automatique, pas de questions. Interactif si non spécifié. (doit être root)"

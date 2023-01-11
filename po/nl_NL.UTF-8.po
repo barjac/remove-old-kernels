@@ -116,16 +116,16 @@ msgstr ", door de dnf 'installonly_limit' ingesteld in /etc/dnf/dnf.conf"
 msgid  "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
 msgstr "FATAL: Is de draaiende kernel verwijderd sinds de laatste keer opstarten? - Afbreken."
 
-msgid  "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Gebruik: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n nummer] [-N nummer] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Gebruik: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n nummer] [-N nummer] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 msgstr "    -a = automatisch, geen vragen. Interactief indien niet gespecificeerd. (moet root zijn)"
 
-msgid  "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -Ay)"
+msgid  "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
 msgstr "    -A waarde = 1 of 0 om automatische wekelijkse verwijdering van kernels AAN of UIT te zetten. (bijv. -A1)"
 
-msgid  "    -c = as automatic but also checks for CRON=y in the cfg file or exits. (must be root)"
+msgid  "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
 msgstr "    -c = als automatisch maar controleert ook op CRON=1 in het cfg-bestand of sluit af. (moet root zijn)"
 
 msgid  "    -t = Test mode, nothing is removed, urpme is simulated."
@@ -149,8 +149,8 @@ msgstr "    -p = bekijk een voorbeeld van de urpme-commando's die zouden worden 
 msgid  "    -q = advanced mode, this time only - see man page."
 msgstr "    -q = geavanceerde modus, alleen deze keer - zie man-pagina."
 
-msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q 1)"
-msgstr "    -Q waarde = 1 of 0 (1 = AAN) geavanceerde modus, permanent. (bijv. -Q 1)"
+msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr "    -Q waarde = 1 of 0 (1 = AAN) geavanceerde modus, permanent. (bijv. -Q1)"
 
 msgid  "    -l = list the last 1000 lines of the log."
 msgstr "    -l = maak een lijst van de laatste 1000 regels van het logboek."

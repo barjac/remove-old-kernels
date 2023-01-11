@@ -116,14 +116,14 @@ msgstr ", durch die dnf 'installonly_limit' Einstellung in /etc/dnf/dnf.conf"
 msgid  "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
 msgstr "FATAL: Wurde der laufende Kernel seit dem letzten Start deinstalliert? - Abbruch."
 
-msgid  "Usage: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 msgstr "Verwendung: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n Anzahl] [-N Anzahl] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 msgstr "    -a = Automatisch, keine Fragen. Interaktiv, falls nicht angegeben. (muss root sein)"
 
-msgid  "    -A value = y or n to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
-msgstr "    -A Wert = y oder n, um die automatische wöchentliche Entfernung von Kerneln ein- oder auszuschalten. (zB -A1)"
+msgid  "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1"
+msgstr "    -A Wert = 1 oder 0, um die automatische wöchentliche Entfernung von Kerneln ein- oder auszuschalten. (zB -A1)"
 
 msgid  "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
 msgstr "    -c = wie automatisch, prüft aber auch auf CRON=1 in der cfg-Datei oder beendet sich. (muss root sein)"
@@ -149,7 +149,7 @@ msgstr "    -p = Vorschau der urpme-Befehle, die verwendet werden würden."
 msgid  "    -q = advanced mode, this time only - see man page."
 msgstr "    -q = Erweiterter Modus, diesmal nur - siehe Manpage."
 
-msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q 1)"
+msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
 msgstr "    -Q Wert = 1 oder 0 (1 = EIN) erweiterter Modus, dauerhaft. (zB -Q 1)"
 
 msgid  "    -l = list the last 1000 lines of the log."

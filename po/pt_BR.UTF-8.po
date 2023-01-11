@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-KeywordsList: \n"
 
 msgid  "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Bem-vindo ao 'rok' Interativo"
+msgstr "Bem-vindo ao 'remove-old-kernels' Interativo"
 
 msgid  "Keep"
 msgstr "Manter"
@@ -47,8 +47,8 @@ msgid  "y/N/i (i=confirm for each)"
 msgstr "y/N/i (y=ja N=não i=confirmar cada um)"
 
 # Only translate "yes", "no" and "quit"
-msgid  "y/N/q  (q=quit)"
-msgstr "y/N/q  (y=ja N=não q=sair)"
+msgid  "y/N/q (q=quit)"
+msgstr "y/N/q (y=ja N=não q=sair)"
 
 msgid  "interactive"
 msgstr "interativo"
@@ -116,17 +116,17 @@ msgstr ", pelo dnf 'installonly_limit' definido em /etc/dnf/dnf.conf"
 msgid  "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
 msgstr "FATAL: O kernel em execução foi desinstalado desde a última inicialização? - Abortando."
 
-msgid  "Usage: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Uso: <remove-old kernels|rok> [-a] [-A <y/n>] [-c] [-t] [-f 0-9] [-F 0-9] [-n número] [-N número] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Uso: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n número] [-N número] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 msgstr "    -a = automático, sem perguntas. Interativo se não especificado. (deve ser root)"
 
-msgid  "    -A value = y or n to turn ON or OFF automatic weekly removal of kernels. (e.g. -Ay)"
-msgstr "    -A valor = y ou n para ligar (ON) ou desligar (OFF) a remoção semanal automática de kernels. (ex. -Ay)"
+msgid  "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
+msgstr "    -A valor = 1 ou 0 para ligar (ON) ou desligar (OFF) a remoção semanal automática de kernels. (ex. -A1)"
 
-msgid  "    -c = as automatic but also checks for CRON=y in the cfg file or exits. (must be root)"
-msgstr "    -c = como automático mas checando também por CRON=y no arquivo de config ou finaliza. (deve ser root)"
+msgid  "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
+msgstr "    -c = como automático mas checando também por CRON=1 no arquivo de config ou finaliza. (deve ser root)"
 
 msgid  "    -t = Test mode, nothing is removed, urpme is simulated."
 msgstr "    -t = Modo de teste, nada é removido, urpme é simulado."
@@ -149,8 +149,8 @@ msgstr "    -p = visualize os comandos urpme que seriam usados."
 msgid  "    -q = advanced mode, this time only - see man page."
 msgstr "    -q = modo avançado, apenas esta vez - veja o manual."
 
-msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q 1)"
-msgstr "    -Q valor = 1 ou 0 (1 = Ligado) modo avançado, persistente. (ex. -Q 1)"
+msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr "    -Q valor = 1 ou 0 (1 = Ligado) modo avançado, persistente. (ex. -Q1)"
 
 msgid  "    -l = list the last 1000 lines of the log."
 msgstr "    -l = lista as últimas 1000 linhas do log."

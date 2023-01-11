@@ -1,0 +1,184 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: remove-old-kernels\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2023-01-11\n"
+"Last-Translator: RWR\n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: \n"
+
+# "kernel" se usa en español también y aparece en los nombres de los archivos
+msgid  "Welcome to 'remove-old-kernels' Interactive"
+msgstr "Bienvenido a 'quitar-kernels-viejos' interactivo"
+
+msgid  "Keep"
+msgstr "Conservar"
+
+msgid  "Remove"
+msgstr "Quitar"
+
+msgid  "KEEP"
+msgstr "CONSERVAR"
+
+msgid  "AUTO"
+msgstr "AUTO"
+
+msgid  "Must be root to allow removal"
+msgstr "Debe ser administrador para quitar"
+
+msgid  "Must be root to edit configuration"
+msgstr "Debe ser administrador para editar la configuración"
+
+msgid  "kernel"
+msgstr "kernel"
+
+msgid  "kernels"
+msgstr "kernels"
+
+# For languages where "y/N" is not appropriate DO NOT change "y/N/i"
+# but only translate "yes", "no" and "confirm for each".
+msgid  "y/N/i (i=confirm for each)"
+msgstr "y/N/i (y=sí N=no i=confirmar cada uno)"
+
+# Only translate "yes", "no" and "quit"
+msgid  "y/N/q (q=quit)"
+msgstr "y/N/q (q=salir)"
+
+msgid  "interactive"
+msgstr "interactivo"
+
+msgid  "abort"
+msgstr "abortar"
+
+msgid  "Aborted"
+msgstr "Abortado"
+
+msgid  "quit"
+msgstr "salir"
+
+# Supongo es para un listado de kernels instalados, pero no estoy seguro
+msgid "Kernels in"
+msgstr "Kernels en"
+
+msgid "Gain"
+msgstr "Conseguir"
+
+msgid  "Tap spacebar to exit"
+msgstr "Pulse espaciador para salir"
+
+msgid  "Tap spacebar"
+msgstr "Pulse espaciador"
+
+msgid  "In use now"
+msgstr "Ejecutándose ahora"
+
+msgid  "Test mode is on - kernels will not be removed"
+msgstr "En modo de prueba - no se quitará ningún kernel"
+
+msgid  "DEBUG: Could execute: urpme"
+msgstr "DEPURAR: Podría ejecutar: urpme"
+
+msgid  "Command that would be used"
+msgstr "Comando que se usaría"
+
+msgid  "Commands that would be used"
+msgstr "Comandos que se usarían"
+
+msgid  "Your alternative configuration file does not exist:"
+msgstr "No existe ningún archivo de configuración alternativo:"
+
+msgid  "Either replace it or set ALTCFG=0 in"
+msgstr "Reemplácelo o asigne ALTCFG=0 en"
+
+msgid  "FATAL: Failed to read:"
+msgstr "FATAL: No se leyó:"
+
+msgid  "No such alternative configuration file:"
+msgstr "No existe tal archivo de configuración:"
+
+# Sin más contexto, no estoy seguro si habla de habilitado/deshabilitado o..., pero creo que se entenderá en el contexto con las palabras inglesas
+msgid  "Please use 0 or 1 for OFF and ON"
+msgstr "Por favor use 0 o 1 para OFF y ON"
+
+msgid  "Bad input value"
+msgstr "Valor de entrada equivocado"
+
+msgid  "INFO: Number to keep is restricted to "
+msgstr "INFO: Número a conservar se limita a "
+
+msgid  ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", por el dnf 'installonly_limit' asignado en /etc/dnf/dnf.conf"
+
+msgid  "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr "FATAL: ¿Se ha quitado el kernel ejecutandose después del último arranque? - Abortando."
+
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Uso: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n número] [-N número] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+
+msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
+msgstr "    -a = automático, sin preguntas. Interactivo si no se especifica. (debe ser administrador)"
+
+msgid  "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
+msgstr "    -A valor = 1 o 0 para QUITAR o NO QUITAR los kernels cada semana. (ej. -A1)"
+
+msgid  "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
+msgstr "    -c = automático, pero también verifica si CRON=1 en el archivo cfg o sale. (debe ser administrador)"
+
+msgid  "    -t = Test mode, nothing is removed, urpme is simulated."
+msgstr "    -t = Modo de prueba, no se quita nada, se simula urpme."
+
+msgid  "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
+msgstr "    -f valor = número de archivos .cfg alternativos a usar sólo esta vez. Sale se no hay."
+
+msgid  "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
+msgstr "    -F valor = número de archivos .cfg alternativos en uso. Cambia el ajuste ALTCFG= en el archivo .cfg principal."
+
+msgid  "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
+msgstr "    -n valor = número de kernels a conservar sólo esta vez. (-n5 o -n 5 conservar 5 kernels), Mín=2, Por defecto=3"
+
+msgid  "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
+msgstr "    -N valor = número de kernels a conservar. Cambia el ajuste en el archivo de configuración. (ej. -N 5)"
+
+msgid  "    -p = preview the urpme commands which would be used."
+msgstr "    -p = previsualizar el comando urpme que se usaría."
+
+msgid  "    -q = advanced mode, this time only - see man page."
+msgstr "    -q = modo avanzado, sólo está vez - vea página man."
+
+msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr "    -Q valor = 1 o 0 (1 = ON) modo avanzado, persistente. (ej. -Q1)"
+
+msgid  "    -l = list the last 1000 lines of the log."
+msgstr "    -l = mostrar las últimas 1000 líneas del log."
+
+msgid  "    -m = mono. No colours in screen output."
+msgstr "    -m = mono. Salida de pantalla sin colores."
+
+msgid  "    -v = version."
+msgstr "    -v = versión."
+
+msgid  "    -? or -h = show this help."
+msgstr "    -? or -h = mostrar esta ayuda."
+
+msgid  "KEY for column 3:"
+msgstr "LEYENDA para la columna 3:"
+
+msgid  "     U = currently (U)sed running kernel."
+msgstr "     U = kernel actualmente en (U)so (ejecutándose)."
+
+# "latest" se usa en el nombre el kernel más reciente
+msgid  "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgstr "     V = conservando para (V)irtualbox -latest. (sólo en modo avanzado)"
+
+msgid  "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgstr "     X = conservando para (X)tables-addons -latest. (sólo en modo avanzado)"
+
+msgid  "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr "     K = conservando kernel-*-devel para el (K)ernel instalado. (sólo en modo avanzado)"

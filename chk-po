@@ -2,6 +2,7 @@
 
 # Checks that all msgid strings in .po files are identical in the remove-old-kernels script.
 # On error, the string in the offending .po file is printed out.
+# Number of strings reported should be identical for all languages.
 
 clear
 for pofile in po/*; do

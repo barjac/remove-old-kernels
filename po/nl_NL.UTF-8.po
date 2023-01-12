@@ -1,181 +1,228 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Project-Id-Version: remove-old-kernels\n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-12 04:35+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Google\n"
 "Language-Team: Google\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.4.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: \n"
 
-msgid  "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Welkom bij 'remove-old-kernels' Interactief"
+#: ../remove-old-kernels:57
+msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Gebruik: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n nummer] [-N nummer] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
-msgid  "Keep"
-msgstr "Houden"
+#: ../remove-old-kernels:58
+msgid "    -a = automatic, no questions. Interactive if not specified. (must be root)"
+msgstr "    -a = automatisch, geen vragen. Interactief indien niet gespecificeerd. (moet root zijn)"
 
-msgid  "Remove"
-msgstr "Verwijderen"
+#: ../remove-old-kernels:59
+msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
+msgstr "    -A waarde = 1 of 0 om automatische wekelijkse verwijdering van kernels AAN of UIT te zetten. (bijv. -A1)"
 
-msgid  "KEEP"
-msgstr "HOUDEN"
+#: ../remove-old-kernels:60
+msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
+msgstr "    -c = als automatisch maar controleert ook op CRON=1 in het cfg-bestand of sluit af. (moet root zijn)"
 
-msgid  "AUTO"
-msgstr "AUTO"
+#: ../remove-old-kernels:61
+msgid "    -t = Test mode, nothing is removed, urpme is simulated."
+msgstr "    -t = Testmodus, niets wordt verwijderd, urpme wordt gesimuleerd."
 
-msgid  "Must be root to allow removal"
-msgstr "Moet root zijn om verwijdering mogelijk te maken"
+#: ../remove-old-kernels:62
+msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
+msgstr "    -f waarde = nummer van het alternatieve .cfg-bestand dat alleen deze keer moet worden gebruikt. Uitgangen indien vermist."
 
-msgid  "Must be root to edit configuration"
+#: ../remove-old-kernels:63
+msgid "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
+msgstr "    -F waarde = aantal te gebruiken alt .cfg-bestanden. Dit verandert de ALTCFG=-instelling in het .cfg-hoofdbestand."
+
+#: ../remove-old-kernels:64
+msgid "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
+msgstr "    -n waarde = aantal kernels om alleen deze tijd te behouden. (-n5 of -n 5 behouden 5 kernels), Min=2, Standaard=3"
+
+#: ../remove-old-kernels:65
+msgid "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
+msgstr "    -N waarde = aantal te behouden kernels. Dit verandert de instelling van het configuratiebestand. (bijv. -N 5)"
+
+#: ../remove-old-kernels:66
+msgid "    -p = preview the urpme commands which would be used."
+msgstr "    -p = bekijk een voorbeeld van de urpme-commando's die zouden worden gebruikt."
+
+#: ../remove-old-kernels:67
+msgid "    -q = advanced mode, this time only - see man page."
+msgstr "    -q = geavanceerde modus, alleen deze keer - zie man-pagina."
+
+#: ../remove-old-kernels:68
+msgid "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr "    -Q waarde = 1 of 0 (1 = AAN) geavanceerde modus, permanent. (bijv. -Q1)"
+
+#: ../remove-old-kernels:69
+msgid "    -l = list the last 1000 lines of the log."
+msgstr "    -l = maak een lijst van de laatste 1000 regels van het logboek."
+
+#: ../remove-old-kernels:70
+msgid "    -m = mono. No colours in screen output."
+msgstr "    -m = mono. Geen kleuren in schermuitvoer."
+
+#: ../remove-old-kernels:71
+msgid "    -v = version."
+msgstr "    -v = versie."
+
+#: ../remove-old-kernels:72
+msgid "    -? or -h = show this help."
+msgstr "    -? or -h = laat deze hulp zien."
+
+#: ../remove-old-kernels:74
+msgid "KEY for column 3:"
+msgstr "SLEUTEL voor kolom 3:"
+
+#: ../remove-old-kernels:75
+msgid "     U = currently (U)sed running kernel."
+msgstr "     U = momenteel gebruikte lopende kernel."
+
+#: ../remove-old-kernels:76
+msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgstr "     V = bewaren voor Virtualbox -latest. (alleen in geavanceerde modus)"
+
+#: ../remove-old-kernels:77
+msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgstr "     X = behouden voor Xtables-add-ons -nieuwste. (alleen in geavanceerde modus)"
+
+#: ../remove-old-kernels:78
+msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+
+#: ../remove-old-kernels:83
+msgid "FATAL: Failed to read:"
+msgstr "FATAL: Kan niet lezen:"
+
+#: ../remove-old-kernels:93
+msgid "Your alternative configuration file does not exist:"
+msgstr "Uw alternatieve configuratiebestand bestaat niet:"
+
+#: ../remove-old-kernels:94
+msgid "Either replace it or set ALTCFG=0 in"
+msgstr "Vervang het of stel ALTCFG=0 in"
+
+#: ../remove-old-kernels:124
+msgid "Must be root to edit configuration"
 msgstr "Moet root zijn om de configuratie te bewerken"
 
-msgid  "kernel"
-msgstr "kernel"
+#: ../remove-old-kernels:145 ../remove-old-kernels:168
+msgid "No such alternative configuration file:"
+msgstr "Geen dergelijk alternatief configuratiebestand:"
 
-msgid  "kernels"
-msgstr "kernels"
+#: ../remove-old-kernels:186
+msgid "Please use 0 or 1 for OFF and ON"
+msgstr "Gebruik 0 of 1 voor UIT en AAN"
+
+#: ../remove-old-kernels:192
+msgid "Bad input value"
+msgstr "Slechte invoerwaarde"
+
+#: ../remove-old-kernels:226
+msgid "Tap spacebar"
+msgstr "Tik op de spatiebalk"
+
+#: ../remove-old-kernels:247
+msgid "Welcome to 'remove-old-kernels' Interactive"
+msgstr "Welkom bij 'remove-old-kernels' Interactief"
+
+#: ../remove-old-kernels:254
+msgid "INFO: Number to keep is restricted to "
+msgstr "INFO: Aantal te behouden is beperkt tot"
+
+#: ../remove-old-kernels:254
+msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", door de dnf 'installonly_limit' ingesteld in /etc/dnf/dnf.conf"
+
+#: ../remove-old-kernels:263
+msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr "FATAL: Is de draaiende kernel verwijderd sinds de laatste keer opstarten? - Afbreken."
+
+#: ../remove-old-kernels:275
+msgid "Keep"
+msgstr "Houden"
+
+#: ../remove-old-kernels:275 ../remove-old-kernels:448
+#: ../remove-old-kernels:474
+msgid "Remove"
+msgstr "Verwijderen"
+
+#: ../remove-old-kernels:293 ../remove-old-kernels:511
+msgid "Kernels in"
+msgstr "Kernels in"
+
+#: ../remove-old-kernels:293
+msgid "KEEP"
+msgstr "HOUDEN"
+
+#: ../remove-old-kernels:422
+msgid "In use now"
+msgstr "Nu in gebruik"
+
+#: ../remove-old-kernels:429
+msgid "Must be root to allow removal"
+msgstr "Moet root zijn om verwijdering mogelijk te maken"
+
+#: ../remove-old-kernels:445
+msgid "Test mode is on - kernels will not be removed"
+msgstr "Testmodus is ingeschakeld - kernels worden niet verwijderd"
 
 # For languages where "y/N" is not appropriate DO NOT change "y/N/i"
 # but only translate "yes", "no" and "confirm for each"
-msgid  "y/N/i (i=confirm for each)"
+#: ../remove-old-kernels:448
+msgid "y/N/i (i=confirm for each)"
 msgstr "y/N/i (y=ja N=nee i=bevestig voor elk)"
 
-# Only translate "yes", "no" and "quit"
-msgid  "y/N/q (q=quit)"
-msgstr "y/N/q (y=ja N=nee q=vertrekken)"
-
-msgid  "interactive"
+#: ../remove-old-kernels:460
+msgid "interactive"
 msgstr "interactief"
 
-msgid  "abort"
-msgstr "abort"
-
-msgid  "Aborted"
+#: ../remove-old-kernels:463 ../remove-old-kernels:490
+msgid "Aborted"
 msgstr "afgebroken"
 
-msgid  "quit"
-msgstr "vertrekken"
+# Only translate "yes", "no" and "quit"
+#: ../remove-old-kernels:474
+msgid "y/N/q (q=quit)"
+msgstr "y/N/q (y=ja N=nee q=vertrekken)"
 
-msgid  "Kernels in"
-msgstr "Kernels in"
-
-msgid  "Gain"
-msgstr "Winnen"
-
-msgid  "Tap spacebar to exit"
-msgstr "Tik op de spatiebalk om af te sluiten"
-
-msgid  "Tap spacebar"
-msgstr "Tik op de spatiebalk"
-
-msgid  "In use now"
-msgstr "Nu in gebruik"
-
-msgid  "Test mode is on - kernels will not be removed"
-msgstr "Testmodus is ingeschakeld - kernels worden niet verwijderd"
-
-msgid  "DEBUG: Could execute: urpme"
+#: ../remove-old-kernels:482 ../remove-old-kernels:500
+msgid "DEBUG: Could execute: urpme"
 msgstr "DEBUG: Kan uitvoeren: urpme"
 
-msgid  "Command that would be used"
-msgstr "Commando dat zou worden gebruikt"
+#: ../remove-old-kernels:511
+msgid "Gain"
+msgstr "Winnen"
 
-msgid  "Commands that would be used"
-msgstr "Commando's die zouden worden gebruikt"
+#~ msgid "AUTO"
+#~ msgstr "AUTO"
 
-msgid  "Your alternative configuration file does not exist:"
-msgstr "Uw alternatieve configuratiebestand bestaat niet:"
+#~ msgid "kernel"
+#~ msgstr "kernel"
 
-msgid  "Either replace it or set ALTCFG=0 in"
-msgstr "Vervang het of stel ALTCFG=0 in"
+#~ msgid "kernels"
+#~ msgstr "kernels"
 
-msgid  "FATAL: Failed to read:"
-msgstr "FATAL: Kan niet lezen:"
+#~ msgid "abort"
+#~ msgstr "abort"
 
-msgid  "No such alternative configuration file:"
-msgstr "Geen dergelijk alternatief configuratiebestand:"
+#~ msgid "quit"
+#~ msgstr "vertrekken"
 
-msgid  "Please use 0 or 1 for OFF and ON"
-msgstr "Gebruik 0 of 1 voor UIT en AAN"
+#~ msgid "Tap spacebar to exit"
+#~ msgstr "Tik op de spatiebalk om af te sluiten"
 
-msgid  "Bad input value"
-msgstr "Slechte invoerwaarde"
+#~ msgid "Command that would be used"
+#~ msgstr "Commando dat zou worden gebruikt"
 
-msgid  "INFO: Number to keep is restricted to "
-msgstr "INFO: Aantal te behouden is beperkt tot"
-
-msgid  ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
-msgstr ", door de dnf 'installonly_limit' ingesteld in /etc/dnf/dnf.conf"
-
-msgid  "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
-msgstr "FATAL: Is de draaiende kernel verwijderd sinds de laatste keer opstarten? - Afbreken."
-
-msgid  "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Gebruik: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n nummer] [-N nummer] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-
-msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
-msgstr "    -a = automatisch, geen vragen. Interactief indien niet gespecificeerd. (moet root zijn)"
-
-msgid  "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
-msgstr "    -A waarde = 1 of 0 om automatische wekelijkse verwijdering van kernels AAN of UIT te zetten. (bijv. -A1)"
-
-msgid  "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
-msgstr "    -c = als automatisch maar controleert ook op CRON=1 in het cfg-bestand of sluit af. (moet root zijn)"
-
-msgid  "    -t = Test mode, nothing is removed, urpme is simulated."
-msgstr "    -t = Testmodus, niets wordt verwijderd, urpme wordt gesimuleerd."
-
-msgid  "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
-msgstr "    -f waarde = nummer van het alternatieve .cfg-bestand dat alleen deze keer moet worden gebruikt. Uitgangen indien vermist."
-
-msgid  "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
-msgstr "    -F waarde = aantal te gebruiken alt .cfg-bestanden. Dit verandert de ALTCFG=-instelling in het .cfg-hoofdbestand."
-
-msgid  "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
-msgstr "    -n waarde = aantal kernels om alleen deze tijd te behouden. (-n5 of -n 5 behouden 5 kernels), Min=2, Standaard=3"
-
-msgid  "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
-msgstr "    -N waarde = aantal te behouden kernels. Dit verandert de instelling van het configuratiebestand. (bijv. -N 5)"
-
-msgid  "    -p = preview the urpme commands which would be used."
-msgstr "    -p = bekijk een voorbeeld van de urpme-commando's die zouden worden gebruikt."
-
-msgid  "    -q = advanced mode, this time only - see man page."
-msgstr "    -q = geavanceerde modus, alleen deze keer - zie man-pagina."
-
-msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
-msgstr "    -Q waarde = 1 of 0 (1 = AAN) geavanceerde modus, permanent. (bijv. -Q1)"
-
-msgid  "    -l = list the last 1000 lines of the log."
-msgstr "    -l = maak een lijst van de laatste 1000 regels van het logboek."
-
-msgid  "    -m = mono. No colours in screen output."
-msgstr "    -m = mono. Geen kleuren in schermuitvoer."
-
-msgid  "    -v = version."
-msgstr "    -v = versie."
-
-msgid  "    -? or -h = show this help."
-msgstr "    -? or -h = laat deze hulp zien."
-
-msgid  "KEY for column 3:"
-msgstr "SLEUTEL voor kolom 3:"
-
-msgid  "     U = currently (U)sed running kernel."
-msgstr "     U = momenteel gebruikte lopende kernel."
-
-msgid  "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
-msgstr "     V = bewaren voor Virtualbox -latest. (alleen in geavanceerde modus)"
-
-msgid  "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
-msgstr "     X = behouden voor Xtables-add-ons -nieuwste. (alleen in geavanceerde modus)"
-
-msgid  "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
-msgstr "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
-
+#~ msgid "Commands that would be used"
+#~ msgstr "Commando's die zouden worden gebruikt"

@@ -54,33 +54,33 @@ gettext $prog "$1"
 
 # Display -help
 usage() {
-echo "$(i18n "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]")"
-echo "$(i18n "    -a = automatic, no questions. Interactive if not specified. (must be root)")"
-echo "$(i18n "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)")"
-echo "$(i18n "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)")"
-echo "$(i18n "    -t = Test mode, nothing is removed, urpme is simulated.")"
-echo "$(i18n "    -f value = number of the alternate .cfg file to use this time only. Exits if missing.")"
-echo "$(i18n "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file.")"
-echo "$(i18n "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3")"
-echo "$(i18n "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)")"
-echo "$(i18n "    -p = preview the urpme commands which would be used.")"
-echo "$(i18n "    -q = advanced mode, this time only - see man page.")"
-echo "$(i18n "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)")"
-echo "$(i18n "    -l = list the last 1000 lines of the log.")"
-echo "$(i18n "    -m = mono. No colours in screen output.")"
-echo "$(i18n "    -v = version.")"
-echo "$(i18n "    -? or -h = show this help.")"
+echo "$(gettext "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]")"
+echo "$(gettext "    -a = automatic, no questions. Interactive if not specified. (must be root)")"
+echo "$(gettext "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)")"
+echo "$(gettext "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)")"
+echo "$(gettext "    -t = Test mode, nothing is removed, urpme is simulated.")"
+echo "$(gettext "    -f value = number of the alternate .cfg file to use this time only. Exits if missing.")"
+echo "$(gettext "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file.")"
+echo "$(gettext "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3")"
+echo "$(gettext "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)")"
+echo "$(gettext "    -p = preview the urpme commands which would be used.")"
+echo "$(gettext "    -q = advanced mode, this time only - see man page.")"
+echo "$(gettext "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)")"
+echo "$(gettext "    -l = list the last 1000 lines of the log.")"
+echo "$(gettext "    -m = mono. No colours in screen output.")"
+echo "$(gettext "    -v = version.")"
+echo "$(gettext "    -? or -h = show this help.")"
 echo ""
-echo "$(i18n "KEY for column 3:")"
-echo "$(i18n "     U = currently (U)sed running kernel.")"
-echo "$(i18n "     V = keeping for (V)irtualbox -latest. (only in advanced mode)")"
-echo "$(i18n "     X = keeping for (X)tables-addons -latest. (only in advanced mode)")"
-echo "$(i18n "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)")"
+echo "$(gettext "KEY for column 3:")"
+echo "$(gettext "     U = currently (U)sed running kernel.")"
+echo "$(gettext "     V = keeping for (V)irtualbox -latest. (only in advanced mode)")"
+echo "$(gettext "     X = keeping for (X)tables-addons -latest. (only in advanced mode)")"
+echo "$(gettext "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)")"
 echo ""
 }
 
 # Source main .cfg file if it exists, or issue warning and abort.
-source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; exit 1; }
+source ${maincfg} || { echo -e "${RemvCol}$(gettext "FATAL: Failed to read:")${Normal} ${maincfg}"; exit 1; }
 
 # If an alt .cfg is set in main .cfg
 if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
@@ -90,8 +90,8 @@ if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
         currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
         source $currcfg
     else
-        echo -e "${RemvCol}$(i18n "Your alternative configuration file does not exist:")${Normal}\
-/etc/remove-old-kernels_$ALTCFG.cfg\n$(i18n "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
+        echo -e "${RemvCol}$(gettext "Your alternative configuration file does not exist:")${Normal}\
+/etc/remove-old-kernels_$ALTCFG.cfg\n$(gettext "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
         exit 1
     fi
 fi
@@ -121,7 +121,7 @@ dnfNBK=0; dnfmsg=false
 # Function to check we are root or exit
 chkroot() {
 if (((UID))); then
-   echo -e "${RemvCol}$(i18n "Must be root to edit configuration")${Normal}\nHit spacebar"
+   echo -e "${RemvCol}$(gettext "Must be root to edit configuration")${Normal}\nHit spacebar"
    read -n1; echo -en "${ClearLine}"
    exit 0
 fi
@@ -142,7 +142,7 @@ if [[ ed -ne 1 ]]; then
                 source /etc/remove-old-kernels_${cfgno}.cfg
                 ALTCFG=${cfgno}
             else
-                echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
+                echo -e "${RemvCol}$(gettext "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
                 exit 1
             fi
         fi
@@ -165,7 +165,7 @@ else
                     currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
                     source $currcfg
                 else
-                    echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
+                    echo -e "${RemvCol}$(gettext "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
                     exit 1
                 fi
         fi
@@ -183,13 +183,13 @@ if [[ ${#} -gt 0 ]] ; then
                 CRONN=${OPTARG}
                 if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ "$CRONN" ]]; then
                     if [[ "ny" =~ "$CRONN" ]]; then
-                        echo "$(i18n "Please use 0 or 1 for OFF and ON")"
+                        echo "$(gettext "Please use 0 or 1 for OFF and ON")"
                         exit 0
                     else
                         /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" ${currcfg} && CRON=$CRONN
                     fi
                 else
-                    echo "$(i18n "Bad input value")"; exit 1
+                    echo "$(gettext "Bad input value")"; exit 1
                 fi
                 ;;
             c)  MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "1y" =~ "$CRON" ]] || exit 0
@@ -223,7 +223,7 @@ if [[ ${#} -gt 0 ]] ; then
                    dnfmsg=true
                 fi
                 ;;
-            l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar")\n"; read -n1; echo -en "${ClearLine}"; }
+            l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(gettext "Tap spacebar")\n"; read -n1; echo -en "${ClearLine}"; }
                 ;;
             m)  Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
                 ;;
@@ -244,14 +244,14 @@ fi
 # Only use greeting in interactive mode
 if [[ $MODE == "I" ]]; then
 clear
-echo -e "                        $(i18n "Welcome to 'remove-old-kernels' Interactive")\n"
+echo -e "                        $(gettext "Welcome to 'remove-old-kernels' Interactive")\n"
 
 fi
 
 # Use dnf kernel 'number to keep' if installed
 if [[ $dnfNBK -gt $NBK ]] || $dnfmsg; then
     NBK=$dnfNBK
-    dnfmssg="${InfoCol}$(i18n "INFO: Number to keep is restricted to ")${dnfNBK}$(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}" 
+    dnfmssg="${InfoCol}$(gettext "INFO: Number to keep is restricted to ")${dnfNBK}$(gettext ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}" 
 fi
 
 # Get info for status message
@@ -260,7 +260,7 @@ if [[ "$QA" == "1" ]]; then qamssg="| Q "; fi
 if [[ $ALTCFG -gt 0 ]]; then cfgmssg="|${Normal}${WarnBgCol}F:${ALTCFG}${HdBgCol} "; fi
 
 # Check that the running kernel is still installed: https://bugs.mageia.org/show_bug.cgi?id=31015
-[[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}$(i18n "FATAL: Has the running kernel been uninstalled since last boot? - Aborting.")"; exit 1; }
+[[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}$(gettext "FATAL: Has the running kernel been uninstalled since last boot? - Aborting.")"; exit 1; }
 
 # Get the full name of the current running kernel
 CURK=$(rpm -qf /lib/modules/$(uname -r))
@@ -272,7 +272,7 @@ TMPKTR=$(mktemp)
 OCCDISK1=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
 
 # Pad translated strings for column 2
-    keepstr=$(i18n "Keep"); remstr=$(i18n "Remove")
+    keepstr=$(gettext "Keep"); remstr=$(gettext "Remove")
     if [[ ${#keepstr} != ${#remstr} ]]; then
         if [[ ${#keepstr} > ${#remstr} ]]; then
             while (( ${#remstr} < ${#keepstr} )); do remstr="${remstr} "; done
@@ -290,7 +290,7 @@ NK=$(ls /boot/vmlinuz*.mga* | wc -l)
 
 #================================ Show status ==============================
 
-echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
+echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(gettext "Kernels in") /boot/:${NK} | AUTO:$autostat | $(gettext "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
 
 #================================= Analyse rpms =============================
 # Get master list from rpm -qa --last
@@ -419,17 +419,17 @@ padUse=$((${#keepstr}+9)); padstr=""
 while (( ${#padstr} < $padUse )); do padstr="${padstr} "; done
 
 echo -en "${ClearLine}"
-echo -e "${padstr}${KeepCol}U${InfoCol} = $(i18n "In use now")${Normal}"
+echo -e "${padstr}${KeepCol}U${InfoCol} = $(gettext "In use now")${Normal}"
 if [[ ${#dnfmssg} > 0 ]];then echo -e "${dnfmssg}"; fi
 
 #================================= Mode of execution ===================
 
 nbt=$(cat ${TMPKTR} | wc -l)
 if [[ ${nbt} -ne 0 ]] ; then
-    (((UID))) && echo -e "${RemvCol}$(i18n "Must be root to allow removal")\n${Normal}"
+    (((UID))) && echo -e "${RemvCol}$(gettext "Must be root to allow removal")\n${Normal}"
     if [[ ${VISU} -eq 1 ]]; then
         plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
-        echo "$(i18n "Command${plural} that would be used"):"
+        echo "$(gettext "Command${plural} that would be used"):"
         for f in $(tac ${TMPKTR}); do
             echo "urpme ${f}"
         done
@@ -442,10 +442,10 @@ if [[ ${nbt} -ne 0 ]] ; then
 
     if [[ ${MODE} != "A" ]] ; then
         if [[ ${DEBUG} -eq 1 ]] ; then
-            echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
+            echo -e "\n${KeepCol}>> $(gettext "Test mode is on - kernels will not be removed") <<${Normal}"
         fi
         plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
-        read -p "$(i18n "Remove") ${nbt} $(i18n "kernel${plural}") ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        read -p "$(gettext "Remove") ${nbt} $(gettext "kernel${plural}") ? $(gettext "y/N/i (i=confirm for each)") " -n 1 response
         if [[ -z ${response} ]] ; then response="n" ; fi
             case ${response} in
                 [Yy])
@@ -457,10 +457,10 @@ if [[ ${nbt} -ne 0 ]] ; then
                 [Ii])
                     AUTO="--auto"
                     MODE="I"
-                    echo " $(i18n "interactive")"
+                    echo " $(gettext "interactive")"
                     ;;
                    *)
-                    echo -e "\n$(i18n "Aborted")\n"
+                    echo -e "\n$(gettext "Aborted")\n"
                     rm -f ${TMPKTR}
                     exit 0
                     ;;
@@ -471,7 +471,7 @@ if [[ ${nbt} -ne 0 ]] ; then
 
     for installedKernelPackage in $(tac ${TMPKTR}) ; do
         if [[ ${MODE} = "I" ]] ; then    # --- interactive mode ---
-            read -p "$(i18n "Remove") ${installedKernelPackage} ? $(i18n "y/N/q (q=quit)") " -n 1 response
+            read -p "$(gettext "Remove") ${installedKernelPackage} ? $(gettext "y/N/q (q=quit)") " -n 1 response
             echo -e " \n"
             if [[ -z ${response} ]]; then
                 response="N"
@@ -479,7 +479,7 @@ if [[ ${nbt} -ne 0 ]] ; then
                 case ${response} in
                     [Yy])
                         if [[ ${DEBUG} -eq 1 ]] ; then
-                            echo -e "\n${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
+                            echo -e "\n${InfoCol}$(gettext "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                             nbt=$((${nbt} - 1))
                         else
                             urpme ${installedKernelPackage}
@@ -487,7 +487,7 @@ if [[ ${nbt} -ne 0 ]] ; then
                         fi
                         ;;
                     [qQ])
-                        echo -e "\n$(i18n "Aborted")"
+                        echo -e "\n$(gettext "Aborted")"
                         rm -f ${TMPKTR};
                         exit 0
                         ;;
@@ -497,7 +497,7 @@ if [[ ${nbt} -ne 0 ]] ; then
                 esac
         else             # --- automatic mode ---
                 if [[ ${DEBUG} -eq 1 ]] ; then
-                    echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
+                    echo -e "${InfoCol}$(gettext "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                     nbt=$((${nbt} - 1))
                 else
                     # echo "Auto execution"
@@ -508,7 +508,7 @@ if [[ ${nbt} -ne 0 ]] ; then
     done
         NK=$(ls /boot/vmlinuz*.mga[0-9] | wc -l)
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
-        echo -e "${HdBgCol} $(i18n "Gain") : $((OCCDISK1 - OCCDISK2)) MB  -  $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
+        echo -e "${HdBgCol} $(gettext "Gain") : $((OCCDISK1 - OCCDISK2)) MB  -  $(gettext "Kernels in") /boot/: ${NK} ${Normal}"
 fi
 
 [[ $MODE == "I" ]] && { i18n "Tap spacebar to exit"; read -n1; echo -en "${ClearLine}"; }

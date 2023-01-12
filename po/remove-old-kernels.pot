@@ -1,0 +1,202 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the remove-old-kernels package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid   ""
+msgstr  "Project-Id-Version: remove-old-kernels\n"
+        "Report-Msgid-Bugs-To: \n"
+        "POT-Creation-Date: 2023-01-12 04:35+0100\n"
+        "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+        "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+        "Language-Team: LANGUAGE <LL@li.org>\n"
+        "Language: \n"
+        "MIME-Version: 1.0\n"
+        "Content-Type: text/plain; charset=CHARSET\n"
+        "Content-Transfer-Encoding: 8bit\n"
+
+#: ../remove-old-kernels:57
+msgid   "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr  ""
+
+#: ../remove-old-kernels:58
+msgid   "    -a = automatic, no questions. Interactive if not specified. (must be root)"
+msgstr  ""
+
+#: ../remove-old-kernels:59
+msgid   "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
+msgstr  ""
+
+#: ../remove-old-kernels:60
+msgid   "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
+msgstr  ""
+
+#: ../remove-old-kernels:61
+msgid   "    -t = Test mode, nothing is removed, urpme is simulated."
+msgstr  ""
+
+#: ../remove-old-kernels:62
+msgid   "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
+msgstr  ""
+
+#: ../remove-old-kernels:63
+msgid   "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
+msgstr  ""
+
+#: ../remove-old-kernels:64
+msgid   "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
+msgstr  ""
+
+#: ../remove-old-kernels:65
+msgid   "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
+msgstr  ""
+
+#: ../remove-old-kernels:66
+msgid   "    -p = preview the urpme commands which would be used."
+msgstr  ""
+
+#: ../remove-old-kernels:67
+msgid   "    -q = advanced mode, this time only - see man page."
+msgstr  ""
+
+#: ../remove-old-kernels:68
+msgid   "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr  ""
+
+#: ../remove-old-kernels:69
+msgid   "    -l = list the last 1000 lines of the log."
+msgstr  ""
+
+#: ../remove-old-kernels:70
+msgid   "    -m = mono. No colours in screen output."
+msgstr  ""
+
+#: ../remove-old-kernels:71
+msgid   "    -v = version."
+msgstr  ""
+
+#: ../remove-old-kernels:72
+msgid   "    -? or -h = show this help."
+msgstr  ""
+
+#: ../remove-old-kernels:74
+msgid   "KEY for column 3:"
+msgstr  ""
+
+#: ../remove-old-kernels:75
+msgid   "     U = currently (U)sed running kernel."
+msgstr  ""
+
+#: ../remove-old-kernels:76
+msgid   "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgstr  ""
+
+#: ../remove-old-kernels:77
+msgid   "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgstr  ""
+
+#: ../remove-old-kernels:78
+msgid   "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr  ""
+
+#: ../remove-old-kernels:83
+msgid   "FATAL: Failed to read:"
+msgstr  ""
+
+#: ../remove-old-kernels:93
+msgid   "Your alternative configuration file does not exist:"
+msgstr  ""
+
+#: ../remove-old-kernels:94
+msgid   "Either replace it or set ALTCFG=0 in"
+msgstr  ""
+
+#: ../remove-old-kernels:124
+msgid   "Must be root to edit configuration"
+msgstr  ""
+
+#: ../remove-old-kernels:145 ../remove-old-kernels:168
+msgid   "No such alternative configuration file:"
+msgstr  ""
+
+#: ../remove-old-kernels:186
+msgid   "Please use 0 or 1 for OFF and ON"
+msgstr  ""
+
+#: ../remove-old-kernels:192
+msgid   "Bad input value"
+msgstr  ""
+
+#: ../remove-old-kernels:226
+msgid   "Tap spacebar"
+msgstr  ""
+
+#: ../remove-old-kernels:247
+msgid   "Welcome to 'remove-old-kernels' Interactive"
+msgstr  ""
+
+#: ../remove-old-kernels:254
+msgid   "INFO: Number to keep is restricted to "
+msgstr  ""
+
+#: ../remove-old-kernels:254
+msgid   ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr  ""
+
+#: ../remove-old-kernels:263
+msgid   "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr  ""
+
+#: ../remove-old-kernels:275
+msgid   "Keep"
+msgstr  ""
+
+#: ../remove-old-kernels:275 ../remove-old-kernels:448
+#: ../remove-old-kernels:474
+msgid   "Remove"
+msgstr  ""
+
+#: ../remove-old-kernels:293 ../remove-old-kernels:511
+msgid   "Kernels in"
+msgstr  ""
+
+#: ../remove-old-kernels:293
+msgid   "KEEP"
+msgstr  ""
+
+#: ../remove-old-kernels:422
+msgid   "In use now"
+msgstr  ""
+
+#: ../remove-old-kernels:429
+msgid   "Must be root to allow removal"
+msgstr  ""
+
+#: ../remove-old-kernels:445
+msgid   "Test mode is on - kernels will not be removed"
+msgstr  ""
+
+#: ../remove-old-kernels:448
+msgid   "y/N/i (i=confirm for each)"
+msgstr  ""
+
+#: ../remove-old-kernels:460
+msgid   "interactive"
+msgstr  ""
+
+#: ../remove-old-kernels:463 ../remove-old-kernels:490
+msgid   "Aborted"
+msgstr  ""
+
+#: ../remove-old-kernels:474
+msgid   "y/N/q (q=quit)"
+msgstr  ""
+
+#: ../remove-old-kernels:482 ../remove-old-kernels:500
+msgid   "DEBUG: Could execute: urpme"
+msgstr  ""
+
+#: ../remove-old-kernels:511
+msgid   "Gain"
+msgstr  ""

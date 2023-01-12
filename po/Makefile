@@ -2,6 +2,8 @@
 
 NAME=remove-old-kernels
 
+all:
+
 update-pot:
 	xgettext -i ../$(NAME) -L Shell -o $(NAME).pot \
 		--no-wrap \

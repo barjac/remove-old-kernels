@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: remove-old-kernels\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: \n"
+        "POT-Creation-Date: 2023-01-14 19:52+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"

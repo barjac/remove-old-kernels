@@ -1,0 +1,180 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: remove-old-kernels\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
+"Language-Team: Mageia\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: \n"
+
+msgid "Welcome to 'remove-old-kernels' Interactive"
+msgstr "Välkommen till 'remove-old-kernels' Interaktiv"
+
+msgid "Keep"
+msgstr "Behåll"
+
+msgid "Remove"
+msgstr "Ta bort"
+
+msgid "KEEP"
+msgstr "BEHÅLL"
+
+msgid "AUTO"
+msgstr "AUTO"
+
+msgid "Must be root to allow removal"
+msgstr "Måste vara root för att tillåta borttagning"
+
+msgid "Must be root to edit configuration"
+msgstr "Måste vara root för att redigera konfiguration"
+
+msgid "kernel"
+msgstr "kärna"
+
+msgid "kernels"
+msgstr "kärnor"
+
+# For languages where "y/N" is not appropriate DO NOT change "y/N/i"
+# but only translate "yes", "no" and "confirm for each".
+msgid "y/N/i (i=confirm for each)"
+msgstr "y/N/i (y=ja N=nej i=bekräfta för varje)"
+
+# Only translate "yes", "no" and "quit"
+msgid "y/N/q (q=quit)"
+msgstr "y/N/q (y=ja N=nej q=avsluta)"
+
+msgid "interactive"
+msgstr "interactive"
+
+msgid "abort"
+msgstr "avbryt"
+
+msgid "Aborted"
+msgstr "Avbröts"
+
+msgid "quit"
+msgstr "avsluta"
+
+msgid "Kernels in"
+msgstr "Kärnor i"
+
+msgid "Gain"
+msgstr "Gain"
+
+msgid "Tap spacebar to exit"
+msgstr "Tryck på mellanslag för att avsluta"
+
+msgid "Tap spacebar"
+msgstr "Tryck på mellanslag"
+
+msgid "In use now"
+msgstr "Används nu"
+
+msgid "Test mode is on - kernels will not be removed"
+msgstr "Test-läge är påslaget - kärnorna kommer inte tas bort"
+
+msgid "DEBUG: Could execute: urpme"
+msgstr "AVLUSA: Kunde köra: urpme"
+
+msgid "Command that would be used"
+msgstr "Kommandot som kommer att användas"
+
+msgid "Commands that would be used"
+msgstr "Kommandon som kommer att användas"
+
+msgid "Your alternative configuration file does not exist:"
+msgstr "Din alternativa konfigurationsfil finns inte:"
+
+msgid "Either replace it or set ALTCFG=0 in"
+msgstr "Byt ut den eller ställ in ALTCFG=0"
+
+msgid "FATAL: Failed to read:"
+msgstr "DÖDLIG: Läsningen misslyckades:"
+
+msgid "No such alternative configuration file:"
+msgstr "Ingen sådan alternativ konfigurationsfil:"
+
+msgid "Please use 0 or 1 for OFF and ON"
+msgstr "Vänligen använd 0 eller 1 för AV och PÅ"
+
+msgid "Bad input value"
+msgstr "Felaktigt inmatningsvärde"
+
+msgid "INFO: Number to keep is restricted to "
+msgstr "INFO: Antalet att behålla är begränsat till "
+
+msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", av dnf 'installonly_limit' inställt i /etc/dnf/dnf.conf"
+
+msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr "DÖDLIG: Har kärnan som körs blivit avinstallerad sedan den senaste uppstarten? - Avbryter."
+
+msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Användningsområde: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n antal] [-N nummer] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+
+msgid "    -a = automatic, no questions. Interactive if not specified. (must be root)"
+msgstr "    -a = automatiskt, inga frågor. Interaktivt om ej angivet. (måste vara root)"
+
+msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
+msgstr "    -A värde = 1 eller 0 för att slå PÅ eller AV automatisk borttagning av kärnor varje vecka. (t.ex. -A1)"
+
+msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
+msgstr "    -c = som automatisk, men söker också efter CRON=1 i cfg-filen eller avslutar. (måste vara root)"
+
+msgid "    -t = Test mode, nothing is removed, urpme is simulated."
+msgstr "    -t = Test-läge, ingenting tas bort, urpme simuleras."
+
+msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
+msgstr "    -f värde = nummer i den alternativa .cfg-filen som ska användas endast den här gången. Avslutar om det saknas."
+
+msgid "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
+msgstr "    -F värde = nummer för alt .cfg-fil att använda. Det här ändrar inställningen ALTCFG= i den huvudsakliga .cfg-filen."
+
+msgid "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
+msgstr "    -n värde = antalet kärnor som ska behållas endast den här gången. (-n5 eller -n 5 behåll 5 kärnor), Minst=2, Standard=3"
+
+msgid "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
+msgstr "    -N värde = antalet kärnor som ska behållas. Det här ändrar på config-filens inställning. (t.ex. -N 5)"
+
+msgid "    -p = preview the urpme commands which would be used."
+msgstr "    -p = förhandsgranska urpme-kommandona som kommer att användas."
+
+msgid "    -q = advanced mode, this time only - see man page."
+msgstr "    -q = avancerat läge, endast den här gången - läs i manualsidan."
+
+msgid "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr "    -Q värde = 1 eller 0 (1 = PÅ) avancerat läge, ihärdig. (t.ex. -Q1)"
+
+msgid "    -l = list the last 1000 lines of the log."
+msgstr "    -l = listar de 1000 senaste raderna i loggen."
+
+msgid "    -m = mono. No colours in screen output."
+msgstr "    -m = mono. Inga färger i utmatningen på skärmen."
+
+msgid "    -v = version."
+msgstr "    -v = version."
+
+msgid "    -? or -h = show this help."
+msgstr "    -? eller -h = visa det här hjälpavsnittet."
+
+msgid "KEY for column 3:"
+msgstr "TANGENT för column 3:"
+
+msgid "     U = currently (U)sed running kernel."
+msgstr "     U = Kärnan som körs för närvarande."
+
+msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgstr "     V = behåller för (V)irtualbox -latest. (endast i avancerat läge)"
+
+msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgstr "     X = behåller för (X)tables-addons -latest. (endast i avancerat läge)"
+
+msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr "     K = behåller kernel-*-devel för installerad (K)ärna. (endast i avancerat läge)"

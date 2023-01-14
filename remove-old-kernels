@@ -251,7 +251,8 @@ fi
 # Use dnf kernel 'number to keep' if installed
 if [[ $dnfNBK -gt $NBK ]] || $dnfmsg; then
     NBK=$dnfNBK
-    dnfmssg="${InfoCol}$(i18n "INFO: Number to keep is restricted to ")${dnfNBK}$(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}" 
+    dnfmssg="${InfoCol}$(i18n "INFO: Number to keep is restricted to ")${dnfNBK}\
+    $(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}" 
 fi
 
 # Get info for status message
@@ -272,7 +273,8 @@ TMPKTR=$(mktemp)
 OCCDISK1=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
 
 # Pad translated strings for column 2
-    keepstr=$(i18n "Keep"); remstr=$(i18n "Remove")
+    keepstr=$(i18n "Keep")
+    remstr=$(i18n "Remove")
     if [[ ${#keepstr} != ${#remstr} ]]; then
         if [[ ${#keepstr} > ${#remstr} ]]; then
             while (( ${#remstr} < ${#keepstr} )); do remstr="${remstr} "; done
@@ -290,7 +292,8 @@ NK=$(ls /boot/vmlinuz*.mga* | wc -l)
 
 #================================ Show status ==============================
 
-echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
+echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | \
+AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
 
 #================================= Analyse rpms =============================
 # Get master list from rpm -qa --last
@@ -445,7 +448,9 @@ if [[ ${nbt} -ne 0 ]] ; then
             echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
         fi
         plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
-        read -p "$(i18n "Remove") ${nbt} $(i18n "kernel${plural}") ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        read -p "$(i18n "Remove") \
+        ${nbt} $(i18n "kernel${plural}") ?\
+         $(i18n "y/N/i (i=confirm for each)") " -n 1 response
         if [[ -z ${response} ]] ; then response="n" ; fi
             case ${response} in
                 [Yy])
@@ -471,7 +476,8 @@ if [[ ${nbt} -ne 0 ]] ; then
 
     for installedKernelPackage in $(tac ${TMPKTR}) ; do
         if [[ ${MODE} = "I" ]] ; then    # --- interactive mode ---
-            read -p "$(i18n "Remove") ${installedKernelPackage} ? $(i18n "y/N/q (q=quit)") " -n 1 response
+            read -p "$(i18n "Remove") ${installedKernelPackage} ? \
+            $(i18n "y/N/q (q=quit)") " -n 1 response
             echo -e " \n"
             if [[ -z ${response} ]]; then
                 response="N"
@@ -508,7 +514,9 @@ if [[ ${nbt} -ne 0 ]] ; then
     done
         NK=$(ls /boot/vmlinuz*.mga[0-9] | wc -l)
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
-        echo -e "${HdBgCol} $(i18n "Gain") : $((OCCDISK1 - OCCDISK2)) MB  -  $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
+        echo -e "${HdBgCol} $(i18n "Gain") \
+        : $((OCCDISK1 - OCCDISK2)) MB  - \
+        $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi
 
 [[ $MODE == "I" ]] && { i18n "Tap spacebar to exit"; read -n1; echo -en "${ClearLine}"; }

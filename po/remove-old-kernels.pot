@@ -1,0 +1,168 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the remove-old-kernels package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid   ""
+msgstr  "Project-Id-Version: remove-old-kernels\n"
+        "Report-Msgid-Bugs-To: \n"
+        "POT-Creation-Date: \n"
+        "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+        "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+        "Language-Team: LANGUAGE <LL@li.org>\n"
+        "Language: \n"
+        "MIME-Version: 1.0\n"
+        "Content-Type: text/plain; charset=CHARSET\n"
+        "Content-Transfer-Encoding: 8bit\n"
+
+msgid  "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr ""
+
+msgid  "    -a = automatic, no questions. Interactive if not specified. (must be root)"
+msgstr ""
+
+msgid  "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
+msgstr ""
+
+msgid  "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
+msgstr ""
+
+msgid  "    -t = Test mode, nothing is removed, urpme is simulated."
+msgstr ""
+
+msgid  "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
+msgstr ""
+
+msgid  "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
+msgstr ""
+
+msgid  "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
+msgstr ""
+
+msgid  "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
+msgstr ""
+
+msgid  "    -p = preview the urpme commands which would be used."
+msgstr ""
+
+msgid  "    -q = advanced mode, this time only - see man page."
+msgstr ""
+
+msgid  "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr ""
+
+msgid  "    -l = list the last 1000 lines of the log."
+msgstr ""
+
+msgid  "    -m = mono. No colours in screen output."
+msgstr ""
+
+msgid  "    -v = version."
+msgstr ""
+
+msgid  "    -? or -h = show this help."
+msgstr ""
+
+msgid  "KEY for column 3:"
+msgstr ""
+
+msgid  "     U = currently (U)sed running kernel."
+msgstr ""
+
+msgid  "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgstr ""
+
+msgid  "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgstr ""
+
+msgid  "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr ""
+
+msgid  "FATAL: Failed to read:"
+msgstr ""
+
+msgid  "Your alternative configuration file does not exist:"
+msgstr ""
+
+msgid  "Either replace it or set ALTCFG=0 in"
+msgstr ""
+
+msgid  "Must be root to edit configuration"
+msgstr ""
+
+msgid  "No such alternative configuration file:"
+msgstr ""
+
+msgid  "Please use 0 or 1 for OFF and ON"
+msgstr ""
+
+msgid  "Bad input value"
+msgstr ""
+
+msgid  "Tap spacebar"
+msgstr ""
+
+msgid  "Welcome to 'remove-old-kernels' Interactive"
+msgstr ""
+
+msgid  "INFO: Number to keep is restricted to "
+msgstr ""
+
+msgid  ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ""
+
+msgid  "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr ""
+
+msgid  "Keep"
+msgstr ""
+
+msgid  "Remove"
+msgstr ""
+
+msgid  "Kernels in"
+msgstr ""
+
+msgid  "KEEP"
+msgstr ""
+
+msgid  "In use now"
+msgstr ""
+
+msgid  "Must be root to allow removal"
+msgstr ""
+
+msgid  "Commands that would be used"
+msgstr ""
+
+msgid  "Command that would be used"
+msgstr ""
+
+msgid  "Test mode is on - kernels will not be removed"
+msgstr ""
+
+msgid  "kernels"
+msgstr ""
+
+msgid  "kernel"
+msgstr ""
+
+msgid  "y/N/i (i=confirm for each)"
+msgstr ""
+
+msgid  "interactive"
+msgstr ""
+
+msgid  "Aborted"
+msgstr ""
+
+msgid  "y/N/q (q=quit)"
+msgstr ""
+
+msgid  "DEBUG: Could execute: urpme"
+msgstr ""
+
+msgid  "Gain"
+msgstr ""
+

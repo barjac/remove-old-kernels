@@ -5,6 +5,6 @@ NAME=remove-old-kernels
 all:
 
 update-po:
-	for i in *.po; do \
+	@for i in *.po; do \
 		msgmerge -v --no-wrap --previous --backup=none --update $$i $(NAME).pot; \
 		done

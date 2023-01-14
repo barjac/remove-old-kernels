@@ -1,0 +1,208 @@
+# Norwegian Bokmal translations for remove-old-kernels package.
+# Copyright (C) 2023 THE remove-old-kernels'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the remove-old-kernels package.
+# Johnny A. Solbu <johnny@solbu.net>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: remove-old-kernels\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-14 19:52+0100\n"
+"PO-Revision-Date: 2023-01-14 21:11+0100\n"
+"Last-Translator: Johnny A. Solbu <johnny@solbu.net>\n"
+"Language-Team: Norwegian Bokmaal <i10n-no@lister.huftis.org>\n"
+"Language: nb_NO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.3\n"
+
+msgid ""
+"Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-"
+"n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr ""
+"Bruk: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n "
+"nummer] [-N nummer] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+
+msgid ""
+"    -a = automatic, no questions. Interactive if not specified. (must be "
+"root)"
+msgstr ""
+"    -a = automatisk, ingen spørsmål. Interaktiv hvis ikke spesifisert. (må "
+"være root)"
+
+msgid ""
+"    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. "
+"(e.g. -A1)"
+msgstr ""
+"    -A verdi = 1 eller 0 for å slå PÅ eller AV automatisk ukentlig fjerning "
+"av kjerner. (f.eks. -A1)"
+
+msgid ""
+"    -c = as automatic but also checks for CRON=1 in the cfg file or exits. "
+"(must be root)"
+msgstr ""
+"    -c = som automatisk, men sjekker også for CRON=1 i cfg-filen eller "
+"avslutter. (må være root)"
+
+msgid "    -t = Test mode, nothing is removed, urpme is simulated."
+msgstr "    -t = Testmodus. Ingenting fjernes, urpme simuleres."
+
+msgid ""
+"    -f value = number of the alternate .cfg file to use this time only. "
+"Exits if missing."
+msgstr ""
+"    -f value = verdi = nummeret på den alternative .cfg-filen som bare skal "
+"brukes denne gangen. Avslutter ut hvis det mangler."
+
+msgid ""
+"    -F value = number of alt .cfg file to use. This changes the ALTCFG= "
+"setting in the main .cfg file."
+msgstr ""
+"    -F verdi = nummeret på den alternative .cfg-filen som skal brukes. Dette "
+"endrer ALTCFG=-innstillingen i hoved-.cfg-filen."
+
+msgid ""
+"    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 "
+"kernels), Min=2, Default=3"
+msgstr ""
+"    -n verdi = antall kjerner som skal beholdes denne ene gangen. (-n5 eller "
+"-n 5 beholder 5 kjerner), Minimum=2, Standard=3"
+
+msgid ""
+"    -N value = number of kernels to keep. This changes the config file "
+"setting. (e.g. -N 5)"
+msgstr ""
+"    -N verdi = antall kjerner som skal beholdes. Dette endrer "
+"konfigurasjonsfilinnstillingen. (f.eks. -N 5)"
+
+msgid "    -p = preview the urpme commands which would be used."
+msgstr "    -p = forhåndsvis urpme-kommandoene som vil bli brukt."
+
+msgid "    -q = advanced mode, this time only - see man page."
+msgstr "    -q = avansert modus, kun denne gangen - se man-siden."
+
+msgid "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr ""
+"    -Q verdi = 1 eller 0 (1 = PÅ) avansert modus, vedvarende. (f.eks. -Q1)"
+
+msgid "    -l = list the last 1000 lines of the log."
+msgstr "    -l = liste opp de siste 1000 linjene i loggen."
+
+msgid "    -m = mono. No colours in screen output."
+msgstr "    -m = mono. Ingen farger på skjermutskriften."
+
+msgid "    -v = version."
+msgstr "    -v = versjon."
+
+msgid "    -? or -h = show this help."
+msgstr "    -? eller -h = Vis denne hjelpemeldingen."
+
+#, fuzzy
+msgid "KEY for column 3:"
+msgstr "TAST for kolonne 3:"
+
+msgid "     U = currently (U)sed running kernel."
+msgstr "     U = kjernen som kjører for øyeblikket."
+
+msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgstr "     V = behold virtualbox «-latest». (bare i avansert modus)"
+
+msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgstr "     X = behold xtables-addons «-latest». (bare i avansert modus)"
+
+msgid ""
+"     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr ""
+"     K = behold kernel-*-devel for installert kjerne. (bare i avansert modus)"
+
+msgid "FATAL: Failed to read:"
+msgstr "FATAL: Kunne ikke lese:"
+
+msgid "Your alternative configuration file does not exist:"
+msgstr "Den alternative konfigurasjonsfilen din finnes ikke:"
+
+msgid "Either replace it or set ALTCFG=0 in"
+msgstr "Enten bytt den ut eller sett inn ALTCFG=0"
+
+msgid "Must be root to edit configuration"
+msgstr "Du må være root for å redigere konfigurasjonen"
+
+msgid "No such alternative configuration file:"
+msgstr "Ingen slik alternativ konfigurasjonsfil:"
+
+msgid "Please use 0 or 1 for OFF and ON"
+msgstr "Bruk 0 eller 1 for AV og PÅ"
+
+msgid "Bad input value"
+msgstr "Ugyldig inngangsverdi"
+
+msgid "Tap spacebar"
+msgstr "Trykk på mellomromstasten"
+
+msgid "Welcome to 'remove-old-kernels' Interactive"
+msgstr "Velkommen til «remove-old-kernels»-Interaktiv"
+
+msgid "INFO: Number to keep is restricted to "
+msgstr "INFO: Antallet som skal beholdes er begrenset til "
+
+msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", av dnf-innstillingen «installonly_limit» i /etc/dnf/dnf.conf"
+
+msgid ""
+"FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr ""
+"FATAL: Har kjernen som kjører blitt avinstallert siden siste oppstart? - "
+"Avbryter."
+
+msgid "Keep"
+msgstr "Behold"
+
+msgid "Remove"
+msgstr "Fjern"
+
+msgid "Kernels in"
+msgstr "Kjerner i"
+
+msgid "KEEP"
+msgstr "BEHOLD"
+
+msgid "In use now"
+msgstr "Brukes nå"
+
+msgid "Must be root to allow removal"
+msgstr "Du må være root for å kunne fjerne"
+
+msgid "Commands that would be used"
+msgstr "Kommandoer som vil bli brukt"
+
+msgid "Command that would be used"
+msgstr "Kommando som vil bli brukt"
+
+msgid "Test mode is on - kernels will not be removed"
+msgstr "Testmodus er på - kjerner blir ikke fjernet"
+
+msgid "kernels"
+msgstr "kjerner"
+
+msgid "kernel"
+msgstr "kjerne"
+
+msgid "y/N/i (i=confirm for each)"
+msgstr "y/N/i (i=bekreft for hver enkelt)"
+
+msgid "interactive"
+msgstr "interaktiv"
+
+msgid "Aborted"
+msgstr "Avbrutt"
+
+msgid "y/N/q (q=quit)"
+msgstr "y/N/q (q=avslutt)"
+
+msgid "DEBUG: Could execute: urpme"
+msgstr "DEBUG: Kan kjøre: urpme"
+
+msgid "Gain"
+msgstr "Styrke"

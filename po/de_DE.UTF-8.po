@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-14 19:52+0100\n"
+"POT-Creation-Date: 2023-01-15 12:28+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: psyca\n"
 "Language-Team: psyca and Google\n"
@@ -140,6 +140,9 @@ msgstr "Befehle, die verwendet werden würden"
 msgid "Command that would be used"
 msgstr "Befehl, der verwendet werden würde"
 
+msgid "Tap spacebar to exit"
+msgstr "Drücken Sie zum Beenden auf die Leertaste"
+
 msgid "Test mode is on - kernels will not be removed"
 msgstr "Der Testmodus ist aktiviert – Kernel werden nicht entfernt"
 
@@ -178,6 +181,3 @@ msgstr "Gewinnen"
 
 #~ msgid "quit"
 #~ msgstr "beenden"
-
-#~ msgid "Tap spacebar to exit"
-#~ msgstr "Drücken Sie zum Beenden auf die Leertaste"

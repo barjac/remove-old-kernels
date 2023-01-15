@@ -432,11 +432,15 @@ if [[ ${nbt} -ne 0 ]] ; then
     (((UID))) && echo -e "${RemvCol}$(i18n "Must be root to allow removal")\n${Normal}"
     if [[ ${VISU} -eq 1 ]]; then
         plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
-        echo "$(i18n "Command${plural} that would be used"):"
+        if [[ "$plural" == "s" ]]; then
+        echo "$(i18n "Commands that would be used"):"
+        else
+        echo "$(i18n "Command that would be used"):"
+        fi
         for f in $(tac ${TMPKTR}); do
             echo "urpme ${f}"
         done
-        i18n "Tap spacebar to exit"
+        echo "$(i18n "Tap spacebar to exit")"
         read -n1
         echo -en "${ClearLine}"
         rm -f ${TMPKTR}
@@ -448,8 +452,12 @@ if [[ ${nbt} -ne 0 ]] ; then
             echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
         fi
         plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
-        read -p "$(i18n "Remove") \
-        ${nbt} $(i18n "kernel${plural}") ?\
+        if [[ "$plural" == "s" ]]; then
+        	kernstr="$(i18n "kernels"):"
+        else
+        	kernstr="$(i18n "kernel"):"
+        fi
+        read -p "$(i18n "Remove") ${nbt} $kernstr ? \
          $(i18n "y/N/i (i=confirm for each)") " -n 1 response
         if [[ -z ${response} ]] ; then response="n" ; fi
             case ${response} in
@@ -519,7 +527,7 @@ if [[ ${nbt} -ne 0 ]] ; then
         $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi
 
-[[ $MODE == "I" ]] && { i18n "Tap spacebar to exit"; read -n1; echo -en "${ClearLine}"; }
+[[ $MODE == "I" ]] && { echo $(i18n "Tap spacebar to exit"); read -n1; echo -en "${ClearLine}"; }
 
 rm -f ${TMPKTR}
 

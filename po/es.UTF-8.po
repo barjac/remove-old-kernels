@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-14 19:52+0100\n"
+"POT-Creation-Date: 2023-01-15 12:28+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: RWR\n"
 "Language-Team: \n"
@@ -142,6 +142,9 @@ msgstr "Comandos que se usarían"
 msgid "Command that would be used"
 msgstr "Comando que se usaría"
 
+msgid "Tap spacebar to exit"
+msgstr "Pulse espaciador para salir"
+
 msgid "Test mode is on - kernels will not be removed"
 msgstr "En modo de prueba - no se quitará ningún kernel"
 
@@ -180,6 +183,3 @@ msgstr "Conseguir"
 
 #~ msgid "quit"
 #~ msgstr "salir"
-
-#~ msgid "Tap spacebar to exit"
-#~ msgstr "Pulse espaciador para salir"

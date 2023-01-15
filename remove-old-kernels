@@ -122,7 +122,7 @@ dnfNBK=0; dnfmsg=false
 chkroot() {
 if (((UID))); then
    echo -e "${RemvCol}$(i18n "Must be root to edit configuration")\
-   ${Normal}\n$(i18n "Tap spacebar")"
+${Normal}\n$(i18n "Tap spacebar")"
    read -n1; echo -en "${ClearLine}"
    exit 0
 fi
@@ -253,7 +253,7 @@ fi
 if [[ $dnfNBK -gt $NBK ]] || $dnfmsg; then
     NBK=$dnfNBK
     dnfmssg="${InfoCol}$(i18n "INFO: Number to keep is restricted to ")${dnfNBK}\
-    $(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}" 
+$(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}" 
 fi
 
 # Get info for status message
@@ -486,7 +486,7 @@ if [[ ${nbt} -ne 0 ]] ; then
     for installedKernelPackage in $(tac ${TMPKTR}) ; do
         if [[ ${MODE} = "I" ]] ; then    # --- interactive mode ---
             read -p "$(i18n "Remove") ${installedKernelPackage} ? \
-            $(i18n "y/N/q (q=quit)") " -n 1 response
+$(i18n "y/N/q (q=quit)") " -n 1 response
             echo -e " \n"
             if [[ -z ${response} ]]; then
                 response="N"
@@ -523,9 +523,8 @@ if [[ ${nbt} -ne 0 ]] ; then
     done
         NK=$(ls /boot/vmlinuz*.mga[0-9] | wc -l)
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
-        echo -e "${HdBgCol} $(i18n "Gain") \
-        : $((OCCDISK1 - OCCDISK2)) MB  - \
-        $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
+        echo -e "${HdBgCol} $(i18n "Gain"): $((OCCDISK1 - OCCDISK2)) MB - \
+$(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi
 
 [[ $MODE == "I" ]] && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }

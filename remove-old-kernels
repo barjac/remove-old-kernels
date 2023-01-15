@@ -121,7 +121,8 @@ dnfNBK=0; dnfmsg=false
 # Function to check we are root or exit
 chkroot() {
 if (((UID))); then
-   echo -e "${RemvCol}$(i18n "Must be root to edit configuration")${Normal}\nHit spacebar"
+   echo -e "${RemvCol}$(i18n "Must be root to edit configuration")\
+   ${Normal}\n$(i18n "Tap spacebar")"
    read -n1; echo -en "${ClearLine}"
    exit 0
 fi
@@ -223,7 +224,7 @@ if [[ ${#} -gt 0 ]] ; then
                    dnfmsg=true
                 fi
                 ;;
-            l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar")\n"; read -n1; echo -en "${ClearLine}"; }
+            l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -n1; echo -en "${ClearLine}"; }
                 ;;
             m)  Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
                 ;;
@@ -458,7 +459,7 @@ if [[ ${nbt} -ne 0 ]] ; then
         	kernstr="$(i18n "kernel"):"
         fi
         read -p "$(i18n "Remove") ${nbt} $kernstr ? \
-         $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+ $(i18n "y/N/i (i=confirm for each)") " -n 1 response
         if [[ -z ${response} ]] ; then response="n" ; fi
             case ${response} in
                 [Yy])
@@ -527,7 +528,7 @@ if [[ ${nbt} -ne 0 ]] ; then
         $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi
 
-[[ $MODE == "I" ]] && { echo $(i18n "Tap spacebar to exit"); read -n1; echo -en "${ClearLine}"; }
+[[ $MODE == "I" ]] && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }
 
 rm -f ${TMPKTR}
 

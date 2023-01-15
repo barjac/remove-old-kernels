@@ -10,12 +10,8 @@ for pofile in po/*pot po/*po; do
 	entries=0
 	while read line ; do
 		
-		findid="$(echo "$line" | grep 'msgid'|cut -d'"' -f2)"
+		findid="$(echo "$line" | grep '^msgid'|cut -d'"' -f2)"
 		[[ ${#findid} = 0 ]] && continue
-		# Skip these two strings as they include a variable in the script.
-		if echo "$findid"|grep -q "that would be used"; then
-			continue
-		fi
 		((entries++))
 		if ! fgrep -q "$findid" remove-old-kernels; then
 			echo "${pofile} - ${findid}"

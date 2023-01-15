@@ -56,3 +56,12 @@ cat pot_header.txt > po/remove-old-kernels.pot
 cat pot-temp2 >> po/remove-old-kernels.pot
 # Delete all tmp files
 rm -f pot-temp*
+
+# Add date and time for last pot file change
+sed -i "s/POT-Creation-Date: /&$(date '+%F %R%z')/" po/remove-old-kernels.pot
+
+# Update po files with any string changes from the pot file
+echo "Updating *.po files with any string changes"
+pushd po
+make update-po
+popd

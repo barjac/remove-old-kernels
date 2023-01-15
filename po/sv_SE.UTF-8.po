@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-14 19:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
 "Language-Team: Mageia\n"
@@ -13,108 +14,6 @@ msgstr ""
 "X-Generator: Poedit 2.4.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: \n"
-
-msgid "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Välkommen till 'remove-old-kernels' Interaktiv"
-
-msgid "Keep"
-msgstr "Behåll"
-
-msgid "Remove"
-msgstr "Ta bort"
-
-msgid "KEEP"
-msgstr "BEHÅLL"
-
-msgid "AUTO"
-msgstr "AUTO"
-
-msgid "Must be root to allow removal"
-msgstr "Måste vara root för att tillåta borttagning"
-
-msgid "Must be root to edit configuration"
-msgstr "Måste vara root för att redigera konfiguration"
-
-msgid "kernel"
-msgstr "kärna"
-
-msgid "kernels"
-msgstr "kärnor"
-
-# For languages where "y/N" is not appropriate DO NOT change "y/N/i"
-# but only translate "yes", "no" and "confirm for each".
-msgid "y/N/i (i=confirm for each)"
-msgstr "y/N/i (y=ja N=nej i=bekräfta för varje)"
-
-# Only translate "yes", "no" and "quit"
-msgid "y/N/q (q=quit)"
-msgstr "y/N/q (y=ja N=nej q=avsluta)"
-
-msgid "interactive"
-msgstr "interactive"
-
-msgid "abort"
-msgstr "avbryt"
-
-msgid "Aborted"
-msgstr "Avbröts"
-
-msgid "quit"
-msgstr "avsluta"
-
-msgid "Kernels in"
-msgstr "Kärnor i"
-
-msgid "Gain"
-msgstr "Gain"
-
-msgid "Tap spacebar to exit"
-msgstr "Tryck på mellanslag för att avsluta"
-
-msgid "Tap spacebar"
-msgstr "Tryck på mellanslag"
-
-msgid "In use now"
-msgstr "Används nu"
-
-msgid "Test mode is on - kernels will not be removed"
-msgstr "Test-läge är påslaget - kärnorna kommer inte tas bort"
-
-msgid "DEBUG: Could execute: urpme"
-msgstr "AVLUSA: Kunde köra: urpme"
-
-msgid "Command that would be used"
-msgstr "Kommandot som kommer att användas"
-
-msgid "Commands that would be used"
-msgstr "Kommandon som kommer att användas"
-
-msgid "Your alternative configuration file does not exist:"
-msgstr "Din alternativa konfigurationsfil finns inte:"
-
-msgid "Either replace it or set ALTCFG=0 in"
-msgstr "Byt ut den eller ställ in ALTCFG=0"
-
-msgid "FATAL: Failed to read:"
-msgstr "DÖDLIG: Läsningen misslyckades:"
-
-msgid "No such alternative configuration file:"
-msgstr "Ingen sådan alternativ konfigurationsfil:"
-
-msgid "Please use 0 or 1 for OFF and ON"
-msgstr "Vänligen använd 0 eller 1 för AV och PÅ"
-
-msgid "Bad input value"
-msgstr "Felaktigt inmatningsvärde"
-
-msgid "INFO: Number to keep is restricted to "
-msgstr "INFO: Antalet att behålla är begränsat till "
-
-msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
-msgstr ", av dnf 'installonly_limit' inställt i /etc/dnf/dnf.conf"
-
-msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
-msgstr "DÖDLIG: Har kärnan som körs blivit avinstallerad sedan den senaste uppstarten? - Avbryter."
 
 msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 msgstr "Användningsområde: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n antal] [-N nummer] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
@@ -178,3 +77,105 @@ msgstr "     X = behåller för (X)tables-addons -latest. (endast i avancerat l�
 
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgstr "     K = behåller kernel-*-devel för installerad (K)ärna. (endast i avancerat läge)"
+
+msgid "FATAL: Failed to read:"
+msgstr "DÖDLIG: Läsningen misslyckades:"
+
+msgid "Your alternative configuration file does not exist:"
+msgstr "Din alternativa konfigurationsfil finns inte:"
+
+msgid "Either replace it or set ALTCFG=0 in"
+msgstr "Byt ut den eller ställ in ALTCFG=0"
+
+msgid "Must be root to edit configuration"
+msgstr "Måste vara root för att redigera konfiguration"
+
+msgid "No such alternative configuration file:"
+msgstr "Ingen sådan alternativ konfigurationsfil:"
+
+msgid "Please use 0 or 1 for OFF and ON"
+msgstr "Vänligen använd 0 eller 1 för AV och PÅ"
+
+msgid "Bad input value"
+msgstr "Felaktigt inmatningsvärde"
+
+msgid "Tap spacebar"
+msgstr "Tryck på mellanslag"
+
+msgid "Welcome to 'remove-old-kernels' Interactive"
+msgstr "Välkommen till 'remove-old-kernels' Interaktiv"
+
+msgid "INFO: Number to keep is restricted to "
+msgstr "INFO: Antalet att behålla är begränsat till "
+
+msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", av dnf 'installonly_limit' inställt i /etc/dnf/dnf.conf"
+
+msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr "DÖDLIG: Har kärnan som körs blivit avinstallerad sedan den senaste uppstarten? - Avbryter."
+
+msgid "Keep"
+msgstr "Behåll"
+
+msgid "Remove"
+msgstr "Ta bort"
+
+msgid "Kernels in"
+msgstr "Kärnor i"
+
+msgid "KEEP"
+msgstr "BEHÅLL"
+
+msgid "In use now"
+msgstr "Används nu"
+
+msgid "Must be root to allow removal"
+msgstr "Måste vara root för att tillåta borttagning"
+
+msgid "Commands that would be used"
+msgstr "Kommandon som kommer att användas"
+
+msgid "Command that would be used"
+msgstr "Kommandot som kommer att användas"
+
+msgid "Test mode is on - kernels will not be removed"
+msgstr "Test-läge är påslaget - kärnorna kommer inte tas bort"
+
+msgid "kernels"
+msgstr "kärnor"
+
+msgid "kernel"
+msgstr "kärna"
+
+# For languages where "y/N" is not appropriate DO NOT change "y/N/i"
+# but only translate "yes", "no" and "confirm for each".
+msgid "y/N/i (i=confirm for each)"
+msgstr "y/N/i (y=ja N=nej i=bekräfta för varje)"
+
+msgid "interactive"
+msgstr "interactive"
+
+msgid "Aborted"
+msgstr "Avbröts"
+
+# Only translate "yes", "no" and "quit"
+msgid "y/N/q (q=quit)"
+msgstr "y/N/q (y=ja N=nej q=avsluta)"
+
+msgid "DEBUG: Could execute: urpme"
+msgstr "AVLUSA: Kunde köra: urpme"
+
+msgid "Gain"
+msgstr "Gain"
+
+#~ msgid "AUTO"
+#~ msgstr "AUTO"
+
+#~ msgid "abort"
+#~ msgstr "avbryt"
+
+#~ msgid "quit"
+#~ msgstr "avsluta"
+
+#~ msgid "Tap spacebar to exit"
+#~ msgstr "Tryck på mellanslag för att avsluta"

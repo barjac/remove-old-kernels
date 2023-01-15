@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-14 19:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: RWR\n"
 "Language-Team: \n"
@@ -13,111 +14,6 @@ msgstr ""
 "X-Generator: Poedit 3.2.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: \n"
-
-# "kernel" se usa en español también y aparece en los nombres de los archivos
-msgid "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Bienvenido a 'quitar-kernels-viejos' interactivo"
-
-msgid "Keep"
-msgstr "Conservar"
-
-msgid "Remove"
-msgstr "Quitar"
-
-msgid "KEEP"
-msgstr "CONSERVAR"
-
-msgid "AUTO"
-msgstr "AUTO"
-
-msgid "Must be root to allow removal"
-msgstr "Debes ser administrador para quitar"
-
-msgid "Must be root to edit configuration"
-msgstr "Debes ser administrador para editar la configuración"
-
-msgid "kernel"
-msgstr "kernel"
-
-msgid "kernels"
-msgstr "kernels"
-
-# For languages where "y/N" is not appropriate DO NOT change "y/N/i"
-# but only translate "yes", "no" and "confirm for each".
-msgid "y/N/i (i=confirm for each)"
-msgstr "y/N/i (y=sí N=no i=confirmar cada uno)"
-
-# Only translate "yes", "no" and "quit"
-msgid "y/N/q (q=quit)"
-msgstr "y/N/q (q=salir)"
-
-msgid "interactive"
-msgstr "interactivo"
-
-msgid "abort"
-msgstr "abortar"
-
-msgid "Aborted"
-msgstr "Abortado"
-
-msgid "quit"
-msgstr "salir"
-
-# Supongo es para un listado de kernels instalados, pero no estoy seguro
-msgid "Kernels in"
-msgstr "Kernels en"
-
-msgid "Gain"
-msgstr "Conseguir"
-
-msgid "Tap spacebar to exit"
-msgstr "Pulsa espaciador para salir"
-
-msgid "Tap spacebar"
-msgstr "Pulsa espaciador"
-
-msgid "In use now"
-msgstr "Ejecutándose ahora"
-
-msgid "Test mode is on - kernels will not be removed"
-msgstr "En modo de prueba - no se quitará ningún kernel"
-
-msgid "DEBUG: Could execute: urpme"
-msgstr "DEPURAR: Podría ejecutar: urpme"
-
-msgid "Command that would be used"
-msgstr "Comando que se usaría"
-
-msgid "Commands that would be used"
-msgstr "Comandos que se usarían"
-
-msgid "Your alternative configuration file does not exist:"
-msgstr "No existe ningún archivo de configuración alternativo:"
-
-msgid "Either replace it or set ALTCFG=0 in"
-msgstr "Reemplázalo o asigne ALTCFG=0 en"
-
-msgid "FATAL: Failed to read:"
-msgstr "FATAL: No se ha leído:"
-
-msgid "No such alternative configuration file:"
-msgstr "No existe tal archivo de configuración:"
-
-# Sin más contexto, no estoy seguro si habla de habilitado/deshabilitado o..., pero creo que se entenderá en el contexto con las palabras inglesas
-msgid "Please use 0 or 1 for OFF and ON"
-msgstr "Por favor usa 0 o 1 para OFF y ON"
-
-msgid "Bad input value"
-msgstr "Valor de entrada equivocado"
-
-msgid "INFO: Number to keep is restricted to "
-msgstr "INFO: Número a conservar se limita a "
-
-msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
-msgstr ", por el dnf 'installonly_limit' asignado en /etc/dnf/dnf.conf"
-
-msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
-msgstr "FATAL: ¿Se ha quitado el kernel ejecutandose después del último arranque? - Abortando."
 
 msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 msgstr "Uso: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n número] [-N número] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
@@ -182,3 +78,108 @@ msgstr "     X = conservando para (X)tables-addons -latest. (sólo en modo avanz
 
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgstr "     K = conservando kernel-*-devel para el (K)ernel instalado. (sólo en modo avanzado)"
+
+msgid "FATAL: Failed to read:"
+msgstr "FATAL: No se ha leído:"
+
+msgid "Your alternative configuration file does not exist:"
+msgstr "No existe ningún archivo de configuración alternativo:"
+
+msgid "Either replace it or set ALTCFG=0 in"
+msgstr "Reemplázalo o asigne ALTCFG=0 en"
+
+msgid "Must be root to edit configuration"
+msgstr "Debes ser administrador para editar la configuración"
+
+msgid "No such alternative configuration file:"
+msgstr "No existe tal archivo de configuración:"
+
+# Sin más contexto, no estoy seguro si habla de habilitado/deshabilitado o..., pero creo que se entenderá en el contexto con las palabras inglesas
+msgid "Please use 0 or 1 for OFF and ON"
+msgstr "Por favor usa 0 o 1 para OFF y ON"
+
+msgid "Bad input value"
+msgstr "Valor de entrada equivocado"
+
+msgid "Tap spacebar"
+msgstr "Pulsa espaciador"
+
+# "kernel" se usa en español también y aparece en los nombres de los archivos
+msgid "Welcome to 'remove-old-kernels' Interactive"
+msgstr "Bienvenido a 'quitar-kernels-viejos' interactivo"
+
+msgid "INFO: Number to keep is restricted to "
+msgstr "INFO: Número a conservar se limita a "
+
+msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", por el dnf 'installonly_limit' asignado en /etc/dnf/dnf.conf"
+
+msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr "FATAL: ¿Se ha quitado el kernel ejecutandose después del último arranque? - Abortando."
+
+msgid "Keep"
+msgstr "Conservar"
+
+msgid "Remove"
+msgstr "Quitar"
+
+# Supongo es para un listado de kernels instalados, pero no estoy seguro
+msgid "Kernels in"
+msgstr "Kernels en"
+
+msgid "KEEP"
+msgstr "CONSERVAR"
+
+msgid "In use now"
+msgstr "Ejecutándose ahora"
+
+msgid "Must be root to allow removal"
+msgstr "Debes ser administrador para quitar"
+
+msgid "Commands that would be used"
+msgstr "Comandos que se usarían"
+
+msgid "Command that would be used"
+msgstr "Comando que se usaría"
+
+msgid "Test mode is on - kernels will not be removed"
+msgstr "En modo de prueba - no se quitará ningún kernel"
+
+msgid "kernels"
+msgstr "kernels"
+
+msgid "kernel"
+msgstr "kernel"
+
+# For languages where "y/N" is not appropriate DO NOT change "y/N/i"
+# but only translate "yes", "no" and "confirm for each".
+msgid "y/N/i (i=confirm for each)"
+msgstr "y/N/i (y=sí N=no i=confirmar cada uno)"
+
+msgid "interactive"
+msgstr "interactivo"
+
+msgid "Aborted"
+msgstr "Abortado"
+
+# Only translate "yes", "no" and "quit"
+msgid "y/N/q (q=quit)"
+msgstr "y/N/q (q=salir)"
+
+msgid "DEBUG: Could execute: urpme"
+msgstr "DEPURAR: Podría ejecutar: urpme"
+
+msgid "Gain"
+msgstr "Conseguir"
+
+#~ msgid "AUTO"
+#~ msgstr "AUTO"
+
+#~ msgid "abort"
+#~ msgstr "abortar"
+
+#~ msgid "quit"
+#~ msgstr "salir"
+
+#~ msgid "Tap spacebar to exit"
+#~ msgstr "Pulsa espaciador para salir"

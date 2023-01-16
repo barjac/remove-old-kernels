@@ -15,7 +15,8 @@ NBK=3      # Default number of kernels to keep.
 DEBUG=0    # 1 for test mode, urpme is simulated and not applied
 MODE="I"   # mode A)utomatic, I)nteractve (DO NOT CHANGE THIS)
 VISU=0     # If VISU=1, show commands which can be used
-LANG=$(echo $LANGUAGE|cut -d: -f1)
+#LANG=$(echo $LANGUAGE|cut -d: -f1)
+LANGUAGE="${LANG}:${LANGUAGE}"
 
 # Colours for display     Defaults                  Used for
 Normal="\e[0m"          # System default f/g colour

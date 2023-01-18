@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: remove-old-kernels\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2023-01-15 13:05+0000\n"
+        "POT-Creation-Date: 2023-01-18 22:36+0000\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,6 +91,9 @@ msgstr ""
 msgid  "Must be root to edit configuration"
 msgstr ""
 
+msgid  "Tap spacebar"
+msgstr ""
+
 msgid  "No such alternative configuration file:"
 msgstr ""
 
@@ -100,7 +103,7 @@ msgstr ""
 msgid  "Bad input value"
 msgstr ""
 
-msgid  "Tap spacebar"
+msgid  "Tap spacebar to exit"
 msgstr ""
 
 msgid  "Welcome to 'remove-old-kernels' Interactive"
@@ -137,9 +140,6 @@ msgid  "Commands that would be used"
 msgstr ""
 
 msgid  "Command that would be used"
-msgstr ""
-
-msgid  "Tap spacebar to exit"
 msgstr ""
 
 msgid  "Test mode is on - kernels will not be removed"

@@ -21,8 +21,6 @@ msgstr "Verwendung: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] 
 msgid "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 msgstr "    -a = Automatisch, keine Fragen. Interaktiv, falls nicht angegeben. (muss root sein)"
 
-#, fuzzy
-#| msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1"
 msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
 msgstr "    -A Wert = 1 oder 0, um die automatische wöchentliche Entfernung von Kerneln ein- oder auszuschalten. (zB -A1)"
 

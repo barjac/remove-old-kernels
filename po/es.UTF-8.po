@@ -106,7 +106,7 @@ msgstr "Pulse espaciador"
 
 # "kernel" se usa en español también y aparece en los nombres de los archivos
 msgid "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Bienvenido a 'quitar-kernels-viejos' interactivo"
+msgstr "Bienvenido a 'remove-old-kernels' interactivo"
 
 msgid "INFO: Number to keep is restricted to "
 msgstr "INFO: Número a conservar se limita a "

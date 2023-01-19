@@ -103,7 +103,7 @@ msgid "Tap spacebar"
 msgstr "Appuyez sur la barre d'espace"
 
 msgid "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Bienvenue sur 'remove-old-kernels' Interactive"
+msgstr "Bienvenue à 'remove-old-kernels' Interactive"
 
 msgid "INFO: Number to keep is restricted to "
 msgstr "INFO : Le numéro à conserver est limité à "

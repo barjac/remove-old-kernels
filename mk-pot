@@ -8,13 +8,6 @@ grep -o '(i18n ".*)' remove-old-kernels|sed "s/(i18n/msgid /"|sed "s/.$//" > pot
 rm -f pot-temp1
 while read line; do
     ((linesin++))
-	if echo "$line" | grep -q "\${plural}"; then
-		echo "$line" |sed 's/\${plural}/s/' >> pot-temp1
-		((linesout++))
-		echo "$line" |sed 's/\${plural}//' >> pot-temp1
-		((linesout++))
-		continue
-	fi
 	echo "$line" >> pot-temp1
 	((linesout++))
 done < pot-temp

@@ -19,13 +19,13 @@ msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9]
 msgstr "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n numéro] [-N numéro] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid "    -a = automatic, no questions. Interactive if not specified. (must be root)"
-msgstr "    -a = automatique, pas de questions. Interactif si non spécifié. (doit être root)"
+msgstr "    -a = automatique, pas de questions. Interactif si non spécifié. (il faut être root)"
 
 msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
 msgstr "    -A valeur = 1 ou 0 pour activer ou désactiver la suppression automatique des noyaux. (e.g. -A1)"
 
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
-msgstr "    -c = comme automatique mais vérifie également CRON=1 dans le fichier cfg ou quitte. (doit être root)"
+msgstr "    -c = comme automatique mais vérifie également CRON=1 dans le fichier cfg ou quitte. (il faut être root)"
 
 msgid "    -t = Test mode, nothing is removed, urpme is simulated."
 msgstr "    -t = Mode test, rien n'est supprimé, urpme est simulé."
@@ -88,7 +88,7 @@ msgid "Either replace it or set ALTCFG=0 in"
 msgstr "Remplacez-le ou définissez ALTCFG=0 dans"
 
 msgid "Must be root to edit configuration"
-msgstr "Doit être root pour modifier la configuration"
+msgstr "Il faut être root pour modifier la configuration"
 
 msgid "No such alternative configuration file:"
 msgstr "Aucun fichier de configuration alternatif de ce type :"
@@ -130,7 +130,7 @@ msgid "In use now"
 msgstr "En usage maintenant"
 
 msgid "Must be root to allow removal"
-msgstr "Doit être root pour permettre enlever"
+msgstr "Il faut être root pour pouvoir enlever"
 
 msgid "Commands that would be used"
 msgstr "Commandes qui seraient utilisées"

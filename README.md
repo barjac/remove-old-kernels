@@ -17,10 +17,10 @@ of installed kernels but will not allow removal.
 For more information see: 'man remove-old-kernels' or 'man rok' in a terminal.
 
 # Authors
-Pierre Jarillon 2018 - 2022.
-Jean-Baptiste Biernacki 2021
-Barry C Jackson 2022 - present day
-Solbu 2023 
+ * Pierre Jarillon 2018 - 2022.
+ * Jean-Baptiste Biernacki 2021
+ * Barry C Jackson 2022 - 2023
+ * Johnny A Solbu 2023 
 
 # History
 Following a long running bug report about failing systems with sometimes over 50 installed kernels and

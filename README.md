@@ -36,12 +36,15 @@ A .desktop file was added into the Mageia main system menu using policykit based
 A log file was added for the automatic runs controlled by cron.weekly with fixed log rotation at 1000 lines approx.
 i18n support has been added for the main bash script and thanks to the translatiors listed below we now have several langauages
 catered for.
+If you would like to help with other languages, then please read TRANSLATING.
 
 # Tranlsators
-ajunior (Brazilian Portugese)
-Philippe Didier (French)
-Solbu (Norweigian)
-psyca (German)
+ * ajunior (Brazilian Portugese)
+ * Philippe Didier (French)
+ * Solbu (Norweigian)
+ * psyca (German)
+ * aguador (Spanish)
+ * umeaboy (Swedish)
 
 
 

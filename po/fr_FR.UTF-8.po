@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-KeywordsList: \n"
 
 msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n numéro] [-N numéro] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n nombre] [-N nombre] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 msgstr "    -a = automatique, pas de questions. Interactif si non spécifié. (il faut être root)"

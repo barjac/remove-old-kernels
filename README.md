@@ -40,7 +40,7 @@ catered for.
 # Tranlsators
  * ajunior (Brazilian Portugese)
  * Philippe Didier (French)
- * Solbu (Norwegian Bokmål)
+ * Johnny A. Solbu (Norwegian Bokmål)
  * psyca (German)
  * aguador (Spanish)
  * umeaboy (Swedish)  

@@ -1,16 +1,21 @@
 [Desktop Entry]
 Comment=Removal tool for obsolete system kernels
+Comment[en]=Removal tool for obsolete system kernels
 Comment[en_GB]=Removal tool for obsolete system kernels
+Comment[es]=Herramienta para quitar los kernels obsoletos
+Comment[es_ES]=Herramienta para quitar los kernels obsoletos
+Comment[fr_FR]=Outil de suppression des noyaux système obsolètes
 Exec=/usr/sbin/remove-old-kernels-pkexec
 GenericName=Remove Old Kernels
+GenericName[en]=Remove Old Kernels
 GenericName[en_GB]=Remove Old Kernels
+GenericName[es]=Retirar Kernels Obsoletos
+GenericName[es_ES]=Retirar Kernels Obsoletos
 GenericName[fr]=Enlever les noyaux superflus
+GenericName[fr_FR]=Enlever les noyaux superflus
 Icon=/usr/share/icons/hicolor/scalable/apps/remove-old-kernels.svg
 MimeType=
 Name=Remove Old Kernels
-Name[en]=Remove Old Kernels
-Name[en_GB]=Remove Old Kernels
-Name[fr]=Enlever les noyaux superflus
 StartupNotify=true
 Terminal=true
 Type=Application

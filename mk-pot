@@ -28,7 +28,7 @@ rawarray=(); x=0 ; y=0
 while IFS='' read -r line; do
 	if echo "$line"|grep -q '(i18n'; then
 #																[[ dbg -eq 1 ]] && echo "$line"
-		# Look for the first ocurrance of i18n and extract raw text only
+		# Look for the first occurrence of i18n and extract raw text only
 		idstr1="$(echo "$line"|grep i18n|sed "s/\$(i18n/@/g"|cut -d@ -f2|cut -d\" -f2| sed 's/").*//')"
 			isdupe=0
 			# Check it is not dupe
@@ -37,7 +37,7 @@ while IFS='' read -r line; do
 				IFS=''
 				echo -e "msgid  \""$idstr1"\"\nmsgstr \"\"\n" >> $outpot
 			fi	
-		# Look for a second ocurrance of i18n and extract raw text only
+		# Look for a second occurrence of i18n and extract raw text only
 		idstr2="$(echo "$line"|grep i18n|sed 's/\$(i18n/@/g'|cut -d@ -f3|cut -d\" -f2| sed 's/").*//')"
 		# Check it exists
 		if [[ ${#idstr2} > 0 ]]; then

@@ -91,8 +91,7 @@ if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
         currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
         source $currcfg
     else
-        echo -e "${RemvCol}$(i18n "Your alternative configuration file does not exist:")${Normal}\
-/etc/remove-old-kernels_$ALTCFG.cfg\n$(i18n "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
+        echo -e "${RemvCol}$(i18n "Your alternative configuration file does not exist:")${Normal}/etc/remove-old-kernels_$ALTCFG.cfg\n$(i18n "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
         exit 1
     fi
 fi
@@ -122,8 +121,7 @@ dnfNBK=0; dnfmsg=false
 # Function to check we are root or exit
 chkroot() {
 if (((UID))); then
-   echo -e "${RemvCol}$(i18n "Must be root to edit configuration")\
-${Normal}\n$(i18n "Tap spacebar")"
+   echo -e "${RemvCol}$(i18n "Must be root to edit configuration")${Normal}\n$(i18n "Tap spacebar")"
    read -n1; echo -en "${ClearLine}"
    exit 0
 fi
@@ -294,8 +292,7 @@ NK=$(ls /boot/vmlinuz*.mga* | wc -l)
 
 #================================ Show status ==============================
 
-echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | \
-AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
+echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
 
 #================================= Analyse rpms =============================
 # Get master list from rpm -qa --last
@@ -459,8 +456,7 @@ if [[ ${nbt} -ne 0 ]] ; then
         else
         	kernstr="$(i18n "kernel"):"
         fi
-        read -p "$(i18n "Remove") ${nbt} $kernstr ? \
- $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        read -p "$(i18n "Remove") ${nbt} $kernstr ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
         if [[ -z ${response} ]] ; then response="n" ; fi
             case ${response} in
                 [Yy])
@@ -486,8 +482,7 @@ if [[ ${nbt} -ne 0 ]] ; then
 
     for installedKernelPackage in $(tac ${TMPKTR}) ; do
         if [[ ${MODE} = "I" ]] ; then    # --- interactive mode ---
-            read -p "$(i18n "Remove") ${installedKernelPackage} ? \
-$(i18n "y/N/q (q=quit)") " -n 1 response
+            read -p "$(i18n "Remove") ${installedKernelPackage} ? $(i18n "y/N/q (q=quit)") " -n 1 response
             echo -e " \n"
             if [[ -z ${response} ]]; then
                 response="N"
@@ -524,9 +519,7 @@ $(i18n "y/N/q (q=quit)") " -n 1 response
     done
         NK=$(ls /boot/vmlinuz*.mga[0-9] | wc -l)
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
-        echo -e "${HdBgCol} $(i18n "Gain"):\
-$((OCCDISK1 - OCCDISK2)) MB - \
-$(i18n "Kernels in") /boot/: ${NK} ${Normal}"
+        echo -e "${HdBgCol} $(i18n "Gain"):$((OCCDISK1 - OCCDISK2)) MB - $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi
 
 [[ $MODE == "I" ]] && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }

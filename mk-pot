@@ -1,53 +1,59 @@
 #!/usr/bin/bash
 # Create remove-old-kernels.pot from remove-old-kernels script
 
-linesin=0; linesout=0
-
-grep -o '(i18n ".*)' remove-old-kernels|sed "s/(i18n/msgid /"|sed "s/.$//" > pot-temp
-
-rm -f pot-temp1
+# Get raw i18n strings (max two per script line)
 while read line; do
-    ((linesin++))
-	echo "$line" >> pot-temp1
-	((linesout++))
-done < pot-temp
-echo "lines in from script           $linesin"
-echo "lines out after fixing plurals $linesout"
+if echo "$line"|grep -q '(i18n'; then
+	idstr1="$(echo "$line"|grep i18n|sed 's/\$(i18n/@/g'|cut -d@ -f2|cut -d\" -f2| sed 's/").*//')"
+	idstr2="$(echo "$line"|grep i18n|sed 's/\$(i18n/@/g'|cut -d@ -f3|cut -d\" -f2| sed 's/").*//')"
+	if [[ ${#idstr1} > 0 ]]; then
+		echo "$idstr1" >> pot-temp
+		if [[ ${#idstr2} > 0 ]]; then
+			echo "$idstr2" >> pot-temp
+		fi
+	fi
+else
+	continue	
+fi
+done < remove-old-kernels
 
-#Check for dupes
-rm -f pot-temp2
+# Check for dupes
 rawarray=(); x=0 ; y=0
-# Loop through pot-temp1
-while read line; do
+# Loop through pot-temp
+while IFS= read -r line; do
 # Reset isdupe
-    isdupe=0; rawstr=""
-# get raw string
-    rawstr="$(echo $line|cut -d\" -f2)"
+    isdupe=0
+
 #loop through array to check if msgid already exists
 	for ((y=1;y<$((x+1));y++)); do
-		if [[ "$rawstr" == "${rawarray[$y]}" ]]; then
+		if [[ "$line" == "${rawarray[$y]}" ]]; then
 			isdupe=1
 			break
 		fi
 	done
+	
 # Dupe found so loop and ignore this $line
 	[[ $isdupe = 1 ]] && continue
-# Dupe not found so add raw string to array
-# increment line index
+	
+# Dupe not found so add string to array
+# Increment line index
 	((x++))
-	rawarray[$x]="$rawstr"
+	rawarray[$x]="$line"
+	
 # Output line to pot-temp2
-	echo "$line" >> pot-temp2
+	echo "msgid  \""$line"\"" >> pot-temp2
+	
 # Insert blank msgstr line and blank line			
 	echo -e 'msgstr ""\n' >> pot-temp2
-done < pot-temp1
+done < pot-temp
 
-echo "Lines out after dupe removal:  $x"
+echo "msgid's out:  $x"
 
 # Save to po dir
 cat pot_header.txt > po/remove-old-kernels.pot
 cat pot-temp2 >> po/remove-old-kernels.pot
-# Delete all tmp files
+
+# Delete tmp files
 rm -f pot-temp*
 
 # Add date and time for last pot file change

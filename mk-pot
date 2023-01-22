@@ -27,7 +27,6 @@ rawarray=(); x=0 ; y=0
 # Get raw i18n strings (max two per script line)
 while IFS='' read -r line; do
 	if echo "$line"|grep -q '(i18n'; then
-#																[[ dbg -eq 1 ]] && echo "$line"
 		# Look for the first occurrence of i18n and extract raw text only
 		idstr1="$(echo "$line"|grep i18n|sed "s/\$(i18n/@/g"|cut -d@ -f2|cut -d\" -f2| sed 's/").*//')"
 			isdupe=0

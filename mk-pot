@@ -27,31 +27,27 @@ rawarray=(); x=0 ; y=0
 # Get raw i18n strings (max two per script line)
 while IFS='' read -r line; do
 	if echo "$line"|grep -q '(i18n'; then
-		# Look for the first occurrence of i18n and extract raw text only
-		idstr1="$(echo "$line"|grep i18n|sed "s/\$(i18n/@/g"|cut -d@ -f2|cut -d\" -f2| sed 's/").*//')"
-			isdupe=0
-			# Check it is not dupe
-			if ! chk_dupe "$idstr1"; then
-				# Output line
-				IFS=''
-				echo -e "msgid  \""$idstr1"\"\nmsgstr \"\"\n" >> $outpot
-			fi	
-		# Look for a second occurrence of i18n and extract raw text only
-		idstr2="$(echo "$line"|grep i18n|sed 's/\$(i18n/@/g'|cut -d@ -f3|cut -d\" -f2| sed 's/").*//')"
-		# Check it exists
-		if [[ ${#idstr2} > 0 ]]; then
-			isdupe=0
-			# Check it is not dupe
-			if ! chk_dupe "$idstr2"; then
-				# Output line
-				IFS=''
-	 			echo -e "msgid  \""$idstr2"\"\nmsgstr \"\"\n" >> $outpot
+		# Look for up to 3 occurrences of "$(i18n" in one script line and extract raw text for each
+		for ((i=2;i<5;i++)); do
+		idstr="$(echo "$line"|grep i18n|sed "s/\$(i18n/@/g"|cut -d@ -f${i}|cut -d\" -f2| sed 's/").*//')"
+			if [[ ${#idstr} > 0 ]]; then
+				isdupe=0
+				# Check it is not dupe
+				if ! chk_dupe "$idstr"; then
+					# Output line
+					IFS=''
+					echo -e "msgid  \""$idstr"\"\nmsgstr \"\"\n" >> $outpot
+				fi
+			else
+				break
 			fi
+			echo $i
+		done		
+	
+	else
+		# Skip this script line
+		continue	
 	fi
-else
-	# Skip this script line
-	continue	
-fi
 done < remove-old-kernels
 
 # Add date and time for last pot file change

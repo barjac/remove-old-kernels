@@ -9,44 +9,9 @@
 # (c) Barry C Jackson 2022-2023
 ####################################
 #
-# Do not edit the values below unless you know 'exactly' what you are doing.
-# You can pass parameters on the command line to acheive the same functionality.
-NBK=3      # Default number of kernels to keep.
-DEBUG=0    # 1 for test mode, urpme is simulated and not applied
-MODE="I"   # mode A)utomatic, I)nteractve (DO NOT CHANGE THIS)
-VISU=0     # If VISU=1, show commands which can be used
-#LANG=$(echo $LANGUAGE|cut -d: -f1)
-LANGUAGE="${LANG}:${LANGUAGE}"
 
-# Colours for display     Defaults                  Used for
-Normal="\e[0m"          # System default f/g colour
-KeepCol="\e[92m"        # Light Green               Keep text
-RemvCol="\e[91m"        # Light Red                 Remove text
-InfoCol="\e[33m"        # Orange                    Information text
-HdBgCol="\e[102;30m"    # Light Green Background    Heading background
-WarnBgCol="\e[101m"     # Light Red Background      Warnings in heading
-ClearLine="\r\e[2K"     # Clear the line
 
-# List of kernel types to include.
-# This list is only used if LISTK is omitted from the .cfg file in use.
-LISTK=\
-"kernel-desktop586
-kernel-desktop
-kernel-desktop-devel
-kernel-server
-kernel-server-devel
-kernel-source
-kernel-tmb-desktop
-kernel-tmb-desktop-devel
-kernel-tmb-source
-kernel-linus
-kernel-linus-devel
-kernel-linus-source
-"
-prog="remove-old-kernels"
-cfgpath="/etc/"
-maincfg="${cfgpath}${prog}.cfg"
-currcfg=${maincfg}
+######################### Functions #########################
 
 # Perform translations
 i18n() {
@@ -79,44 +44,6 @@ echo "$(i18n "     X = keeping for (X)tables-addons -latest. (only in advanced m
 echo "$(i18n "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)")"
 echo ""
 }
-
-# Source main .cfg file if it exists, or issue warning and abort.
-source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; exit 1; }
-
-# If an alt .cfg is set in main .cfg
-if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
-    # Check it really exists
-    if [[ -f /etc/remove-old-kernels_$ALTCFG.cfg ]]; then
-        # Set current cfg to it
-        currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
-        source $currcfg
-    else
-        echo -e "${RemvCol}$(i18n "Your alternative configuration file does not exist:")${Normal}/etc/remove-old-kernels_$ALTCFG.cfg\n$(i18n "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
-        exit 1
-    fi
-fi
-
-# The following config file checks need root to update files if needed
-if [[ ! (((UID))) ]]; then
-# Check for CRON variable in config or add default. (Some users may have early versions)
-    if ! grep -q -e "CRON=" ${currcfg}; then
-        echo -e "\n# Allow cron to run remove-old-kernels. 0=OFF 1=ON.\nCRON=1" >> ${currcfg}
-    fi
-
-# Update comment in config file if needed since $CRON change to 0|1
-    /usr/bin/sed -i 's/^.*\blower case\b.*$/# Allow cron to run remove-old-kernels. 0=OFF 1=ON./' ${currcfg}
-
-# Check for CRON set to old y/n values and update
-    if [[ ${#CRON} = 1 ]] && [[ "ny" =~ "$CRON" ]]; then
-        [[ $CRON == y ]] && CRON=1
-        [[ $CRON == n ]] && CRON=0
-        /usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" ${currcfg}
-    fi
-fi
-
-# Check dnf limit before option parsing
-dnfNBK=0; dnfmsg=false
-[[ -f /etc/dnf/dnf.conf ]] && dnfNBK=$(cat /etc/dnf/dnf.conf|grep "installonly_limit="|cut -d= -f2)
 
 # Function to check we are root or exit
 chkroot() {
@@ -172,14 +99,95 @@ else
 fi
 }
 
+# Check cfg file(s) and source
+chk_cfg() {
+# Source main .cfg file if it exists, or issue warning and abort.
+source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; exit 1; }
+
+# If an alt .cfg is set in main .cfg
+if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
+    # Check it really exists
+    if [[ -f ${cfgpath}$prog_$ALTCFG.cfg ]]; then
+        # Set current cfg to it
+        currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
+        source $currcfg
+    else
+        echo -e "${RemvCol}$(i18n "Your alternative configuration file does not exist:")${Normal}/etc/remove-old-kernels_$ALTCFG.cfg\n$(i18n "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
+        exit 1
+    fi
+fi
+
+# The following config file checks need root to update files if needed
+if [[ ! (((UID))) ]]; then
+# Check for CRON variable in config or add default. (Some users may have early versions)
+    if ! grep -q -e "CRON=" ${currcfg}; then
+        echo -e "\n# Allow cron to run remove-old-kernels. 0=OFF 1=ON.\nCRON=1" >> ${currcfg}
+    fi
+
+# Update comment in config file if needed since $CRON change to 0|1
+    /usr/bin/sed -i 's/^.*\blower case\b.*$/# Allow cron to run remove-old-kernels. 0=OFF 1=ON./' ${currcfg}
+
+# Check for CRON set to old y/n values and update
+    if [[ ${#CRON} = 1 ]] && [[ "ny" =~ "$CRON" ]]; then
+        [[ $CRON == y ]] && CRON=1
+        [[ $CRON == n ]] && CRON=0
+        /usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" ${currcfg}
+    fi
+fi
+}
+################ Main program starts here #################
+# Do not edit the values below unless you know 'exactly' what you are doing.
+# You can pass parameters on the command line to acheive similar functionality,
+# or edit the configuration file/s, See man rok or rok -h for more information.
+
+NBK=3      # Default number of kernels to keep.
+DEBUG=0    # 1 for test mode, urpme is simulated and not applied
+MODE="I"   # mode A)utomatic, I)nteractve (DO NOT CHANGE THIS)
+VISU=0     # If VISU=1, show commands which can be used
+LANGUAGE="${LANG}:${LANGUAGE}"
+
+# Colours for display     Defaults                  Used for
+Normal="\e[0m"          # System default f/g colour
+KeepCol="\e[92m"        # Light Green               Keep text
+RemvCol="\e[91m"        # Light Red                 Remove text
+InfoCol="\e[33m"        # Orange                    Information text
+HdBgCol="\e[102;30m"    # Light Green Background    Heading background
+WarnBgCol="\e[101m"     # Light Red Background      Warnings in heading
+ClearLine="\r\e[2K"     # Clear the line
+
+# List of kernel types to include.
+# This list is only used if LISTK is omitted from the .cfg file in use.
+LISTK=\
+"kernel-desktop586
+kernel-desktop
+kernel-desktop-devel
+kernel-server
+kernel-server-devel
+kernel-source
+kernel-tmb-desktop
+kernel-tmb-desktop-devel
+kernel-tmb-source
+kernel-linus
+kernel-linus-devel
+kernel-linus-source
+"
+prog="remove-old-kernels"
+cfgpath="/etc/"
+maincfg="${cfgpath}${prog}.cfg"
+currcfg=${maincfg}
+
+# Check dnf limit before option parsing
+dnfNBK=0; dnfmsg=false
+[[ -f /etc/dnf/dnf.conf ]] && dnfNBK=$(cat /etc/dnf/dnf.conf|grep "installonly_limit="|cut -d= -f2)
+
 # Parse arguments from command line which take precedence over script and cfg file
 if [[ ${#} -gt 0 ]] ; then
     while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
         case ${NAME} in
-            a)  MODE="A"
+            a)  chk_cfg && MODE="A"
                 ;;
-            A)  chkroot
-            # Allow y/n and 0/1 for compatability with older versions
+            A)  chkroot; chk_cfg
+            	# Allow y/n and 0/1 for compatability with older versions
                 CRONN=${OPTARG}
                 if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ "$CRONN" ]]; then
                     if [[ "ny" =~ "$CRONN" ]]; then
@@ -192,20 +200,21 @@ if [[ ${#} -gt 0 ]] ; then
                     echo "$(i18n "Bad input value")"; exit 1
                 fi
                 ;;
-            c)  MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "1y" =~ "$CRON" ]] || exit 0
+            c)  chk_cfg && MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "1y" =~ "$CRON" ]] || exit 0
                 ;;
-            t)  DEBUG=1
+            t)  chk_cfg && DEBUG=1
                 ;;
-            f)  [[ ${OPTARG} =~ ^[0-9] ]] && altcfg ${OPTARG}
+            f)  chk_cfg && [[ ${OPTARG} =~ ^[0-9] ]] && altcfg ${OPTARG}
                 ;;
-            F)  chkroot
+            F)  chkroot; chk_cfg
+
                 [[ ${OPTARG} =~ ^[0-9] ]] && ed=1 && altcfg ${OPTARG}
                 ;;
-            p)  VISU=1
+            p)  chk_cfg && VISU=1
                 ;;
-            q)  QA=1
+            q)  chk_cfg && QA=1
                 ;;
-            Q)  chkroot
+            Q)  chkroot; chk_cfg
                 [[ ${OPTARG} =~ ^[0-1] ]] && QAN="${OPTARG}"
                 if cat ${currcfg}|grep -q "QA="; then
                     /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" ${currcfg} && QA=${QAN}
@@ -213,9 +222,9 @@ if [[ ${#} -gt 0 ]] ; then
                     echo "QA=${QAN}" >> ${currcfg} && QA=${QAN}
                 fi
                 ;;
-            n)  [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK=${OPTARG}
+            n)  chk_cfg && [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK=${OPTARG}
                 ;;
-            N)  chkroot
+            N)  chkroot; chk_cfg
                 NBKN=${OPTARG}
                 if [[ $NBKN =~ ^[0-9]+$ ]] && [[ $NBKN -ge $dnfNBK ]]; then
                     /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" ${currcfg} && NBK=$NBKN
@@ -225,7 +234,7 @@ if [[ ${#} -gt 0 ]] ; then
                 ;;
             l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -n1; echo -en "${ClearLine}"; }
                 ;;
-            m)  Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
+            m)  chk_cfg && Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
                 ;;
             v)  printf "$(rpm -q remove-old-kernels)\n"
                 exit 2
@@ -233,22 +242,24 @@ if [[ ${#} -gt 0 ]] ; then
           ?|h)  clear; usage
                 exit 2
                 ;;
-        esac
+         esac
     done
     # Don't allow NBK < 2
     if (( NBK < 2 )); then
         NBK=2
     fi
+else
+# No command line options to overwrite so check and source a cfg file now
+chk_cfg
 fi
 
 # Only use greeting in interactive mode
-if [[ $MODE == "I" ]]; then
+if [[ "$MODE" == "I" ]]; then
 clear
 echo -e "                        $(i18n "Welcome to 'remove-old-kernels' Interactive")\n"
-
 fi
 
-# Use dnf kernel 'number to keep' if installed
+# Use dnf kernel 'number to keep' if installed and greater than ours
 if [[ $dnfNBK -gt $NBK ]] || $dnfmsg; then
     NBK=$dnfNBK
     dnfmssg="${InfoCol}$(i18n "INFO: Number to keep is restricted to ")${dnfNBK}\
@@ -365,8 +376,8 @@ for kernelType in ${LISTK}; do
 
 # Return to the line if there exists at least one installedKernel of this kernelType
         if [[ ${installedKernelCounter} -eq 1 ]] ; then
-        echo -ne "\r ==> ${kernelType}"
-        echo ""
+        	echo -ne "\r ==> ${kernelType}"
+        	echo ""
         fi
 
 # Remove time stamp
@@ -382,9 +393,9 @@ for kernelType in ${LISTK}; do
         if [[ $QA -eq 1 ]] && [[ ${#qavkern} -gt 0 ]] && [[ $(echo ${installedKernel} | grep "$qavkern" | wc -l ) -eq 1 ]]; then
             NOTA="${NOTA}V"     # Required by VBox
             REMVBL=0            # not removable
-        fi 
+        fi
 
-# Check if kernel is required by xtables latest kernel    
+# Check if kernel is required by xtables latest kernel
         if [[ $QA -eq 1 ]] && [[ ${#qaxkern} -gt 0 ]] && [[ $(echo ${installedKernel} | grep "$qaxkern" | wc -l ) -eq 1 ]]; then
             NOTA="${NOTA}X"     # Required by xtables
             REMVBL=0            # not removable

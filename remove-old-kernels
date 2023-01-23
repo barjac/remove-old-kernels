@@ -9,8 +9,6 @@
 # (c) Barry C Jackson 2022-2023
 ####################################
 #
-
-
 ######################### Functions #########################
 
 # Perform translations
@@ -59,50 +57,50 @@ altcfg() {
 cfgno=$1
 # Called with f
 if [[ ed -ne 1 ]]; then
-        # Check for cfg 0
-        if [[ $cfgno -eq 0 ]]; then
-            source ${maincfg}
+    # Check for cfg 0
+    if [[ $cfgno -eq 0 ]]; then
+        source ${maincfg}
+        ALTCFG=${cfgno}
+    else
+        # If alt cfg file exists source it
+        if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
+        	source /etc/remove-old-kernels_${cfgno}.cfg
             ALTCFG=${cfgno}
         else
-            # If alt cfg file exists source it
-            if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
-                source /etc/remove-old-kernels_${cfgno}.cfg
-                ALTCFG=${cfgno}
-            else
-                echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
-                exit 1
-            fi
+            echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
+            exit 1
         fi
+    fi
 else
-        # Called with F
-        # If ALTCFG var is missing from the main .cfg file, add it
-        if ! cat ${maincfg} |grep -q "ALTCFG="; then
-            echo "ALTCFG=" >> ${maincfg}
-        fi
-        # Switch back to .cfg 0
-        if [[ $cfgno -eq 0 ]]; then
+    # Called with F
+    # If ALTCFG var is missing from the main .cfg file, add it
+    if ! cat ${maincfg} |grep -q "ALTCFG="; then
+        echo "ALTCFG=" >> ${maincfg}
+    fi
+    # Switch back to .cfg 0
+    if [[ $cfgno -eq 0 ]]; then
+        /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" ${maincfg}
+        source ${maincfg}; currcfg=${maincfg}
+    else
+        # If alt cfg file exists
+        if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
+            # Add it in main .cfg
             /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" ${maincfg}
-            source ${maincfg}; currcfg=${maincfg}
+            ALTCFG=${cfgno}; 
+            currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
+            source $currcfg
         else
-                # If alt cfg file exists
-                if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
-                    # Add it in main .cfg
-                    /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" ${maincfg}
-                    ALTCFG=${cfgno}; 
-                    currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
-                    source $currcfg
-                else
-                    echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
-                    exit 1
-                fi
+            echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
+            exit 1
         fi
+    fi
 fi
 }
 
 # Check cfg file(s) and source
 chk_cfg() {
 # Source main .cfg file if it exists, or issue warning and abort.
-source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; exit 1; }
+source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; usage; exit 1; }
 
 # If an alt .cfg is set in main .cfg
 if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
@@ -180,68 +178,68 @@ currcfg=${maincfg}
 dnfNBK=0; dnfmsg=false
 [[ -f /etc/dnf/dnf.conf ]] && dnfNBK=$(cat /etc/dnf/dnf.conf|grep "installonly_limit="|cut -d= -f2)
 
+chk_cfg
+
 # Parse arguments from command line which take precedence over script and cfg file
 if [[ ${#} -gt 0 ]] ; then
-    while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
-        case ${NAME} in
-            a)  chk_cfg && MODE="A"
-                ;;
-            A)  chkroot; chk_cfg
-            	# Allow y/n and 0/1 for compatability with older versions
-                CRONN=${OPTARG}
-                if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ "$CRONN" ]]; then
-                    if [[ "ny" =~ "$CRONN" ]]; then
-                        echo "$(i18n "Please use 0 or 1 for OFF and ON")"
-                        exit 0
-                    else
-                        /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" ${currcfg} && CRON=$CRONN
-                    fi
-                else
-                    echo "$(i18n "Bad input value")"; exit 1
-                fi
-                ;;
-            c)  chk_cfg && MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "1y" =~ "$CRON" ]] || exit 0
-                ;;
-            t)  chk_cfg && DEBUG=1
-                ;;
-            f)  chk_cfg && [[ ${OPTARG} =~ ^[0-9] ]] && altcfg ${OPTARG}
-                ;;
-            F)  chkroot; chk_cfg
-
-                [[ ${OPTARG} =~ ^[0-9] ]] && ed=1 && altcfg ${OPTARG}
-                ;;
-            p)  chk_cfg && VISU=1
-                ;;
-            q)  chk_cfg && QA=1
-                ;;
-            Q)  chkroot; chk_cfg
-                [[ ${OPTARG} =~ ^[0-1] ]] && QAN="${OPTARG}"
-                if cat ${currcfg}|grep -q "QA="; then
-                    /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" ${currcfg} && QA=${QAN}
-                else
-                    echo "QA=${QAN}" >> ${currcfg} && QA=${QAN}
-                fi
-                ;;
-            n)  chk_cfg && [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK=${OPTARG}
-                ;;
-            N)  chkroot; chk_cfg
-                NBKN=${OPTARG}
-                if [[ $NBKN =~ ^[0-9]+$ ]] && [[ $NBKN -ge $dnfNBK ]]; then
-                    /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" ${currcfg} && NBK=$NBKN
-                else
-                   dnfmsg=true
-                fi
-                ;;
-            l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -n1; echo -en "${ClearLine}"; }
-                ;;
-            m)  chk_cfg && Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
-                ;;
-            v)  printf "$(rpm -q remove-old-kernels)\n"
-                exit 2
-                ;;
-          ?|h)  clear; usage
-                exit 2
-                ;;
+	while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
+        	case ${NAME} in
+            	a)  MODE="A"
+                	;;
+            	A)  chkroot
+            		# Allow y/n and 0/1 for compatability with older versions
+                	CRONN=${OPTARG}
+                	if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ "$CRONN" ]]; then
+                    	if [[ "ny" =~ "$CRONN" ]]; then
+                        	echo "$(i18n "Please use 0 or 1 for OFF and ON")"
+                        	exit 0
+                    	else
+                        	/usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" ${currcfg} && CRON=$CRONN
+                    	fi
+                	else
+                    	echo "$(i18n "Bad input value")"; exit 1
+                	fi
+                	;;
+            	c)  MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "1y" =~ "$CRON" ]] || exit 0
+                	;;
+            	t)  DEBUG=1
+                	;;
+            	f)  [[ ${OPTARG} =~ ^[0-9] ]] && altcfg ${OPTARG}
+                	;;
+            	F)  chkroot
+                	[[ ${OPTARG} =~ ^[0-9] ]] && ed=1 && altcfg ${OPTARG}
+                	;;
+           		p)  VISU=1
+                	;;
+            	q)  QA=1
+                	;;
+            	Q)  chkroot
+                	[[ ${OPTARG} =~ ^[0-1] ]] && QAN="${OPTARG}"
+                	if cat ${currcfg}|grep -q "QA="; then
+                    	/usr/bin/sed -i "s/QA=.*/QA=${QAN}/" ${currcfg} && QA=${QAN}
+                	else
+                    	echo "QA=${QAN}" >> ${currcfg} && QA=${QAN}
+                	fi
+                	;;
+            	n)  [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK=${OPTARG}
+                	;;
+            	N)  chkroot
+                	NBKN=${OPTARG}
+                	if [[ $NBKN =~ ^[0-9]+$ ]] && [[ $NBKN -ge $dnfNBK ]]; then
+                    	/usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" ${currcfg} && NBK=$NBKN
+                	else
+                   		dnfmsg=true
+                	fi
+                	;;
+            	l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -n1; echo -en "${ClearLine}"; }
+                	;;
+            	m)  Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
+                	;;
+            	v)  printf "$(rpm -q remove-old-kernels)\n"
+                	exit 2
+                	;;
+              h|?)  clear; usage; exit 0	
+                	;;
          esac
     done
     # Don't allow NBK < 2

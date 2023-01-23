@@ -107,7 +107,7 @@ source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Norm
 # If an alt .cfg is set in main .cfg
 if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
     # Check it really exists
-    if [[ -f ${cfgpath}$prog_$ALTCFG.cfg ]]; then
+    if [[ -f "${cfgpath}${prog}_$ALTCFG.cfg" ]]; then
         # Set current cfg to it
         currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
         source $currcfg

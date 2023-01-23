@@ -4,7 +4,7 @@
 # Path to output file
 outpot=po/remove-old-kernels.pot
 
-# Create new output file and add the default header
+# Create new 'outpot' file and add the default header
 cat pot_header.txt > $outpot
 
 # Function to check found strings for duplicates
@@ -23,15 +23,15 @@ isdupe=1
 return $isdupe
 }
 
+# Main script starts here
 rawarray=(); x=0 ; y=0
 # Get raw i18n strings (max two per script line)
 while IFS='' read -r line; do
 	if echo "$line"|grep -q '(i18n'; then
-		# Look for up to 3 occurrences of "$(i18n" in one script line and extract raw text for each
+		# Look for up to 4 occurrences of "$(i18n" in one script line and extract raw text for each
 		for ((i=2;i<5;i++)); do
 		idstr="$(echo "$line"|grep i18n|sed "s/\$(i18n/@/g"|cut -d@ -f${i}|cut -d\" -f2| sed 's/").*//')"
 			if [[ ${#idstr} > 0 ]]; then
-				isdupe=0
 				# Check it is not dupe
 				if ! chk_dupe "$idstr"; then
 					# Output line
@@ -41,9 +41,7 @@ while IFS='' read -r line; do
 			else
 				break
 			fi
-			echo $i
 		done		
-	
 	else
 		# Skip this script line
 		continue	

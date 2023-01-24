@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 12:28+0000\n"
+"POT-Creation-Date: 2023-01-24 19:10+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
 "Language-Team: Mageia\n"
@@ -78,6 +78,15 @@ msgstr "     X = behåller för (X)tables-addons -latest. (endast i avancerat l�
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgstr "     K = behåller kernel-*-devel för installerad (K)ärna. (endast i avancerat läge)"
 
+msgid "Must be root to edit configuration"
+msgstr "Måste vara root för att redigera konfiguration"
+
+msgid "Tap spacebar"
+msgstr "Tryck på mellanslag"
+
+msgid "No such alternative configuration file:"
+msgstr "Ingen sådan alternativ konfigurationsfil:"
+
 msgid "FATAL: Failed to read:"
 msgstr "DÖDLIG: Läsningen misslyckades:"
 
@@ -87,20 +96,14 @@ msgstr "Din alternativa konfigurationsfil finns inte:"
 msgid "Either replace it or set ALTCFG=0 in"
 msgstr "Byt ut den eller ställ in ALTCFG=0"
 
-msgid "Must be root to edit configuration"
-msgstr "Måste vara root för att redigera konfiguration"
-
-msgid "No such alternative configuration file:"
-msgstr "Ingen sådan alternativ konfigurationsfil:"
-
 msgid "Please use 0 or 1 for OFF and ON"
 msgstr "Vänligen använd 0 eller 1 för AV och PÅ"
 
 msgid "Bad input value"
 msgstr "Felaktigt inmatningsvärde"
 
-msgid "Tap spacebar"
-msgstr "Tryck på mellanslag"
+msgid "Tap spacebar to exit"
+msgstr "Tryck på mellanslag för att avsluta"
 
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Välkommen till 'remove-old-kernels' Interaktiv"
@@ -137,9 +140,6 @@ msgstr "Kommandon som kommer att användas"
 
 msgid "Command that would be used"
 msgstr "Kommandot som kommer att användas"
-
-msgid "Tap spacebar to exit"
-msgstr "Tryck på mellanslag för att avsluta"
 
 msgid "Test mode is on - kernels will not be removed"
 msgstr "Test-läge är påslaget - kärnorna kommer inte tas bort"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 12:28+0000\n"
+"POT-Creation-Date: 2023-01-24 19:10+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Google\n"
 "Language-Team: Google\n"
@@ -78,6 +78,15 @@ msgstr "     X = behouden voor Xtables-add-ons -nieuwste. (alleen in geavanceerd
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgstr "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 
+msgid "Must be root to edit configuration"
+msgstr "Moet root zijn om de configuratie te bewerken"
+
+msgid "Tap spacebar"
+msgstr "Tik op de spatiebalk"
+
+msgid "No such alternative configuration file:"
+msgstr "Geen dergelijk alternatief configuratiebestand:"
+
 msgid "FATAL: Failed to read:"
 msgstr "FATAL: Kan niet lezen:"
 
@@ -87,20 +96,14 @@ msgstr "Uw alternatieve configuratiebestand bestaat niet:"
 msgid "Either replace it or set ALTCFG=0 in"
 msgstr "Vervang het of stel ALTCFG=0 in"
 
-msgid "Must be root to edit configuration"
-msgstr "Moet root zijn om de configuratie te bewerken"
-
-msgid "No such alternative configuration file:"
-msgstr "Geen dergelijk alternatief configuratiebestand:"
-
 msgid "Please use 0 or 1 for OFF and ON"
 msgstr "Gebruik 0 of 1 voor UIT en AAN"
 
 msgid "Bad input value"
 msgstr "Slechte invoerwaarde"
 
-msgid "Tap spacebar"
-msgstr "Tik op de spatiebalk"
+msgid "Tap spacebar to exit"
+msgstr "Tik op de spatiebalk om af te sluiten"
 
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Welkom bij 'remove-old-kernels' Interactief"
@@ -137,9 +140,6 @@ msgstr "Commando's die zouden worden gebruikt"
 
 msgid "Command that would be used"
 msgstr "Commando dat zou worden gebruikt"
-
-msgid "Tap spacebar to exit"
-msgstr "Tik op de spatiebalk om af te sluiten"
 
 msgid "Test mode is on - kernels will not be removed"
 msgstr "Testmodus is ingeschakeld - kernels worden niet verwijderd"

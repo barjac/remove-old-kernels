@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 12:28+0000\n"
+"POT-Creation-Date: 2023-01-24 19:10+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: RWR\n"
 "Language-Team: \n"
@@ -79,6 +79,15 @@ msgstr "     X = conservando para (X)tables-addons -latest. (sólo en modo avanz
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgstr "     K = conservando kernel-*-devel para el (K)ernel instalado. (sólo en modo avanzado)"
 
+msgid "Must be root to edit configuration"
+msgstr "Debe ser administrador para editar la configuración"
+
+msgid "Tap spacebar"
+msgstr "Pulse espaciador"
+
+msgid "No such alternative configuration file:"
+msgstr "No existe tal archivo de configuración:"
+
 msgid "FATAL: Failed to read:"
 msgstr "FATAL: No se leyó:"
 
@@ -88,12 +97,6 @@ msgstr "No existe ningún archivo de configuración alternativo:"
 msgid "Either replace it or set ALTCFG=0 in"
 msgstr "Reemplácelo o asigne ALTCFG=0 en"
 
-msgid "Must be root to edit configuration"
-msgstr "Debe ser administrador para editar la configuración"
-
-msgid "No such alternative configuration file:"
-msgstr "No existe tal archivo de configuración:"
-
 # Sin más contexto, no estoy seguro si habla de habilitado/deshabilitado o..., pero creo que se entenderá en el contexto con las palabras inglesas
 msgid "Please use 0 or 1 for OFF and ON"
 msgstr "Por favor use 0 o 1 para OFF y ON"
@@ -101,8 +104,8 @@ msgstr "Por favor use 0 o 1 para OFF y ON"
 msgid "Bad input value"
 msgstr "Valor de entrada equivocado"
 
-msgid "Tap spacebar"
-msgstr "Pulse espaciador"
+msgid "Tap spacebar to exit"
+msgstr "Pulse espaciador para salir"
 
 # "kernel" se usa en español también y aparece en los nombres de los archivos
 msgid "Welcome to 'remove-old-kernels' Interactive"
@@ -141,9 +144,6 @@ msgstr "Comandos que se usarían"
 
 msgid "Command that would be used"
 msgstr "Comando que se usaría"
-
-msgid "Tap spacebar to exit"
-msgstr "Pulse espaciador para salir"
 
 msgid "Test mode is on - kernels will not be removed"
 msgstr "En modo de prueba - no se quitará ningún kernel"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 12:28+0000\n"
+"POT-Creation-Date: 2023-01-24 19:10+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Google\n"
 "Language-Team: Google\n"
@@ -78,6 +78,15 @@ msgstr "     X = à conserver pour (X)tables-addons -latest. (uniquement en mode
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgstr "     K = conserver kernel-*-devel pour le noyau installé. (uniquement en mode avancé)"
 
+msgid "Must be root to edit configuration"
+msgstr "Il faut être root pour modifier la configuration"
+
+msgid "Tap spacebar"
+msgstr "Appuyez sur la barre d'espace"
+
+msgid "No such alternative configuration file:"
+msgstr "Aucun fichier de configuration alternatif de ce type :"
+
 msgid "FATAL: Failed to read:"
 msgstr "FATAL : Échec de la lecture :"
 
@@ -87,20 +96,14 @@ msgstr "Votre fichier de configuration alternatif n'existe pas :"
 msgid "Either replace it or set ALTCFG=0 in"
 msgstr "Remplacez-le ou définissez ALTCFG=0 dans"
 
-msgid "Must be root to edit configuration"
-msgstr "Il faut être root pour modifier la configuration"
-
-msgid "No such alternative configuration file:"
-msgstr "Aucun fichier de configuration alternatif de ce type :"
-
 msgid "Please use 0 or 1 for OFF and ON"
 msgstr "Veuillez utiliser 0 ou 1 pour OFF et ON"
 
 msgid "Bad input value"
 msgstr "Mauvaise valeur d'entrée"
 
-msgid "Tap spacebar"
-msgstr "Appuyez sur la barre d'espace"
+msgid "Tap spacebar to exit"
+msgstr "Appuyez sur la barre d'espace pour quitter"
 
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Bienvenue à 'remove-old-kernels' Interactive"
@@ -137,9 +140,6 @@ msgstr "Commandes qui seraient utilisées"
 
 msgid "Command that would be used"
 msgstr "Commande qui serait utilisée"
-
-msgid "Tap spacebar to exit"
-msgstr "Appuyez sur la barre d'espace pour quitter"
 
 msgid "Test mode is on - kernels will not be removed"
 msgstr "Le mode test est activé - les noyaux ne seront pas supprimés"

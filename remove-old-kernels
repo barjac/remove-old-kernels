@@ -64,7 +64,7 @@ if [[ ed -ne 1 ]]; then
     else
         # If alt cfg file exists source it
         if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
-        	source /etc/remove-old-kernels_${cfgno}.cfg
+                source /etc/remove-old-kernels_${cfgno}.cfg
             ALTCFG=${cfgno}
         else
             echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
@@ -178,7 +178,7 @@ currcfg=${maincfg}
 o=$(echo "$1"|cut -d- -f2)
 [[ "$o" == "?" ]] && o="h"
 if [[ ${#@} = 1 ]] && [[ "h" =~ $o ]]; then
-	clear; usage; exit 0
+        clear; usage; exit 0
 fi
 
 # Check dnf limit before option parsing
@@ -190,64 +190,64 @@ chk_cfg
 
 # Parse command line options which take precedence over script and cfg file
 if [[ ${#} -gt 0 ]] ; then
-	while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
-        	case ${NAME} in
-            	a)  MODE="A"
-                	;;
-            	A)  chkroot
-            		# Allow y/n and 0/1 for compatability with older versions
-                	CRONN=${OPTARG}
-                	if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ "$CRONN" ]]; then
-                    	if [[ "ny" =~ "$CRONN" ]]; then
-                        	echo "$(i18n "Please use 0 or 1 for OFF and ON")"
-                        	exit 0
-                    	else
-                        	/usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" ${currcfg} && CRON=$CRONN
-                    	fi
-                	else
-                    	echo "$(i18n "Bad input value")"; exit 1
-                	fi
-                	;;
-            	c)  MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "1y" =~ "$CRON" ]] || exit 0
-                	;;
-            	t)  DEBUG=1
-                	;;
-            	f)  [[ ${OPTARG} =~ ^[0-9] ]] && altcfg ${OPTARG}
-                	;;
-            	F)  chkroot
-                	[[ ${OPTARG} =~ ^[0-9] ]] && ed=1 && altcfg ${OPTARG}
-                	;;
-           		p)  VISU=1
-                	;;
-            	q)  QA=1
-                	;;
-            	Q)  chkroot
-                	[[ ${OPTARG} =~ ^[0-1] ]] && QAN="${OPTARG}"
-                	if cat ${currcfg}|grep -q "QA="; then
-                    	/usr/bin/sed -i "s/QA=.*/QA=${QAN}/" ${currcfg} && QA=${QAN}
-                	else
-                    	echo "QA=${QAN}" >> ${currcfg} && QA=${QAN}
-                	fi
-                	;;
-            	n)  [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK=${OPTARG}
-                	;;
-            	N)  chkroot
-                	NBKN=${OPTARG}
-                	if [[ $NBKN =~ ^[0-9]+$ ]] && [[ $NBKN -ge $dnfNBK ]]; then
-                    	/usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" ${currcfg} && NBK=$NBKN
-                	else
-                   		dnfmsg=true
-                	fi
-                	;;
-            	l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -n1; echo -en "${ClearLine}"; }
-                	;;
-            	m)  Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
-                	;;
-            	v)  printf "$(rpm -q remove-old-kernels)\n"
-                	exit 2
-                	;;
-              h|?)  clear; usage; exit 0	
-                	;;
+        while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
+                case ${NAME} in
+                a)  MODE="A"
+                        ;;
+                A)  chkroot
+                        # Allow y/n and 0/1 for compatability with older versions
+                        CRONN=${OPTARG}
+                        if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ "$CRONN" ]]; then
+                        if [[ "ny" =~ "$CRONN" ]]; then
+                                echo "$(i18n "Please use 0 or 1 for OFF and ON")"
+                                exit 0
+                        else
+                                /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" ${currcfg} && CRON=$CRONN
+                        fi
+                        else
+                        echo "$(i18n "Bad input value")"; exit 1
+                        fi
+                        ;;
+                c)  MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "1y" =~ "$CRON" ]] || exit 0
+                        ;;
+                t)  DEBUG=1
+                        ;;
+                f)  [[ ${OPTARG} =~ ^[0-9] ]] && altcfg ${OPTARG}
+                        ;;
+                F)  chkroot
+                        [[ ${OPTARG} =~ ^[0-9] ]] && ed=1 && altcfg ${OPTARG}
+                        ;;
+                        p)  VISU=1
+                        ;;
+                q)  QA=1
+                        ;;
+                Q)  chkroot
+                        [[ ${OPTARG} =~ ^[0-1] ]] && QAN="${OPTARG}"
+                        if cat ${currcfg}|grep -q "QA="; then
+                        /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" ${currcfg} && QA=${QAN}
+                        else
+                        echo "QA=${QAN}" >> ${currcfg} && QA=${QAN}
+                        fi
+                        ;;
+                n)  [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK=${OPTARG}
+                        ;;
+                N)  chkroot
+                        NBKN=${OPTARG}
+                        if [[ $NBKN =~ ^[0-9]+$ ]] && [[ $NBKN -ge $dnfNBK ]]; then
+                        /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" ${currcfg} && NBK=$NBKN
+                        else
+                                dnfmsg=true
+                        fi
+                        ;;
+                l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -n1; echo -en "${ClearLine}"; }
+                        ;;
+                m)  Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
+                        ;;
+                v)  printf "$(rpm -q remove-old-kernels)\n"
+                        exit 2
+                        ;;
+              h|?)  clear; usage; exit 0        
+                        ;;
          esac
     done
 fi
@@ -380,8 +380,8 @@ for kernelType in ${LISTK}; do
 
 # Return to the line if there exists at least one installedKernel of this kernelType
         if [[ ${installedKernelCounter} -eq 1 ]] ; then
-        	echo -ne "\r ==> ${kernelType}"
-        	echo ""
+                echo -ne "\r ==> ${kernelType}"
+                echo ""
         fi
 
 # Remove time stamp
@@ -467,9 +467,9 @@ if [[ ${nbt} -ne 0 ]] ; then
         fi
         plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
         if [[ "$plural" == "s" ]]; then
-        	kernstr="$(i18n "kernels"):"
+                kernstr="$(i18n "kernels"):"
         else
-        	kernstr="$(i18n "kernel"):"
+                kernstr="$(i18n "kernel"):"
         fi
         read -p "$(i18n "Remove") ${nbt} $kernstr ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
         if [[ -z ${response} ]] ; then response="n" ; fi

@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: remove-old-kernels\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2023-01-22 17:36+0000\n"
+        "POT-Creation-Date: 2023-01-24 19:10+0000\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,15 +79,6 @@ msgstr ""
 msgid  "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgstr ""
 
-msgid  "FATAL: Failed to read:"
-msgstr ""
-
-msgid  "Your alternative configuration file does not exist:"
-msgstr ""
-
-msgid  "Either replace it or set ALTCFG=0 in"
-msgstr ""
-
 msgid  "Must be root to edit configuration"
 msgstr ""
 
@@ -95,6 +86,15 @@ msgid  "Tap spacebar"
 msgstr ""
 
 msgid  "No such alternative configuration file:"
+msgstr ""
+
+msgid  "FATAL: Failed to read:"
+msgstr ""
+
+msgid  "Your alternative configuration file does not exist:"
+msgstr ""
+
+msgid  "Either replace it or set ALTCFG=0 in"
 msgstr ""
 
 msgid  "Please use 0 or 1 for OFF and ON"

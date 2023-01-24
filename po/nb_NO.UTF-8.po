@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 12:28+0000\n"
+"POT-Creation-Date: 2023-01-24 19:10+0000\n"
 "PO-Revision-Date: 2023-01-15 16:20+0100\n"
 "Last-Translator: Johnny A. Solbu <johnny@solbu.net>\n"
 "Language-Team: Norwegian Bokmaal <i10n-no@lister.huftis.org>\n"
@@ -81,6 +81,15 @@ msgstr "     X = behold xtables-addons «-latest». (bare i avansert modus)"
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgstr "     K = behold kernel-*-devel for installert kjerne. (bare i avansert modus)"
 
+msgid "Must be root to edit configuration"
+msgstr "Du må være root for å redigere konfigurasjonen"
+
+msgid "Tap spacebar"
+msgstr "Trykk på mellomromstasten"
+
+msgid "No such alternative configuration file:"
+msgstr "Ingen slik alternativ konfigurasjonsfil:"
+
 msgid "FATAL: Failed to read:"
 msgstr "FATAL: Kunne ikke lese:"
 
@@ -90,20 +99,14 @@ msgstr "Den alternative konfigurasjonsfilen din finnes ikke:"
 msgid "Either replace it or set ALTCFG=0 in"
 msgstr "Enten bytt den ut eller sett inn ALTCFG=0"
 
-msgid "Must be root to edit configuration"
-msgstr "Du må være root for å redigere konfigurasjonen"
-
-msgid "No such alternative configuration file:"
-msgstr "Ingen slik alternativ konfigurasjonsfil:"
-
 msgid "Please use 0 or 1 for OFF and ON"
 msgstr "Bruk 0 eller 1 for AV og PÅ"
 
 msgid "Bad input value"
 msgstr "Ugyldig inngangsverdi"
 
-msgid "Tap spacebar"
-msgstr "Trykk på mellomromstasten"
+msgid "Tap spacebar to exit"
+msgstr "Trykk på mellomromstasten for å avslutte"
 
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Velkommen til «remove-old-kernels»-Interaktiv"
@@ -140,9 +143,6 @@ msgstr "Kommandoer som vil bli brukt"
 
 msgid "Command that would be used"
 msgstr "Kommando som vil bli brukt"
-
-msgid "Tap spacebar to exit"
-msgstr "Trykk på mellomromstasten for å avslutte"
 
 msgid "Test mode is on - kernels will not be removed"
 msgstr "Testmodus er på - kjerner blir ikke fjernet"

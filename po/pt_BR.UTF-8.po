@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-15 12:28+0000\n"
+"POT-Creation-Date: 2023-01-24 19:10+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -78,6 +78,15 @@ msgstr "     X = mantendo para (X)tables-addons -latest. (apenas no modo avança
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgstr "     K = mantendo kernel-*-devel para o (K)ernel instalado. (apenas modo avançado)"
 
+msgid "Must be root to edit configuration"
+msgstr "Deve ser root para editar a configuração"
+
+msgid "Tap spacebar"
+msgstr "Aperte espaço"
+
+msgid "No such alternative configuration file:"
+msgstr "Não existe arquivo de configuração alternativo:"
+
 msgid "FATAL: Failed to read:"
 msgstr "FATAL: Falha de leitura:"
 
@@ -87,20 +96,14 @@ msgstr "Seu arquivo de configuração alternativo não existe:"
 msgid "Either replace it or set ALTCFG=0 in"
 msgstr "Substitua-o ou configure ALTCFG=0 em"
 
-msgid "Must be root to edit configuration"
-msgstr "Deve ser root para editar a configuração"
-
-msgid "No such alternative configuration file:"
-msgstr "Não existe arquivo de configuração alternativo:"
-
 msgid "Please use 0 or 1 for OFF and ON"
 msgstr "Please use 0 or 1 for OFF and ON"
 
 msgid "Bad input value"
 msgstr "Bad input value"
 
-msgid "Tap spacebar"
-msgstr "Aperte espaço"
+msgid "Tap spacebar to exit"
+msgstr "Aperte espaço para sair"
 
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Bem-vindo ao 'remove-old-kernels' Interativo"
@@ -137,9 +140,6 @@ msgstr "Comandos que seriam usados"
 
 msgid "Command that would be used"
 msgstr "Comando que seria usado"
-
-msgid "Tap spacebar to exit"
-msgstr "Aperte espaço para sair"
 
 msgid "Test mode is on - kernels will not be removed"
 msgstr "Modo de teste ativado - kernels não serão removidos"

@@ -100,7 +100,7 @@ fi
 # Check cfg file(s) and source
 chk_cfg() {
 # Source main .cfg file if it exists, or issue warning and abort.
-source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; usage; exit 1; }
+source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; exit 1; }
 
 # If an alt .cfg is set in main .cfg
 if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
@@ -174,13 +174,21 @@ cfgpath="/etc/"
 maincfg="${cfgpath}${prog}.cfg"
 currcfg=${maincfg}
 
+# Check for -h option before running chk_cfg (issue10)
+o=$(echo "$1"|cut -d- -f2)
+[[ "$o" == "?" ]] && o="h"
+if [[ ${#@} = 1 ]] && [[ "h" =~ $o ]]; then
+	clear; usage; exit 0
+fi
+
 # Check dnf limit before option parsing
 dnfNBK=0; dnfmsg=false
 [[ -f /etc/dnf/dnf.conf ]] && dnfNBK=$(cat /etc/dnf/dnf.conf|grep "installonly_limit="|cut -d= -f2)
 
+# Run all config file checks before option parsing
 chk_cfg
 
-# Parse arguments from command line which take precedence over script and cfg file
+# Parse command line options which take precedence over script and cfg file
 if [[ ${#} -gt 0 ]] ; then
 	while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
         	case ${NAME} in
@@ -242,13 +250,11 @@ if [[ ${#} -gt 0 ]] ; then
                 	;;
          esac
     done
-    # Don't allow NBK < 2
-    if (( NBK < 2 )); then
-        NBK=2
-    fi
-else
-# No command line options to overwrite so check and source a cfg file now
-chk_cfg
+fi
+
+# Don't allow NBK < 2 whether it comes from CLI, script edit, config file or the moon
+if (( NBK < 2 )); then
+    NBK=2
 fi
 
 # Only use greeting in interactive mode

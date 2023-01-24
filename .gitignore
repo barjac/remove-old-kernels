@@ -2,3 +2,4 @@
 *.swp
 po/*.mo
 .directory
+.remove-old-kernels.kate-swp

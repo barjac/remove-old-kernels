@@ -47,5 +47,10 @@ catered for.
 
 If you would like to help with other languages, then please read TRANSLATIONS.md
 
+## Screen shot in Konsole under KDE plasma5
 
-
+![Screenshot](./Screenshot_20230124.png?raw=true)
+This image demonstrates the use of an alternative configuration file as indicated top right by F:1. It is using a blue header background rather than the default green. F:1 is highlighted in red as a warning that the alternative configuration is in use.   
+Likewise the AUTO setting of "0" (OFF) is highlighted in red to warn that the program will not be working automatically to keep the number of kernels to 3 as it is turned off.  
+"Q" on the header indicates that the program is in QA or expert mode, although no expert features have been triggered in this system as it's a fairly basic test machine.  
+Read the man page and -h help for full details of options. Otherwise just install and forget as by default it will avoid old kernels accumulating. 

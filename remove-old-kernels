@@ -116,7 +116,7 @@ if grep -qF "ALTCFG=" "${maincfg}" && (( ALTCFG > 0 )); then
 fi
 
 # The following config file checks need root to update files if needed
-if (( UID > 0 )); then
+if (( UID = 0 )); then
 # Check for CRON variable in config or add default. (Some users may have early versions)
     if ! grep -qF -e "CRON=" "${currcfg}"; then
         echo -e "\n# Allow cron to run remove-old-kernels. 0=OFF 1=ON.\nCRON=1" >> "${currcfg}"
@@ -243,7 +243,7 @@ if [[ ${#} -gt 0 ]] ; then
                         ;;
                 m)  Normal=""; RemvCol=""; KeepCol=""; InfoCol=""; HdBgCol=""; WarnBgCol=""; ClearLine=""
                         ;;
-                v)  printf "$(rpm -q remove-old-kernels)\n"
+                v)  printf '%s'"$(rpm -q remove-old-kernels)\n"
                         exit 2
                         ;;
               h|?)  clear; usage; exit 0
@@ -279,7 +279,7 @@ if [[ $ALTCFG -gt 0 ]]; then cfgmssg="|${Normal}${WarnBgCol}F:${ALTCFG}${HdBgCol
 [[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}$(i18n "FATAL: Has the running kernel been uninstalled since last boot? - Aborting.")"; exit 1; }
 
 # Get the full name of the current running kernel
-CURK=$(rpm -qf /lib/modules/$(uname -r))
+CURK=$(rpm -qf /lib/modules/"$(uname -r)")
 
 # Storage for the list of kernels to remove
 TMPKTR=$(mktemp)
@@ -320,7 +320,7 @@ if echo "$allkernels"|grep -q "virtualbox-${kernelType}-latest"; then
 else
      qavkern=; return
 fi
-depkern=$(echo "$allkernels"|cut -d' ' -f1|grep $vb_latest_ver|grep -v latest|grep virtualbox-kernel-[0-9])
+depkern=$(echo "$allkernels"|cut -d' ' -f1|grep $vb_latest_ver|grep -v latest|grep "virtualbox-kernel-[0-9]")
 kern_ver=$(echo "$depkern"|cut -d- -f3-|cut -d- -f1) 
 kern_rel=$(echo "$depkern"|cut -d- -f5-|cut -d. -f1)
 (( ${#kern_ver} > 0 )) && (( ${#kern_rel} > 0 )) && qavkern="${kern_ver}-${kern_rel}"
@@ -333,7 +333,7 @@ if echo "$allkernels"|grep -q "xtables-addons-${kernelType}-latest"; then
 else
      qaxkern=; return
 fi
-depkern=$(echo "$allkernels"|cut -d' ' -f1|grep "$xt_latest_ver"|grep xtables-addons-kernel-[0-9]|cut -d ' ' -f1)
+depkern=$(echo "$allkernels"|cut -d' ' -f1|grep "$xt_latest_ver"|grep "xtables-addons-kernel-[0-9]"|cut -d ' ' -f1)
 kern_ver=$(echo "$depkern"|cut -d- -f4) 
 kern_rel=$(echo "$depkern"|cut -d- -f6 -|cut -d. -f1)
 (( ${#kern_ver} > 0 )) && (( ${#kern_rel} > 0 )) && qaxkern="${kern_ver}-${kern_rel}"
@@ -385,16 +385,16 @@ for kernelType in ${LISTK}; do
         fi
 
 # Remove time stamp
-        installedKernelPackage=$(echo ${installedKernel} | cut -d ' ' -f 1 )
+        installedKernelPackage=$(echo "${installedKernel}" | cut -d ' ' -f 1 )
 
 # Check for current kernel
-        if [[ $(echo ${installedKernel} | grep ${CURK} | wc -l ) -eq 1 ]] ; then
+        if [[ $(echo "${installedKernel}" | grep -c "${CURK}") -eq 1 ]] ; then
             NOTA="U"       # current kernel
             REMVBL=0       # not removable
         fi
 
 # Check if kernel is required by vbox latest kernel
-        if [[ $QA -eq 1 ]] && [[ ${#qavkern} -gt 0 ]] && [[ $(echo ${installedKernel} | grep "$qavkern" | wc -l ) -eq 1 ]]; then
+        if [[ $QA -eq 1 ]] && [[ ${#qavkern} -gt 0 ]] && [[ $(echo ${installedKernel} | grep -c "$qavkern") -eq 1 ]]; then
             NOTA="${NOTA}V"     # Required by VBox
             REMVBL=0            # not removable
         fi
@@ -476,7 +476,6 @@ if [[ ${nbt} -ne 0 ]] ; then
             case ${response} in
                 [Yy])
                     AUTO="--auto"
-                    ASK=0
                     MODE="A"
                     echo -e " \n"
                     ;;
@@ -487,7 +486,7 @@ if [[ ${nbt} -ne 0 ]] ; then
                     ;;
                    *)
                     echo -e "\n$(i18n "Aborted")\n"
-                    rm -f ${TMPKTR}
+                    rm -f "${TMPKTR}"
                     exit 0
                     ;;
             esac
@@ -495,7 +494,7 @@ if [[ ${nbt} -ne 0 ]] ; then
 
 #================================= Execution ===========================
 
-    for installedKernelPackage in $(tac ${TMPKTR}) ; do
+    for installedKernelPackage in $(tac "${TMPKTR}") ; do
         if [[ ${MODE} = "I" ]] ; then    # --- interactive mode ---
             read -p "$(i18n "Remove") ${installedKernelPackage} ? $(i18n "y/N/q (q=quit)") " -n 1 response
             echo -e " \n"
@@ -506,10 +505,10 @@ if [[ ${nbt} -ne 0 ]] ; then
                     [Yy])
                         if [[ ${DEBUG} -eq 1 ]] ; then
                             echo -e "\n${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
-                            nbt=$((${nbt} - 1))
+                            ((nbt--))
                         else
                             urpme ${installedKernelPackage}
-                            nbt=$((${nbt} - 1))
+                            ((nbt--))
                         fi
                         ;;
                     [qQ])
@@ -524,11 +523,11 @@ if [[ ${nbt} -ne 0 ]] ; then
         else             # --- automatic mode ---
                 if [[ ${DEBUG} -eq 1 ]] ; then
                     echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
-                    nbt=$((${nbt} - 1))
+                    ((nbt--))
                 else
                     # echo "Auto execution"
                     echo -ne 'y\n' | urpme ${AUTO} ${installedKernelPackage}
-                    nbt=$((${nbt} - 1))
+                    ((nbt--))
                 fi
         fi
     done
@@ -542,6 +541,6 @@ fi
 rm -f ${TMPKTR}
 
 # Run again if some removable kernels are left
-(((UID))) && exit 0            # Not root user so exit
-[ ${MODE} != "I" ] &&  exit 0  # Auto so exit
-[ ${nbt} -gt 0 ] && ${0}       # Root user and interactive so run again if removable kernels left
+(( UID > 0 )) && exit 0            # Not root user so exit
+[[ ${MODE} != "I" ]] &&  exit 0  # Auto so exit
+(( nbt > 0 )) && ${0}       # Root user and interactive so run again if removable kernels left

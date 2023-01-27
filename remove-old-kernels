@@ -13,7 +13,7 @@
 
 # Perform translations
 i18n() {
-gettext $prog "$1"
+gettext "$prog" "$1"
 }
 
 # Display -help
@@ -45,9 +45,9 @@ echo ""
 
 # Function to check we are root or exit
 chkroot() {
-if (((UID))); then
+if (( $UID > 0 )); then
    echo -e "${RemvCol}$(i18n "Must be root to edit configuration")${Normal}\n$(i18n "Tap spacebar")"
-   read -n1; echo -en "${ClearLine}"
+   read -r -n1; echo -en "${ClearLine}"
    exit 0
 fi
 }
@@ -56,14 +56,14 @@ fi
 altcfg() {
 cfgno=$1
 # Called with f
-if [[ ed -ne 1 ]]; then
+if [[ $ed -ne 1 ]]; then
     # Check for cfg 0
     if [[ $cfgno -eq 0 ]]; then
-        source ${maincfg}
+        source "${maincfg}"
         ALTCFG=${cfgno}
     else
         # If alt cfg file exists source it
-        if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
+        if [[ -f /etc/remove-old-kernels_"${cfgno}".cfg ]]; then
                 source /etc/remove-old-kernels_${cfgno}.cfg
             ALTCFG=${cfgno}
         else
@@ -74,21 +74,21 @@ if [[ ed -ne 1 ]]; then
 else
     # Called with F
     # If ALTCFG var is missing from the main .cfg file, add it
-    if ! cat ${maincfg} |grep -q "ALTCFG="; then
-        echo "ALTCFG=" >> ${maincfg}
+    if ! cat "${maincfg}" |grep -q "ALTCFG="; then
+        echo "ALTCFG=" >> "${maincfg}"
     fi
     # Switch back to .cfg 0
     if [[ $cfgno -eq 0 ]]; then
-        /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" ${maincfg}
-        source ${maincfg}; currcfg=${maincfg}
+        /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" "${maincfg}"
+        source "${maincfg}"; currcfg=${maincfg}
     else
         # If alt cfg file exists
         if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
             # Add it in main .cfg
-            /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" ${maincfg}
+            /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" "${maincfg}"
             ALTCFG=${cfgno}; 
             currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
-            source $currcfg
+            source "$currcfg"
         else
             echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
             exit 1
@@ -108,7 +108,7 @@ if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
     if [[ -f "${cfgpath}${prog}_$ALTCFG.cfg" ]]; then
         # Set current cfg to it
         currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
-        source $currcfg
+        source "$currcfg"
     else
         echo -e "${RemvCol}$(i18n "Your alternative configuration file does not exist:")${Normal}/etc/remove-old-kernels_$ALTCFG.cfg\n$(i18n "Either replace it or set ALTCFG=0 in") /etc/remove-old-kernels.cfg"
         exit 1
@@ -118,18 +118,18 @@ fi
 # The following config file checks need root to update files if needed
 if [[ ! (((UID))) ]]; then
 # Check for CRON variable in config or add default. (Some users may have early versions)
-    if ! grep -q -e "CRON=" ${currcfg}; then
-        echo -e "\n# Allow cron to run remove-old-kernels. 0=OFF 1=ON.\nCRON=1" >> ${currcfg}
+    if ! grep -q -e "CRON=" "${currcfg}"; then
+        echo -e "\n# Allow cron to run remove-old-kernels. 0=OFF 1=ON.\nCRON=1" >> "${currcfg}"
     fi
 
 # Update comment in config file if needed since $CRON change to 0|1
-    /usr/bin/sed -i 's/^.*\blower case\b.*$/# Allow cron to run remove-old-kernels. 0=OFF 1=ON./' ${currcfg}
+    /usr/bin/sed -i 's/^.*\blower case\b.*$/# Allow cron to run remove-old-kernels. 0=OFF 1=ON./' "${currcfg}"
 
 # Check for CRON set to old y/n values and update
     if [[ ${#CRON} = 1 ]] && [[ "ny" =~ "$CRON" ]]; then
         [[ $CRON == y ]] && CRON=1
         [[ $CRON == n ]] && CRON=0
-        /usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" ${currcfg}
+        /usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" "${currcfg}"
     fi
 fi
 }
@@ -172,7 +172,7 @@ kernel-linus-source
 prog="remove-old-kernels"
 cfgpath="/etc/"
 maincfg="${cfgpath}${prog}.cfg"
-currcfg=${maincfg}
+currcfg="${maincfg}"
 
 # Check for -h option before running chk_cfg (issue10)
 o=$(echo "$1"|cut -d- -f2)
@@ -288,10 +288,10 @@ TMPKTR=$(mktemp)
 OCCDISK1=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
 
 # Pad translated strings for column 2
-    keepstr=$(i18n "Keep")
-    remstr=$(i18n "Remove")
-    if [[ ${#keepstr} != ${#remstr} ]]; then
-        if [[ ${#keepstr} > ${#remstr} ]]; then
+    keepstr="$(i18n "Keep")"
+    remstr="$(i18n "Remove")"
+    if (( ${#keepstr} != ${#remstr} )); then
+        if (( ${#keepstr} > ${#remstr} )); then
             while (( ${#remstr} < ${#keepstr} )); do remstr="${remstr} "; done
         else
             while (( ${#remstr} > ${#keepstr} )); do keepstr="${keepstr} "; done

@@ -45,7 +45,7 @@ echo ""
 
 # Function to check we are root or exit
 chkroot() {
-if (( $UID > 0 )); then
+if (( UID > 0 )); then
    echo -e "${RemvCol}$(i18n "Must be root to edit configuration")${Normal}\n$(i18n "Tap spacebar")"
    read -r -n1; echo -en "${ClearLine}"
    exit 0
@@ -64,7 +64,7 @@ if [[ $ed -ne 1 ]]; then
     else
         # If alt cfg file exists source it
         if [[ -f /etc/remove-old-kernels_"${cfgno}".cfg ]]; then
-                source /etc/remove-old-kernels_${cfgno}.cfg
+                source "/etc/remove-old-kernels_${cfgno}.cfg"
             ALTCFG=${cfgno}
         else
             echo -e "${RemvCol}$(i18n "No such alternative configuration file:")${Normal} /etc/remove-old-kernels_${cfgno}.cfg"
@@ -74,19 +74,19 @@ if [[ $ed -ne 1 ]]; then
 else
     # Called with F
     # If ALTCFG var is missing from the main .cfg file, add it
-    if ! cat "${maincfg}" |grep -q "ALTCFG="; then
+    if ! grep -qF "ALTCFG=" "${maincfg}"; then
         echo "ALTCFG=" >> "${maincfg}"
     fi
     # Switch back to .cfg 0
     if [[ $cfgno -eq 0 ]]; then
         /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" "${maincfg}"
-        source "${maincfg}"; currcfg=${maincfg}
+        source "${maincfg}"; currcfg="${maincfg}"
     else
         # If alt cfg file exists
         if [[ -f /etc/remove-old-kernels_${cfgno}.cfg ]]; then
             # Add it in main .cfg
             /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" "${maincfg}"
-            ALTCFG=${cfgno}; 
+            ALTCFG=${cfgno};
             currcfg="${cfgpath}${prog}_${ALTCFG}.cfg"
             source "$currcfg"
         else
@@ -103,7 +103,7 @@ chk_cfg() {
 source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; exit 1; }
 
 # If an alt .cfg is set in main .cfg
-if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
+if grep -qF "ALTCFG=" "${maincfg}" && (( ALTCFG > 0 )); then
     # Check it really exists
     if [[ -f "${cfgpath}${prog}_$ALTCFG.cfg" ]]; then
         # Set current cfg to it
@@ -116,9 +116,9 @@ if cat ${maincfg}|grep -q "ALTCFG=" && [[ $ALTCFG -gt 0 ]]; then
 fi
 
 # The following config file checks need root to update files if needed
-if [[ ! (((UID))) ]]; then
+if (( UID > 0 )); then
 # Check for CRON variable in config or add default. (Some users may have early versions)
-    if ! grep -q -e "CRON=" "${currcfg}"; then
+    if ! grep -qF -e "CRON=" "${currcfg}"; then
         echo -e "\n# Allow cron to run remove-old-kernels. 0=OFF 1=ON.\nCRON=1" >> "${currcfg}"
     fi
 
@@ -126,7 +126,7 @@ if [[ ! (((UID))) ]]; then
     /usr/bin/sed -i 's/^.*\blower case\b.*$/# Allow cron to run remove-old-kernels. 0=OFF 1=ON./' "${currcfg}"
 
 # Check for CRON set to old y/n values and update
-    if [[ ${#CRON} = 1 ]] && [[ "ny" =~ "$CRON" ]]; then
+    if [[ ${#CRON} = 1 ]] && [[ "ny" =~ $CRON ]]; then
         [[ $CRON == y ]] && CRON=1
         [[ $CRON == n ]] && CRON=0
         /usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" "${currcfg}"
@@ -183,7 +183,7 @@ fi
 
 # Check dnf limit before option parsing
 dnfNBK=0; dnfmsg=false
-[[ -f /etc/dnf/dnf.conf ]] && dnfNBK=$(cat /etc/dnf/dnf.conf|grep "installonly_limit="|cut -d= -f2)
+[[ -f /etc/dnf/dnf.conf ]] && dnfNBK=$(grep "installonly_limit=" /etc/dnf/dnf.conf|cut -d= -f2)
 
 # Run all config file checks before option parsing
 chk_cfg
@@ -197,36 +197,36 @@ if [[ ${#} -gt 0 ]] ; then
                 A)  chkroot
                         # Allow y/n and 0/1 for compatability with older versions
                         CRONN=${OPTARG}
-                        if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ "$CRONN" ]]; then
-                        if [[ "ny" =~ "$CRONN" ]]; then
+                        if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ $CRONN ]]; then
+                        if [[ "ny" =~ $CRONN ]]; then
                                 echo "$(i18n "Please use 0 or 1 for OFF and ON")"
                                 exit 0
                         else
-                                /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" ${currcfg} && CRON=$CRONN
+                                /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" "${currcfg}" && CRON=$CRONN
                         fi
                         else
                         echo "$(i18n "Bad input value")"; exit 1
                         fi
                         ;;
-                c)  MODE="A" && [[ ${#CRON} -gt 0 ]] && [[ "1y" =~ "$CRON" ]] || exit 0
+                c)  MODE="A" && (( ${#CRON} > 0 )) && [[ "1y" =~ $CRON ]] || exit 0
                         ;;
                 t)  DEBUG=1
                         ;;
-                f)  [[ ${OPTARG} =~ ^[0-9] ]] && altcfg ${OPTARG}
+                f)  [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} = 1 )) && altcfg "${OPTARG}"
                         ;;
                 F)  chkroot
-                        [[ ${OPTARG} =~ ^[0-9] ]] && ed=1 && altcfg ${OPTARG}
+                        [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} = 1 )) && ed=1 && altcfg "${OPTARG}"
                         ;;
                         p)  VISU=1
                         ;;
                 q)  QA=1
                         ;;
                 Q)  chkroot
-                        [[ ${OPTARG} =~ ^[0-1] ]] && QAN="${OPTARG}"
-                        if cat ${currcfg}|grep -q "QA="; then
-                        /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" ${currcfg} && QA=${QAN}
+                        [[ ${OPTARG} =~ ^[0-1] ]] && (( ${#OPTARG} = 1 )) && QAN=${OPTARG}
+                        if grep -qF "QA=" "${currcfg}"; then
+                            /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" "${currcfg}" && QA=${QAN}
                         else
-                        echo "QA=${QAN}" >> ${currcfg} && QA=${QAN}
+                            echo "QA=${QAN}" >> "${currcfg}" && QA=${QAN}
                         fi
                         ;;
                 n)  [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK=${OPTARG}
@@ -234,19 +234,19 @@ if [[ ${#} -gt 0 ]] ; then
                 N)  chkroot
                         NBKN=${OPTARG}
                         if [[ $NBKN =~ ^[0-9]+$ ]] && [[ $NBKN -ge $dnfNBK ]]; then
-                        /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" ${currcfg} && NBK=$NBKN
+                        /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" "${currcfg}" && NBK=$NBKN
                         else
                                 dnfmsg=true
                         fi
                         ;;
                 l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -n1; echo -en "${ClearLine}"; }
                         ;;
-                m)  Normal="";RemvCol="";KeepCol="";InfoCol="";HdBgCol="";WarnBgCol="";Clearline=""
+                m)  Normal=""; RemvCol=""; KeepCol=""; InfoCol=""; HdBgCol=""; WarnBgCol=""; Clearline=""
                         ;;
                 v)  printf "$(rpm -q remove-old-kernels)\n"
                         exit 2
                         ;;
-              h|?)  clear; usage; exit 0        
+              h|?)  clear; usage; exit 0
                         ;;
          esac
     done
@@ -321,9 +321,9 @@ else
      qavkern=; return
 fi
 depkern=$(echo "$allkernels"|cut -d' ' -f1|grep $vb_latest_ver|grep -v latest|grep virtualbox-kernel-[0-9])
-kern_ver=$(echo $depkern|cut -d- -f3-|cut -d- -f1) 
-kern_rel=$(echo $depkern|cut -d- -f5-|cut -d. -f1)
-[[ ${#kern_ver} > 0 ]] && [[ ${#kern_rel} > 0 ]] && qavkern="${kern_ver}-${kern_rel}"
+kern_ver=$(echo "$depkern"|cut -d- -f3-|cut -d- -f1) 
+kern_rel=$(echo "$depkern"|cut -d- -f5-|cut -d. -f1)
+(( ${#kern_ver} > 0 )) && (( ${#kern_rel} > 0 )) && qavkern="${kern_ver}-${kern_rel}"
 }
 
 # Get the kernel version and release required by the installed xtables-addons-flavour-latest
@@ -333,10 +333,10 @@ if echo "$allkernels"|grep -q "xtables-addons-${kernelType}-latest"; then
 else
      qaxkern=; return
 fi
-depkern=$(echo "$allkernels"|cut -d' ' -f1|grep $xt_latest_ver|grep xtables-addons-kernel-[0-9]|cut -d ' ' -f1)
-kern_ver=$(echo $depkern|cut -d- -f4) 
-kern_rel=$(echo $depkern|cut -d- -f6 -|cut -d. -f1)
-[[ ${#kern_ver} > 0 ]] && [[ ${#kern_rel} > 0 ]] && qaxkern="${kern_ver}-${kern_rel}"
+depkern=$(echo "$allkernels"|cut -d' ' -f1|grep "$xt_latest_ver"|grep xtables-addons-kernel-[0-9]|cut -d ' ' -f1)
+kern_ver=$(echo "$depkern"|cut -d- -f4) 
+kern_rel=$(echo "$depkern"|cut -d- -f6 -|cut -d. -f1)
+(( ${#kern_ver} > 0 )) && (( ${#kern_rel} > 0 )) && qaxkern="${kern_ver}-${kern_rel}"
 }
 
 # Keep the -devel package for any installed kernel package
@@ -350,10 +350,10 @@ pkg=; kpkgname=; nnk=""
         # Find kernel in installed list without timestamp
         for pkg in $(echo "$allkernels"|cut -d ' ' -f1); do
             # Look through installed kernels for kernel package
-            if [[ ${pkg} == ${kpkgname} ]]; then
+            if [[ ${pkg} == "${kpkgname}" ]]; then
                 nnk="K"; REMVBL=0
                 # Is kernel flagged for removal?
-                if  cat ${TMPKTR} | grep -q $kpkgname ; then
+                if  grep -q "$kpkgname" "${TMPKTR}" ; then
                     # Then this -devel is also removable
                     nnk=""; REMVBL=1
                 fi
@@ -376,7 +376,7 @@ for kernelType in ${LISTK}; do
         # Clear these for each loop
         NOTA=""; REMVBL=1
 # Increment installedKernelCounter
-        installedKernelCounter=$((${installedKernelCounter} + 1))
+        installedKernelCounter=$(( installedKernelCounter + 1))
 
 # Return to the line if there exists at least one installedKernel of this kernelType
         if [[ ${installedKernelCounter} -eq 1 ]] ; then
@@ -437,7 +437,7 @@ while (( ${#padstr} < $padUse )); do padstr="${padstr} "; done
 
 echo -en "${ClearLine}"
 echo -e "${padstr}${KeepCol}U${InfoCol} = $(i18n "In use now")${Normal}"
-if [[ ${#dnfmssg} > 0 ]];then echo -e "${dnfmssg}"; fi
+if (( ${#dnfmssg} > 0 ));then echo -e "${dnfmssg}"; fi
 
 #================================= Mode of execution ===================
 

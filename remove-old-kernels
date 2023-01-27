@@ -241,7 +241,7 @@ if [[ ${#} -gt 0 ]] ; then
                         ;;
                 l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -n1; echo -en "${ClearLine}"; }
                         ;;
-                m)  Normal=""; RemvCol=""; KeepCol=""; InfoCol=""; HdBgCol=""; WarnBgCol=""; Clearline=""
+                m)  Normal=""; RemvCol=""; KeepCol=""; InfoCol=""; HdBgCol=""; WarnBgCol=""; ClearLine=""
                         ;;
                 v)  printf "$(rpm -q remove-old-kernels)\n"
                         exit 2

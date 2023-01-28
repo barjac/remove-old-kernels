@@ -1,5 +1,4 @@
 #!/usr/bin/bash
-# shellcheck source=/dev/null
 # Remove old kernels safely and cleanly using urpme.
 #
 # LISTK contains the list of kernels to analyse
@@ -125,8 +124,8 @@ if (( UID == 0 )); then
 # Update comment in config file if needed since $CRON change to 0|1
     /usr/bin/sed -i 's/^.*\blower case\b.*$/# Allow cron to run remove-old-kernels. 0=OFF 1=ON./' "${currcfg}"
 
-# Check for CRON set to old y/n values and update
-    if [[ ${#CRON} = 1 ]] && [[ "ny" =~ $CRON ]]; then
+# Check for CRON set to old y/n values and update cfg
+    if  (( ${#CRON} == 1 )) && [[ "ny" =~ $CRON ]]; then
         [[ $CRON == y ]] && CRON=1
         [[ $CRON == n ]] && CRON=0
         /usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" "${currcfg}"
@@ -134,14 +133,6 @@ if (( UID == 0 )); then
 fi
 }
 
-chk_num() {
-variable="$1"
-case ${variable#[-+]} in
-  *[!0-9]* | '') echo "Not a number" ;;
-  * ) echo "Valid number $VISU" ;;
-esac
-exit
-}
 ################ Main program starts here #################
 # Do not edit the values below unless you know 'exactly' what you are doing.
 # You can pass parameters on the command line to acheive similar functionality,
@@ -198,65 +189,65 @@ dnfNBK=0; dnfmsg=false
 chk_cfg
 
 # Parse command line options which take precedence over script and cfg file
-if [[ ${#} -gt 0 ]] ; then
-        while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
-                case ${NAME} in
-                a)  MODE="A"
-                        ;;
-                A)  chkroot
-                        # Allow y/n and 0/1 for compatability with older versions
-                        CRONN=${OPTARG}
-                        if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ $CRONN ]]; then
-                        if [[ "ny" =~ $CRONN ]]; then
-                                echo "$(i18n "Please use 0 or 1 for OFF and ON")"
-                                exit 0
-                        else
-                                /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" "${currcfg}" && CRON=$CRONN
-                        fi
-                        else
-                        echo "$(i18n "Bad input value")"; exit 1
-                        fi
-                        ;;
-                c)  MODE="A" && (( ${#CRON} > 0 )) && [[ "1y" =~ $CRON ]] || exit 0
-                        ;;
-                t)  DEBUG=1
-                        ;;
-                f)  [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} == 1 )) && altcfg "${OPTARG}"
-                        ;;
-                F)  chkroot
-                        [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} == 1 )) && ed=1 && altcfg "${OPTARG}"
-                        ;;
-                p)  VISU=1
-                        ;;
-                q)      QA=1
-                        ;;
-                Q)  chkroot
-                        [[ ${OPTARG} =~ ^[0-1] ]] && (( ${#OPTARG} == 1 )) && QAN="${OPTARG}"
-                        if grep -qF "QA=" "${currcfg}"; then
-                            /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" "${currcfg}" && QA="${QAN}"
-                        else
-                            echo "QA=${QAN}" >> "${currcfg}" && QA="${QAN}"
-                        fi
-                        ;;
-                n)      [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK="${OPTARG}"
-                        ;;
-                N)  chkroot
-                        NBKN=${OPTARG}
-                        if [[ $NBKN =~ ^[0-9]+$ ]] && (( NBKN >= dnfNBK )); then
-                            /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" "${currcfg}" && NBK="$NBKN"
-                        else
-                            dnfmsg=true
-                        fi
-                        ;;
-                l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -r -n1; echo -en "${ClearLine}"; }
-                        ;;
-                m)  Normal=""; RemvCol=""; KeepCol=""; InfoCol=""; HdBgCol=""; WarnBgCol=""; ClearLine=""
-                        ;;
-                v)  printf '%s'"$(rpm -q remove-old-kernels)\n"
-                        exit 2
-                        ;;
-              h|?)  clear; usage; exit 0
-                        ;;
+if (( ${#} > 0 )) ; then
+    while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
+        case ${NAME} in
+            a)  MODE="A"
+                ;;
+            A)  chkroot
+                # Allow y/n and 0/1 for compatability with older versions
+                CRONN=${OPTARG}
+                if [[ ${#CRONN} = 1 ]] && [[ "01ny" =~ $CRONN ]]; then
+                    if [[ "ny" =~ $CRONN ]]; then
+                        echo "$(i18n "Please use 0 or 1 for OFF and ON")"
+                        exit 0
+                    else
+                        /usr/bin/sed -i "s/CRON=.*/CRON=${CRONN}/" "${currcfg}" && CRON=$CRONN
+                    fi
+                else
+                    echo "$(i18n "Bad input value")"; exit 1
+                fi
+                ;;
+            c)  MODE="A" && (( ${#CRON} > 0 )) && [[ "1y" =~ $CRON ]] || exit 0
+                ;;
+            t)  DEBUG=1
+                ;;
+            f)  [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} == 1 )) && altcfg "${OPTARG}"
+                ;;
+            F)  chkroot
+                [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} == 1 )) && ed=1 && altcfg "${OPTARG}"
+                ;;
+            p)  VISU=1
+                ;;
+            q)  QA=1
+                ;;
+            Q)  chkroot
+                [[ ${OPTARG} =~ ^[0-1] ]] && (( ${#OPTARG} == 1 )) && QAN="${OPTARG}"
+                if grep -qF "QA=" "${currcfg}"; then
+                    /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" "${currcfg}" && QA="${QAN}"
+                else
+                    echo "QA=${QAN}" >> "${currcfg}" && QA="${QAN}"
+                fi
+                ;;
+            n)  [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK="${OPTARG}"
+                ;;
+            N)  chkroot
+                NBKN=${OPTARG}
+                if [[ $NBKN =~ ^[0-9]+$ ]] && (( NBKN >= dnfNBK )); then
+                    /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" "${currcfg}" && NBK="$NBKN"
+                else
+                    dnfmsg=1
+                fi
+                ;;
+            l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -r -n1; echo -en "${ClearLine}"; }
+                ;;
+            m)  Normal=""; RemvCol=""; KeepCol=""; InfoCol=""; HdBgCol=""; WarnBgCol=""; ClearLine=""
+                ;;
+            v)  printf '%s'"$(rpm -q remove-old-kernels)\n"
+                exit 2
+                ;;
+            h|?)  clear; usage; exit 0
+                ;;
          esac
     done
 fi
@@ -273,16 +264,16 @@ echo -e "                        $(i18n "Welcome to 'remove-old-kernels' Interac
 fi
 
 # Use dnf kernel 'number to keep' if installed and greater than ours
-if [[ $dnfNBK -gt $NBK ]] || $dnfmsg; then
+if (( dnfNBK > NBK )) || (( dnfmsg == 1 )); then
     NBK=$dnfNBK
     dnfmssg="${InfoCol}$(i18n "INFO: Number to keep is restricted to ")${dnfNBK}\
 $(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}" 
 fi
 
 # Get info for status message
-if [[ "$CRON" == "1" ]]; then autostat="1"; else autostat="${Normal}${WarnBgCol}0${HdBgCol}"; fi
-if [[ "$QA" == "1" ]]; then qamssg="| Q "; fi
-if [[ $ALTCFG -gt 0 ]]; then cfgmssg="|${Normal}${WarnBgCol}F:${ALTCFG}${HdBgCol} "; fi
+if (( CRON == 1 )); then autostat="1"; else autostat="${Normal}${WarnBgCol}0${HdBgCol}"; fi
+if (( QA == 1 )) ; then qamssg="| Q "; fi
+if (( ALTCFG > 0 )); then cfgmssg="|${Normal}${WarnBgCol}F:${ALTCFG}${HdBgCol} "; fi
 
 # Check that the running kernel is still installed: https://bugs.mageia.org/show_bug.cgi?id=31015
 [[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}$(i18n "FATAL: Has the running kernel been uninstalled since last boot? - Aborting.")"; exit 1; }
@@ -320,7 +311,7 @@ echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /b
 
 #================================= Analyse rpms =============================
 # Get master list from rpm -qa --last
-allkernels=$(rpm -qa --last|grep "kernel-")
+allkernels="$(rpm -qa --last|grep "kernel-")"
 
 # Get the kernel version and release required by the installed virtualbox-flavour-latest
 get_vbox_kern() {
@@ -426,7 +417,7 @@ for kernelType in ${LISTK}; do
 # Pad installedKernelCounter (col 1) to 3
         while (( ${#installedKernelCounter} < 3 )); do installedKernelCounter="${installedKernelCounter} "; done
 
-        if [[ ${installedKernelCounter} -gt $NBK ]]; then
+        if (( installedKernelCounter > NBK )); then
             if (( REMVBL != 1 )) ; then
                 echo -e "\r ${installedKernelCounter}${KeepCol} : $keepstr: ${NOTA}: ${installedKernel} ${Normal}"
             else
@@ -530,7 +521,7 @@ if (( nbt != 0 )) ; then
                         ;;
                 esac
         else             # --- automatic mode ---
-        		AUTO="--auto"
+                AUTO="--auto"
                 if (( DEBUG == 1 )) ; then
                     echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                     ((nbt--))

@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-#
+# shellcheck source=/dev/null
 # Remove old kernels safely and cleanly using urpme.
 #
 # LISTK contains the list of kernels to analyse
@@ -58,9 +58,9 @@ cfgno=$1
 # Called with f
 if [[ $ed -ne 1 ]]; then
     # Check for cfg 0
-    if [[ $cfgno -eq 0 ]]; then
+    if (( cfgno == 0 )); then
         source "${maincfg}"
-        ALTCFG=${cfgno}
+        ALTCFG="${cfgno}"
     else
         # If alt cfg file exists source it
         if [[ -f /etc/remove-old-kernels_"${cfgno}".cfg ]]; then
@@ -78,7 +78,7 @@ else
         echo "ALTCFG=" >> "${maincfg}"
     fi
     # Switch back to .cfg 0
-    if [[ $cfgno -eq 0 ]]; then
+    if (( cfgno == 0 )); then
         /usr/bin/sed -i "s/ALTCFG=.*/ALTCFG=${cfgno}/" "${maincfg}"
         source "${maincfg}"; currcfg="${maincfg}"
     else
@@ -116,7 +116,7 @@ if grep -qF "ALTCFG=" "${maincfg}" && (( ALTCFG > 0 )); then
 fi
 
 # The following config file checks need root to update files if needed
-if (( UID = 0 )); then
+if (( UID == 0 )); then
 # Check for CRON variable in config or add default. (Some users may have early versions)
     if ! grep -qF -e "CRON=" "${currcfg}"; then
         echo -e "\n# Allow cron to run remove-old-kernels. 0=OFF 1=ON.\nCRON=1" >> "${currcfg}"
@@ -132,6 +132,15 @@ if (( UID = 0 )); then
         /usr/bin/sed -i "s/CRON=.*/CRON=${CRON}/" "${currcfg}"
     fi
 fi
+}
+
+chk_num() {
+variable="$1"
+case ${variable#[-+]} in
+  *[!0-9]* | '') echo "Not a number" ;;
+  * ) echo "Valid number $VISU" ;;
+esac
+exit
 }
 ################ Main program starts here #################
 # Do not edit the values below unless you know 'exactly' what you are doing.
@@ -212,34 +221,34 @@ if [[ ${#} -gt 0 ]] ; then
                         ;;
                 t)  DEBUG=1
                         ;;
-                f)  [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} = 1 )) && altcfg "${OPTARG}"
+                f)  [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} == 1 )) && altcfg "${OPTARG}"
                         ;;
                 F)  chkroot
-                        [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} = 1 )) && ed=1 && altcfg "${OPTARG}"
+                        [[ ${OPTARG} =~ ^[0-9] ]] && (( ${#OPTARG} == 1 )) && ed=1 && altcfg "${OPTARG}"
                         ;;
-                        p)  VISU=1
+                p)  VISU=1
                         ;;
-                q)  QA=1
+                q)      QA=1
                         ;;
                 Q)  chkroot
-                        [[ ${OPTARG} =~ ^[0-1] ]] && (( ${#OPTARG} = 1 )) && QAN=${OPTARG}
+                        [[ ${OPTARG} =~ ^[0-1] ]] && (( ${#OPTARG} == 1 )) && QAN="${OPTARG}"
                         if grep -qF "QA=" "${currcfg}"; then
-                            /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" "${currcfg}" && QA=${QAN}
+                            /usr/bin/sed -i "s/QA=.*/QA=${QAN}/" "${currcfg}" && QA="${QAN}"
                         else
-                            echo "QA=${QAN}" >> "${currcfg}" && QA=${QAN}
+                            echo "QA=${QAN}" >> "${currcfg}" && QA="${QAN}"
                         fi
                         ;;
-                n)  [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK=${OPTARG}
+                n)      [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK="${OPTARG}"
                         ;;
                 N)  chkroot
                         NBKN=${OPTARG}
-                        if [[ $NBKN =~ ^[0-9]+$ ]] && [[ $NBKN -ge $dnfNBK ]]; then
-                        /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" "${currcfg}" && NBK=$NBKN
+                        if [[ $NBKN =~ ^[0-9]+$ ]] && (( NBKN >= dnfNBK )); then
+                            /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" "${currcfg}" && NBK="$NBKN"
                         else
-                                dnfmsg=true
+                            dnfmsg=true
                         fi
                         ;;
-                l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -n1; echo -en "${ClearLine}"; }
+                l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -r -n1; echo -en "${ClearLine}"; }
                         ;;
                 m)  Normal=""; RemvCol=""; KeepCol=""; InfoCol=""; HdBgCol=""; WarnBgCol=""; ClearLine=""
                         ;;
@@ -300,10 +309,10 @@ OCCDISK1=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
 
 #========================= Analyse /boot/ =============================
 
-NK=$(ls /boot/vmlinuz*.mga* | wc -l)
+NK=$(find /boot -name "vmlinuz*.mga[0-9]" | wc -l)
 
 # In automatic mode exit immediately if kernels in boot <= number allowed to be removed
-   [[ $MODE = "A" ]] && [[ ${NK} -le ${NBK} ]] && exit 0
+   [[ "$MODE" = "A" ]] && (( NK < NBK )) && exit 0
 
 #================================ Show status ==============================
 
@@ -320,7 +329,7 @@ if echo "$allkernels"|grep -q "virtualbox-${kernelType}-latest"; then
 else
      qavkern=; return
 fi
-depkern=$(echo "$allkernels"|cut -d' ' -f1|grep $vb_latest_ver|grep -v latest|grep "virtualbox-kernel-[0-9]")
+depkern=$(echo "$allkernels"|cut -d' ' -f1|grep "$vb_latest_ver"|grep -v latest|grep "virtualbox-kernel-[0-9]")
 kern_ver=$(echo "$depkern"|cut -d- -f3-|cut -d- -f1) 
 kern_rel=$(echo "$depkern"|cut -d- -f5-|cut -d. -f1)
 (( ${#kern_ver} > 0 )) && (( ${#kern_rel} > 0 )) && qavkern="${kern_ver}-${kern_rel}"
@@ -369,44 +378,44 @@ rpmqaList=$(echo "$allkernels"|grep -v latest)
 
 # Loop through kernel types in LISTK
 for kernelType in ${LISTK}; do
-    [[ $QA -eq 1 ]] && get_vbox_kern && get_xtables_kern
+    (( QA == 1 )) && get_vbox_kern && get_xtables_kern
     installedKernelCounter=0;
 # Scan through installed kernels to match with kernel type in LISTK
-    echo "$rpmqaList"|grep "${kernelType}-[0-9]"|while read installedKernel; do
+    echo "$rpmqaList"|grep "${kernelType}-[0-9]"|while read -r installedKernel; do
         # Clear these for each loop
         NOTA=""; REMVBL=1
 # Increment installedKernelCounter
         installedKernelCounter=$(( installedKernelCounter + 1))
 
 # Return to the line if there exists at least one installedKernel of this kernelType
-        if [[ ${installedKernelCounter} -eq 1 ]] ; then
+        if (( installedKernelCounter == 1 )) ; then
                 echo -ne "\r ==> ${kernelType}"
                 echo ""
         fi
 
 # Remove time stamp
-        installedKernelPackage=$(echo "${installedKernel}" | cut -d ' ' -f 1 )
+        installedKernelPackage="$(echo "${installedKernel}" | cut -d ' ' -f 1 )"
 
 # Check for current kernel
-        if [[ $(echo "${installedKernel}" | grep -c "${CURK}") -eq 1 ]] ; then
+          if (( $(echo "${installedKernel}" | grep -c "${CURK}") == 1 )) ; then
             NOTA="U"       # current kernel
             REMVBL=0       # not removable
         fi
 
 # Check if kernel is required by vbox latest kernel
-        if [[ $QA -eq 1 ]] && [[ ${#qavkern} -gt 0 ]] && [[ $(echo ${installedKernel} | grep -c "$qavkern") -eq 1 ]]; then
+        if (( QA == 1 )) && (( ${#qavkern} > 0 )) && (( $(echo "${installedKernel}" | grep -c "$qavkern") == 1 )); then
             NOTA="${NOTA}V"     # Required by VBox
             REMVBL=0            # not removable
         fi
 
 # Check if kernel is required by xtables latest kernel
-        if [[ $QA -eq 1 ]] && [[ ${#qaxkern} -gt 0 ]] && [[ $(echo ${installedKernel} | grep "$qaxkern" | wc -l ) -eq 1 ]]; then
+        if (( QA == 1 )) && (( ${#qaxkern} > 0 )) && (( $(echo "${installedKernel}" | grep -c "$qaxkern") == 1 )); then
             NOTA="${NOTA}X"     # Required by xtables
             REMVBL=0            # not removable
         fi
 
 # If a kernel devel package has the corresponding kernel package keep it
-        if [[ $QA -eq 1 ]]; then
+        if (( QA == 1 )); then
             depdev
             NOTA="${NOTA}${nnk}"
         fi
@@ -418,12 +427,12 @@ for kernelType in ${LISTK}; do
         while (( ${#installedKernelCounter} < 3 )); do installedKernelCounter="${installedKernelCounter} "; done
 
         if [[ ${installedKernelCounter} -gt $NBK ]]; then
-            if [[ ${REMVBL} -ne 1 ]] ; then
+            if (( REMVBL != 1 )) ; then
                 echo -e "\r ${installedKernelCounter}${KeepCol} : $keepstr: ${NOTA}: ${installedKernel} ${Normal}"
             else
                 echo -e "\r ${installedKernelCounter}${RemvCol} : $remstr: ${NOTA}: ${installedKernel} ${Normal}"
                 # Add package to removal list
-                echo ${installedKernelPackage} >> ${TMPKTR}
+                echo "${installedKernelPackage}" >> "${TMPKTR}"
             fi
         else
                 echo -e "\r ${installedKernelCounter}${KeepCol} : $keepstr: ${NOTA}: ${installedKernel} ${Normal}"
@@ -433,7 +442,7 @@ done
 
 # Position 'in use' key under symbol below column 3
 padUse=$((${#keepstr}+9)); padstr=""
-while (( ${#padstr} < $padUse )); do padstr="${padstr} "; done
+while (( ${#padstr} < padUse )); do padstr="${padstr} "; done
 
 echo -en "${ClearLine}"
 echo -e "${padstr}${KeepCol}U${InfoCol} = $(i18n "In use now")${Normal}"
@@ -441,31 +450,33 @@ if (( ${#dnfmssg} > 0 ));then echo -e "${dnfmssg}"; fi
 
 #================================= Mode of execution ===================
 
-nbt=$(cat ${TMPKTR} | wc -l)
+nbt=$(wc -l < "${TMPKTR}")
+##nbt=$(cat "${TMPKTR}" | wc -l)
 if [[ ${nbt} -ne 0 ]] ; then
-    (((UID))) && echo -e "${RemvCol}$(i18n "Must be root to allow removal")\n${Normal}"
-    if [[ ${VISU} -eq 1 ]]; then
-        plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
+    (( UID > 0 )) && echo -e "${RemvCol}$(i18n "Must be root to allow removal")\n${Normal}"
+#    chk_num $VISU
+    if (( VISU == 1 )); then
+        plural="s"; (( nbt == 1 )) && plural=""
         if [[ "$plural" == "s" ]]; then
-        echo "$(i18n "Commands that would be used"):"
+            echo "$(i18n "Commands that would be used"):"
         else
-        echo "$(i18n "Command that would be used"):"
+            echo "$(i18n "Command that would be used"):"
         fi
-        for f in $(tac ${TMPKTR}); do
+        for f in $(tac "${TMPKTR}"); do
             echo "urpme ${f}"
         done
         echo "$(i18n "Tap spacebar to exit")"
         read -n1
         echo -en "${ClearLine}"
-        rm -f ${TMPKTR}
+        rm -f "${TMPKTR}"
         exit 0
     fi
 
-    if [[ ${MODE} != "A" ]] ; then
-        if [[ ${DEBUG} -eq 1 ]] ; then
+    if [[ "${MODE}" != "A" ]] ; then
+        if (( DEBUG == 1 )) ; then
             echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
         fi
-        plural="s"; [[ ${nbt} -eq 1 ]] && plural=""
+        plural="s"; (( nbt == 1 )) && plural=""
         if [[ "$plural" == "s" ]]; then
                 kernstr="$(i18n "kernels"):"
         else
@@ -503,17 +514,17 @@ if [[ ${nbt} -ne 0 ]] ; then
             fi
                 case ${response} in
                     [Yy])
-                        if [[ ${DEBUG} -eq 1 ]] ; then
+                        if (( DEBUG == 1 )) ; then
                             echo -e "\n${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                             ((nbt--))
                         else
-                            urpme ${installedKernelPackage}
+                            urpme "${installedKernelPackage}"
                             ((nbt--))
                         fi
                         ;;
                     [qQ])
                         echo -e "\n$(i18n "Aborted")"
-                        rm -f ${TMPKTR};
+                        rm -f "${TMPKTR}";
                         exit 0
                         ;;
                        *)
@@ -521,24 +532,24 @@ if [[ ${nbt} -ne 0 ]] ; then
                         ;;
                 esac
         else             # --- automatic mode ---
-                if [[ ${DEBUG} -eq 1 ]] ; then
+                if (( DEBUG == 1 )) ; then
                     echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                     ((nbt--))
                 else
                     # echo "Auto execution"
-                    echo -ne 'y\n' | urpme ${AUTO} ${installedKernelPackage}
+                    echo -ne 'y\n' | urpme "${AUTO}" "${installedKernelPackage}"
                     ((nbt--))
                 fi
         fi
     done
-        NK=$(ls /boot/vmlinuz*.mga[0-9] | wc -l)
+        NK=$(find /boot -name "vmlinuz*.mga[0-9]" | wc -l)
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
         echo -e "${HdBgCol} $(i18n "Gain"):$((OCCDISK1 - OCCDISK2)) MB - $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi
 
 [[ $MODE == "I" ]] && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }
 
-rm -f ${TMPKTR}
+rm -f "${TMPKTR}"
 
 # Run again if some removable kernels are left
 (( UID > 0 )) && exit 0            # Not root user so exit

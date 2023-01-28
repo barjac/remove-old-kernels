@@ -451,10 +451,8 @@ if (( ${#dnfmssg} > 0 ));then echo -e "${dnfmssg}"; fi
 #================================= Mode of execution ===================
 
 nbt=$(wc -l < "${TMPKTR}")
-##nbt=$(cat "${TMPKTR}" | wc -l)
-if [[ ${nbt} -ne 0 ]] ; then
+if (( nbt != 0 )) ; then
     (( UID > 0 )) && echo -e "${RemvCol}$(i18n "Must be root to allow removal")\n${Normal}"
-#    chk_num $VISU
     if (( VISU == 1 )); then
         plural="s"; (( nbt == 1 )) && plural=""
         if [[ "$plural" == "s" ]]; then
@@ -532,6 +530,7 @@ if [[ ${nbt} -ne 0 ]] ; then
                         ;;
                 esac
         else             # --- automatic mode ---
+        		AUTO="--auto"
                 if (( DEBUG == 1 )) ; then
                     echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                     ((nbt--))

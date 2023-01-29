@@ -443,64 +443,65 @@ if (( ${#dnfmssg} > 0 ));then echo -e "${dnfmssg}"; fi
 
 nbt=$(wc -l < "${TMPKTR}")
 if (( nbt != 0 )) ; then
-    (( UID > 0 )) && echo -e "${RemvCol}$(i18n "Must be root to allow removal")\n${Normal}"
-    if (( VISU == 1 )); then
-        plural="s"; (( nbt == 1 )) && plural=""
-        if [[ "$plural" == "s" ]]; then
-            echo "$(i18n "Commands that would be used"):"
-        else
-            echo "$(i18n "Command that would be used"):"
+    if (( UID > 0 )); then
+        echo -e "${RemvCol}$(i18n "Must be root to allow removal")\n${Normal}"
+        if (( VISU == 1 )); then
+            plural="s"; (( nbt == 1 )) && plural=""
+            if [[ "$plural" == "s" ]]; then
+                echo "$(i18n "Commands that would be used"):"
+            else
+                echo "$(i18n "Command that would be used"):"
+            fi
+            for f in $(tac "${TMPKTR}"); do
+                echo "urpme ${f}"
+            done
+            echo "$(i18n "Tap spacebar to exit")"
+            read -n1
+            echo -en "${ClearLine}"
+            rm -f "${TMPKTR}"
+            exit 0
         fi
-        for f in $(tac "${TMPKTR}"); do
-            echo "urpme ${f}"
-        done
-        echo "$(i18n "Tap spacebar to exit")"
-        read -n1
-        echo -en "${ClearLine}"
-        rm -f "${TMPKTR}"
-        exit 0
-    fi
 
-    if [[ "${MODE}" != "A" ]] ; then
-        if (( DEBUG == 1 )) ; then
-            echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
-        fi
-        plural="s"; (( nbt == 1 )) && plural=""
-        if [[ "$plural" == "s" ]]; then
+        if [[ "${MODE}" != "A" ]] ; then
+            if (( DEBUG == 1 )) ; then
+                echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
+            fi
+            plural="s"; (( nbt == 1 )) && plural=""
+            if [[ "$plural" == "s" ]]; then
                 kernstr="$(i18n "kernels"):"
-        else
+            else
                 kernstr="$(i18n "kernel"):"
-        fi
-        read -p "$(i18n "Remove") ${nbt} $kernstr ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
-        if [[ -z ${response} ]] ; then response="n" ; fi
-            case ${response} in
-                [Yy])
-                    AUTO="--auto"
-                    MODE="A"
-                    echo -e " \n"
-                    ;;
-                [Ii])
-                    AUTO="--auto"
-                    MODE="I"
-                    echo " $(i18n "interactive")"
-                    ;;
-                   *)
-                    echo -e "\n$(i18n "Aborted")\n"
-                    rm -f "${TMPKTR}"
-                    exit 0
-                    ;;
-            esac
+            fi
+            read -p "$(i18n "Remove") ${nbt} $kernstr ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+            if [[ -z ${response} ]] ; then response="n" ; fi
+                case ${response} in
+                    [Yy])
+                        AUTO="--auto"
+                        MODE="A"
+                        echo -e " \n"
+                        ;;
+                    [Ii])
+                        AUTO="--auto"
+                        MODE="I"
+                        echo " $(i18n "interactive")"
+                        ;;
+                    *)
+                        echo -e "\n$(i18n "Aborted")\n"
+                        rm -f "${TMPKTR}"
+                        exit 0
+                        ;;
+                esac
         fi
 
 #================================= Execution ===========================
 
-    for installedKernelPackage in $(tac "${TMPKTR}") ; do
-        if [[ ${MODE} = "I" ]] ; then    # --- interactive mode ---
-            read -p "$(i18n "Remove") ${installedKernelPackage} ? $(i18n "y/N/q (q=quit)") " -n 1 response
-            echo -e " \n"
-            if [[ -z ${response} ]]; then
-                response="N"
-            fi
+        for installedKernelPackage in $(tac "${TMPKTR}") ; do
+            if [[ ${MODE} = "I" ]] ; then    # --- interactive mode ---
+                read -p "$(i18n "Remove") ${installedKernelPackage} ? $(i18n "y/N/q (q=quit)") " -n 1 response
+                echo -e " \n"
+                if [[ -z ${response} ]]; then
+                    response="N"
+                fi
                 case ${response} in
                     [Yy])
                         if (( DEBUG == 1 )) ; then
@@ -520,8 +521,7 @@ if (( nbt != 0 )) ; then
                         echo " "
                         ;;
                 esac
-        else             # --- automatic mode ---
-                AUTO="--auto"
+            else             # --- automatic mode ---
                 if (( DEBUG == 1 )) ; then
                     echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                     ((nbt--))
@@ -530,11 +530,12 @@ if (( nbt != 0 )) ; then
                     echo -ne 'y\n' | urpme "${AUTO}" "${installedKernelPackage}"
                     ((nbt--))
                 fi
-        fi
-    done
+            fi
+        done
         NK=$(find /boot -name "vmlinuz*.mga[0-9]" | wc -l)
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
         echo -e "${HdBgCol} $(i18n "Gain"):$((OCCDISK1 - OCCDISK2)) MB - $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
+    fi
 fi
 
 [[ $MODE == "I" ]] && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }
@@ -542,6 +543,6 @@ fi
 rm -f "${TMPKTR}"
 
 # Run again if some removable kernels are left
-(( UID > 0 )) && exit 0            # Not root user so exit
-[[ ${MODE} != "I" ]] &&  exit 0  # Auto so exit
-(( nbt > 0 )) && ${0}       # Root user and interactive so run again if removable kernels left
+(( UID > 0 )) && exit 0             # Not root user so exit
+[[ ${MODE} != "I" ]] &&  exit 0     # Auto so exit
+(( nbt > 0 )) && ${0}               # Root user and interactive so run again if removable kernels left

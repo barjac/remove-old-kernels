@@ -34,7 +34,7 @@ Mageia QA team requested more advanced features to avoid certain kernels being r
 so these can now be protected using the Q option.  
 A .desktop file was added into the Mageia main system menu using policykit based login for root access.  
 A log file was added for the automatic runs controlled by cron.weekly with fixed log rotation at 1000 lines approx.  
-Internationalization support has been added for the main bash script and thanks to the translatiors listed below we now have several langauages
+Internationalization support has been added for the main bash script and thanks to the translators listed below we now have several langauages
 catered for.  
 
 # Tranlsators

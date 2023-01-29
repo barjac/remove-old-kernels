@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/bash -x
 # Remove old kernels safely and cleanly using urpme.
 #
 # LISTK contains the list of kernels to analyse
@@ -49,6 +49,16 @@ if (( UID > 0 )); then
    read -r -n1; echo -en "${ClearLine}"
    exit 0
 fi
+}
+
+# Warn when not root
+RootWarn() {
+    if (( UID > 0 )); then
+        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}"
+        return 1
+    else
+        return 0
+    fi
 }
 
 # Function to handle -f or -F options
@@ -192,7 +202,7 @@ chk_cfg
 if (( ${#} > 0 )) ; then
     while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
         case ${NAME} in
-            a)  MODE="A"
+            a)  MODE="A";
                 ;;
             A)  chkroot
                 # Allow y/n and 0/1 for compatability with older versions
@@ -441,27 +451,31 @@ if (( ${#dnfmssg} > 0 ));then echo -e "${dnfmssg}"; fi
 
 #================================= Mode of execution ===================
 
+# Check there are kernels to remove
 nbt=$(wc -l < "${TMPKTR}")
 if (( nbt != 0 )) ; then
-    if (( UID > 0 )); then
-        echo -e "${RemvCol}$(i18n "Must be root to allow removal")\n${Normal}"
+        # Check if we are in preview mode
         if (( VISU == 1 )); then
             plural="s"; (( nbt == 1 )) && plural=""
+            # Get singular/plural message without getting obfuscated by gettext
             if [[ "$plural" == "s" ]]; then
                 echo "$(i18n "Commands that would be used"):"
             else
                 echo "$(i18n "Command that would be used"):"
             fi
+            # Print out the kernel commands
             for f in $(tac "${TMPKTR}"); do
                 echo "urpme ${f}"
             done
             echo "$(i18n "Tap spacebar to exit")"
             read -n1
             echo -en "${ClearLine}"
+            # Delete temp file list of removeable kernels
             rm -f "${TMPKTR}"
             exit 0
         fi
-
+        # Warn if we are not root
+    	RootWarn
         if [[ "${MODE}" != "A" ]] ; then
             if (( DEBUG == 1 )) ; then
                 echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
@@ -472,6 +486,7 @@ if (( nbt != 0 )) ; then
             else
                 kernstr="$(i18n "kernel"):"
             fi
+
             read -p "$(i18n "Remove") ${nbt} $kernstr ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
             if [[ -z ${response} ]] ; then response="n" ; fi
                 case ${response} in
@@ -522,11 +537,13 @@ if (( nbt != 0 )) ; then
                         ;;
                 esac
             else             # --- automatic mode ---
+             AUTO="--auto"
                 if (( DEBUG == 1 )) ; then
                     echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                     ((nbt--))
                 else
-                    # echo "Auto execution"
+                            # --- automatic execution ---
+                            # preload y and CR in auto mode
                     echo -ne 'y\n' | urpme "${AUTO}" "${installedKernelPackage}"
                     ((nbt--))
                 fi
@@ -535,7 +552,6 @@ if (( nbt != 0 )) ; then
         NK=$(find /boot -name "vmlinuz*.mga[0-9]" | wc -l)
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
         echo -e "${HdBgCol} $(i18n "Gain"):$((OCCDISK1 - OCCDISK2)) MB - $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
-    fi
 fi
 
 [[ $MODE == "I" ]] && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }

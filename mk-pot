@@ -19,24 +19,24 @@ isdupe=1
 	done
 	# Dupe not found so increment line index and add string to check array
 	((x++))
-	rawarray[$x]="$1"
+	rawarray[x]="$1"
 return $isdupe
 }
 
 # Main script starts here
 rawarray=(); x=0 ; y=0
-# Get raw i18n strings (max two per script line)
+# Get raw i18n strings
 while IFS='' read -r line; do
 	if echo "$line"|grep -q '(i18n'; then
 		# Look for up to 4 occurrences of "$(i18n" in one script line and extract raw text for each
 		for ((i=2;i<5;i++)); do
 		idstr="$(echo "$line"|grep i18n|sed "s/\$(i18n/@/g"|cut -d@ -f${i}|cut -d\" -f2| sed 's/").*//')"
-			if [[ ${#idstr} > 0 ]]; then
+			if (( ${#idstr} > 0 )); then
 				# Check it is not dupe
 				if ! chk_dupe "$idstr"; then
 					# Output line
 					IFS=''
-					echo -e "msgid  \""$idstr"\"\nmsgstr \"\"\n" >> $outpot
+					echo -e "msgid  \"""$idstr""\"\nmsgstr \"\"\n" >> $outpot
 				fi
 			else
 				break
@@ -53,6 +53,6 @@ sed -i "s/POT-Creation-Date: /&$(date '+%F %R%z')/" $outpot
 
 # Update po files with any string changes from the pot file
 echo "Updating *.po files with any string changes"
-pushd po
+pushd po || exit 1
 make update-po
-popd
+popd || exit 1

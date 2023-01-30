@@ -537,7 +537,7 @@ if (( nbt != 0 )) ; then
                         ;;
                 esac
             else             # --- automatic mode ---
-             AUTO="--auto"
+             	AUTO="--auto"
                 if (( DEBUG == 1 )) ; then
                     echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                     ((nbt--))

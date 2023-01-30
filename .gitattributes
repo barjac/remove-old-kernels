@@ -3,3 +3,5 @@
 README.md export-ignore
 Screenshot_*.png export-ignore
 TRANSLATIONS.md export-ignore
+.gitattributes
+.gitignore

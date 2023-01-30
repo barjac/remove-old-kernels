@@ -6,17 +6,17 @@
 
 mkdir locale
 
-cd po
+cd po || exit 1
 
 for po in *.po; do
 
-echo $po
+echo "$po"
 
-molang=$(echo $po|rev|cut -d. -f2-|rev)
+molang=$(echo "$po"|rev|cut -d. -f2-|rev)
 
-mkdir -p ../locale/$molang/LC_MESSAGES
+mkdir -p ../locale/"$molang"/LC_MESSAGES
 
-msgfmt -vco ../locale/$molang/LC_MESSAGES/remove-old-kernels.mo $po
+msgfmt -vco ../locale/"$molang"/LC_MESSAGES/remove-old-kernels.mo "$po"
 
 done
 

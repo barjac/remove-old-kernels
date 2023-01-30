@@ -1,4 +1,4 @@
-#!/usr/bin/bash -x
+#!/usr/bin/bash
 # Remove old kernels safely and cleanly using urpme.
 #
 # LISTK contains the list of kernels to analyse

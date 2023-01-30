@@ -1,0 +1,5 @@
+# Stop some files from being exported in the tarball
+
+README.md export-ignore
+Screenshot_*.png export-ignore
+TRANSLATIONS.md export-ignore

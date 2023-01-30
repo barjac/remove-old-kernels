@@ -1,0 +1,215 @@
+# Yuri Chornoivan <yurchor@ukr.net>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: remove-old-kernels\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-24 19:10+0000\n"
+"PO-Revision-Date: 2023-01-29 17:55+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 20.12.0\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: \n"
+
+msgid ""
+"Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9]"
+" [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr ""
+"Користування: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F"
+" 0-9] [-n число] [-N число] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+
+msgid ""
+"    -a = automatic, no questions. Interactive if not specified. (must be"
+" root)"
+msgstr ""
+"    -a = автоматично, без питань. Інтерактивний режим, якщо не вказано."
+" (потрібні права root)"
+
+msgid ""
+"    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels."
+" (e.g. -A1)"
+msgstr ""
+"    -A значення = 1 або 0, щоб увімкнути або вимкнути автоматичне щотижневе"
+" вилучення ядер. (приклад: -A1)"
+
+msgid ""
+"    -c = as automatic but also checks for CRON=1 in the cfg file or exits."
+" (must be root)"
+msgstr ""
+"    -c = те саме, що і автоматичне, але із перевіркою CRON=1 у файлі"
+" налаштувань або виходом. (потрібні права root)"
+
+msgid "    -t = Test mode, nothing is removed, urpme is simulated."
+msgstr "    -t = режим перевірки, нічого не вилучати, імітація роботи urpme."
+
+msgid ""
+"    -f value = number of the alternate .cfg file to use this time only."
+" Exits if missing."
+msgstr ""
+"    -f значення = номер альтернативного файла .cfg, який буде використано"
+" лише цього разу. Вихід, якщо файла не існує."
+
+msgid ""
+"    -F value = number of alt .cfg file to use. This changes the ALTCFG="
+" setting in the main .cfg file."
+msgstr ""
+"    -F значення = номер альтернативного файла .cfg. Змінює значення ALTCFG="
+" в основному файлі .cfg."
+
+msgid ""
+"    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5"
+" kernels), Min=2, Default=3"
+msgstr ""
+"    -n значення = кількість ядер, які слід зберегти лише цього разу. (-n5"
+" або -n 5 зберігає 5), Min=2, типово=3"
+
+msgid ""
+"    -N value = number of kernels to keep. This changes the config file"
+" setting. (e.g. -N 5)"
+msgstr ""
+"    -N значення = кількість ядер, які слід зберегти. Змінює параметр у файлі"
+" налаштувань. (приклад: -N 5)"
+
+msgid "    -p = preview the urpme commands which would be used."
+msgstr "    -p = переглянути команди urpme, які буде використано."
+
+msgid "    -q = advanced mode, this time only - see man page."
+msgstr "    -q = розширний режим, лише цього разу - див. сторінку man."
+
+msgid "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr ""
+"    -Q значення = 1 або 0 (1 = увімкнено) розширений режим, із записом до"
+" файла налаштувань. (приклад: -Q1)"
+
+msgid "    -l = list the last 1000 lines of the log."
+msgstr "    -l = вивести список останніх 1000 рядків журналу."
+
+msgid "    -m = mono. No colours in screen output."
+msgstr "    -m = чорно-білий режим. Не використовувати кольори на екрані."
+
+msgid "    -v = version."
+msgstr "    -v = версія."
+
+msgid "    -? or -h = show this help."
+msgstr "    -? або -h = показати цю довідку."
+
+msgid "KEY for column 3:"
+msgstr "КЛЮЧ для стовпчика 3:"
+
+msgid "     U = currently (U)sed running kernel."
+msgstr "     U = поточне використане ядро."
+
+msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgstr ""
+"     V = збереження для Virtualbox -latest. (лише у розширеному режимі)"
+
+msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgstr ""
+"     X = збереження для Xtables-addons -latest. (лише у розширеному режимі)"
+
+msgid ""
+"     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr ""
+"     K = збереження kernel-*-devel для встановленого ядра. (лише у"
+" розширеному ержимі)"
+
+msgid "Must be root to edit configuration"
+msgstr "Для редагування налаштувань потрібні права доступу root"
+
+msgid "Tap spacebar"
+msgstr "Натисніть пробіл"
+
+msgid "No such alternative configuration file:"
+msgstr "Немає такого альтернативного файла налаштувань:"
+
+msgid "FATAL: Failed to read:"
+msgstr "КРИТИЧНА ПОМИЛКА: не вдалося прочитати:"
+
+msgid "Your alternative configuration file does not exist:"
+msgstr "Вашого альтернативного файла налаштувань не існує:"
+
+msgid "Either replace it or set ALTCFG=0 in"
+msgstr "Або замініть його, або встановіть ALTCFG=0 у"
+
+msgid "Please use 0 or 1 for OFF and ON"
+msgstr "Будь ласка, скористайтеся 0 або 1, щоб вимкнути або увімкнути"
+
+msgid "Bad input value"
+msgstr "Помилкове вхідне значення"
+
+msgid "Tap spacebar to exit"
+msgstr "Натисніть пробіл, щоб вийти"
+
+msgid "Welcome to 'remove-old-kernels' Interactive"
+msgstr "Вітаємо в інтерактивному режимі remove-old-kernels"
+
+msgid "INFO: Number to keep is restricted to "
+msgstr "УВАГА: кількість збережених ядер обмежено до "
+
+msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr "значенням dnf installonly_limit, яке встановлено у /etc/dnf/dnf.conf"
+
+msgid ""
+"FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr ""
+"КРИТИЧНА ПОМИЛКА: можливо, запущене ядро вилучено з часу останнього"
+" завантаження? - Перериваємо обробку."
+
+msgid "Keep"
+msgstr "Зберегти"
+
+msgid "Remove"
+msgstr "Вилучити"
+
+msgid "Kernels in"
+msgstr "Ядра у"
+
+msgid "KEEP"
+msgstr "ЗБЕРЕГТИ"
+
+msgid "In use now"
+msgstr "Зараз використовується"
+
+msgid "Must be root to allow removal"
+msgstr "Для уможливлення вилучення потрібні права root"
+
+msgid "Commands that would be used"
+msgstr "Команди, які було б використано"
+
+msgid "Command that would be used"
+msgstr "Команда, яку було б використано"
+
+msgid "Test mode is on - kernels will not be removed"
+msgstr "Увімкнено тестовий режим — ядра не буде вилучено"
+
+msgid "kernels"
+msgstr "ядра"
+
+msgid "kernel"
+msgstr "ядро"
+
+# For languages where "y/N" is not appropriate DO NOT change "y/N/i"
+# but only translate "yes", "no" and "confirm for each".
+msgid "y/N/i (i=confirm for each)"
+msgstr "y/N/i (y=так N=ні i=підтверджувати для кожного)"
+
+msgid "interactive"
+msgstr "інтерактивний"
+
+msgid "Aborted"
+msgstr "Перервано"
+
+# Only translate "yes", "no" and "quit"
+msgid "y/N/q (q=quit)"
+msgstr "y/N/q (q=вийти)"
+
+msgid "DEBUG: Could execute: urpme"
+msgstr "ДІАГНОСТИКА: могло бути виконано: urpme"
+
+msgid "Gain"
+msgstr "Отримати"

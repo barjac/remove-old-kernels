@@ -8,16 +8,14 @@ clear
 for pofile in po/*pot po/*po; do
 	echo "Checking - ${pofile}"
 	entries=0
-	while read line ; do
+	while read -r line ; do
 		
 		findid="$(echo "$line" | grep '^msgid'|cut -d'"' -f2)"
-		[[ ${#findid} = 0 ]] && continue
+		(( ${#findid} == 0 )) && continue
 		((entries++))
-		if ! fgrep -q "$findid" remove-old-kernels; then
+		if ! grep -F -q "$findid" remove-old-kernels; then
 			echo "${pofile} - ${findid}"
 		fi
 	done < "${pofile}"
 	echo strings - $entries
 done
-	
-

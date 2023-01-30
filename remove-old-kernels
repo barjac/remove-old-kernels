@@ -187,7 +187,7 @@ currcfg="${maincfg}"
 # Check for -h option before running chk_cfg (issue10)
 o=$(echo "$1"|cut -d- -f2)
 [[ "$o" == "?" ]] && o="h"
-if [[ ${#@} = 1 ]] && [[ "h" =~ $o ]]; then
+if (( ${#@} == 1 )) && [[ "h" =~ $o ]]; then
         clear; usage; exit 0
 fi
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-24 19:10+0000\n"
+"POT-Creation-Date: 2023-01-30 10:09+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: RWR\n"
 "Language-Team: \n"
@@ -85,6 +85,9 @@ msgstr "Debes ser administrador para editar la configuración"
 msgid "Tap spacebar"
 msgstr "Pulsa espaciador"
 
+msgid "Must be root to allow removal"
+msgstr "Debes ser administrador para quitar"
+
 msgid "No such alternative configuration file:"
 msgstr "No existe tal archivo de configuración:"
 
@@ -135,9 +138,6 @@ msgstr "CONSERVAR"
 
 msgid "In use now"
 msgstr "Ejecutándose ahora"
-
-msgid "Must be root to allow removal"
-msgstr "Debes ser administrador para quitar"
 
 msgid "Commands that would be used"
 msgstr "Comandos que se usarían"

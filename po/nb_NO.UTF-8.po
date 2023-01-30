@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-24 19:10+0000\n"
+"POT-Creation-Date: 2023-01-30 10:09+0000\n"
 "PO-Revision-Date: 2023-01-15 16:20+0100\n"
 "Last-Translator: Johnny A. Solbu <johnny@solbu.net>\n"
 "Language-Team: Norwegian Bokmaal <i10n-no@lister.huftis.org>\n"
@@ -87,6 +87,9 @@ msgstr "Du må være root for å redigere konfigurasjonen"
 msgid "Tap spacebar"
 msgstr "Trykk på mellomromstasten"
 
+msgid "Must be root to allow removal"
+msgstr "Du må være root for å kunne fjerne"
+
 msgid "No such alternative configuration file:"
 msgstr "Ingen slik alternativ konfigurasjonsfil:"
 
@@ -134,9 +137,6 @@ msgstr "BEHOLD"
 
 msgid "In use now"
 msgstr "Brukes nå"
-
-msgid "Must be root to allow removal"
-msgstr "Du må være root for å kunne fjerne"
 
 msgid "Commands that would be used"
 msgstr "Kommandoer som vil bli brukt"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-24 19:10+0000\n"
+"POT-Creation-Date: 2023-01-30 10:09+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: psyca\n"
 "Language-Team: psyca and Google\n"
@@ -84,6 +84,9 @@ msgstr "Muss root sein, um die Konfiguration zu bearbeiten"
 msgid "Tap spacebar"
 msgstr "Drücken Sie auf die Leertaste"
 
+msgid "Must be root to allow removal"
+msgstr "Muss root sein, um das Entfernen zu ermöglichen"
+
 msgid "No such alternative configuration file:"
 msgstr "Keine solche alternative Konfigurationsdatei:"
 
@@ -131,9 +134,6 @@ msgstr "BEHALTEN"
 
 msgid "In use now"
 msgstr "Aktuell im Einsatz"
-
-msgid "Must be root to allow removal"
-msgstr "Muss root sein, um das Entfernen zu ermöglichen"
 
 msgid "Commands that would be used"
 msgstr "Befehle, die verwendet werden würden"

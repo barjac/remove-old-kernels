@@ -1,0 +1,171 @@
+# English translations for remove-old-kernels package.
+# Copyright (C) 2023 THE remove-old-kernels'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the remove-old-kernels package.
+# Barry Jackson <barjac@mageia.org>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: remove-old-kernels\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-30 10:09+0000\n"
+"PO-Revision-Date: 2023-02-08 23:14+0000\n"
+"Last-Translator: Barry Jackson (Google translate) <barjac@mageia.org>\n"
+"Language-Team: English (British) <(nothing)>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Utilizzo: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n Numero] [-N Numero] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+
+msgid "    -a = automatic, no questions. Interactive if not specified. (must be root)"
+msgstr "    -a = automatico, nessuna domanda. Interattivo se non specificato. (deve essere root)"
+
+msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
+msgstr "    -A valore = 1 o 0 per attivare o disattivare la rimozione settimanale automatica dei noccioli. (es. -A1)"
+
+msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
+msgstr "    -c = come automatico ma controlla anche CRON=1 nel file cfg o esce. (deve essere root)"
+
+msgid "    -t = Test mode, nothing is removed, urpme is simulated."
+msgstr "    -t = Modalità test, non viene rimosso nulla, urpme viene simulato."
+
+msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
+msgstr "    -f valore = numero del file .cfg alternativo da utilizzare solo questa volta. Esce se mancante."
+
+msgid "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
+msgstr "    -F valore = numero di file alt .cfg da utilizzare. Ciò modifica l'impostazione ALTCFG= nel file .cfg principale."
+
+msgid "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
+msgstr "    -n valore = numero di kernel da mantenere solo questa volta. (-n5 o -n 5 mantiene 5 kernel), Min=2, Predefinito=3"
+
+msgid "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
+msgstr "    -N valore = numero di kernel da conservare. Questo cambia l'impostazione del file di configurazione. (es. -N 5)"
+
+msgid "    -p = preview the urpme commands which would be used."
+msgstr "    -p = visualizzare in anteprima i comandi urpme che verrebbero utilizzati."
+
+msgid "    -q = advanced mode, this time only - see man page."
+msgstr "    -q = modalità avanzata, solo questa volta - vedere la pagina man."
+
+msgid "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
+msgstr "    -Q valore = 1 o 0 (1 = ON) modalità avanzata, persistente. (es. -Q1)"
+
+msgid "    -l = list the last 1000 lines of the log."
+msgstr "    -l = elencare le ultime 1000 righe del registro."
+
+msgid "    -m = mono. No colours in screen output."
+msgstr "    -m = mono. Nessun colore nell'output dello schermo."
+
+msgid "    -v = version."
+msgstr "    -v = versione."
+
+msgid "    -? or -h = show this help."
+msgstr "    -? o -h = mostra questo aiuto."
+
+msgid "KEY for column 3:"
+msgstr "LEGENDA per la colonna 3:"
+
+msgid "     U = currently (U)sed running kernel."
+msgstr "     U = kernel in esecuzione attualmente utilizzato."
+
+msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgstr "     V = mantenendo per (V)irtualbox -latest. (solo in modalità avanzata)"
+
+msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgstr "     X = mantenere per (X)tables-addons -latest. (solo in modalità avanzata)"
+
+msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr "     K = mantenendo kernel-*-devel per (K)ernel installato. (solo modalità avanzata)"
+
+msgid "Must be root to edit configuration"
+msgstr "Devi essere root per modificare la configurazione"
+
+msgid "Tap spacebar"
+msgstr "Tocca la barra spaziatrice"
+
+msgid "Must be root to allow removal"
+msgstr "Deve essere root per consentire la rimozione"
+
+msgid "No such alternative configuration file:"
+msgstr "Nessun file di configurazione alternativo di questo tipo:"
+
+msgid "FATAL: Failed to read:"
+msgstr "FATAL: Impossibile leggere:"
+
+msgid "Your alternative configuration file does not exist:"
+msgstr "Il tuo file di configurazione alternativo non esiste:"
+
+msgid "Either replace it or set ALTCFG=0 in"
+msgstr "Sostituiscilo o imposta ALTCFG=0 in"
+
+msgid "Please use 0 or 1 for OFF and ON"
+msgstr "Utilizzare 0 o 1 per OFF e ON"
+
+msgid "Bad input value"
+msgstr "Valore di input errato"
+
+msgid "Tap spacebar to exit"
+msgstr "Tocca la barra spaziatrice per uscire"
+
+msgid "Welcome to 'remove-old-kernels' Interactive"
+msgstr "Benvenuto nell Interattivo 'remove-old-kernels'"
+
+msgid "INFO: Number to keep is restricted to "
+msgstr "INFORMAZIONI: il numero da conservare è limitato a "
+
+msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
+msgstr ", dal dnf 'installonly_limit' impostato in /etc/dnf/dnf.conf"
+
+msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgstr "FATAL: il kernel in esecuzione è stato disinstallato dall'ultimo avvio? - Interruzione."
+
+msgid "Keep"
+msgstr "Mantenere"
+
+msgid "Remove"
+msgstr "Rimuovere"
+
+msgid "Kernels in"
+msgstr "Noccioli dentro"
+
+msgid "KEEP"
+msgstr "MANTENERE"
+
+msgid "In use now"
+msgstr "In uso ora"
+
+msgid "Commands that would be used"
+msgstr "Comandi che verrebbero utilizzati"
+
+msgid "Command that would be used"
+msgstr "Comando che verrebbe utilizzato"
+
+msgid "Test mode is on - kernels will not be removed"
+msgstr "La modalità test è attiva: i kernel non verranno rimossi"
+
+msgid "kernels"
+msgstr "noccioli"
+
+msgid "kernel"
+msgstr "nocciolo"
+
+msgid "y/N/i (i=confirm for each)"
+msgstr "y/N/i (y=SÌ N=NO i=conferma per ciascuno)"
+
+msgid "interactive"
+msgstr "interattivo"
+
+msgid "Aborted"
+msgstr "Abortito"
+
+msgid "y/N/q (q=quit)"
+msgstr "y/N/q (y=SÌ N=NO q=esci)"
+
+msgid "DEBUG: Could execute: urpme"
+msgstr "DEBUG: Potrebbe eseguire: urpme"
+
+msgid "Gain"
+msgstr "Guadagno"

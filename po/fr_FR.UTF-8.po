@@ -112,7 +112,7 @@ msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Bienvenue à 'remove-old-kernels' Interactive"
 
 msgid "INFO: Number to keep is restricted to "
-msgstr "INFO : Le numéro à conserver est limité à "
+msgstr "INFO : Le numbre à conserver est limité à "
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 msgstr ", par le dnf 'installonly_limit' défini dans /etc/dnf/dnf.conf"

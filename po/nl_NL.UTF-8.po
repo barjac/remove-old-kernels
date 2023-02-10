@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-30 10:09+0000\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Google\n"
-"Language-Team: Google\n"
+"PO-Revision-Date: 2023-02-10 12:03:42\n"
+"Last-Translator: Marja van Waes\n"
+"Language-Team: Mageia -i18n\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,13 +31,13 @@ msgid "    -t = Test mode, nothing is removed, urpme is simulated."
 msgstr "    -t = Testmodus, niets wordt verwijderd, urpme wordt gesimuleerd."
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
-msgstr "    -f waarde = nummer van het alternatieve .cfg-bestand dat alleen deze keer moet worden gebruikt. Uitgangen indien vermist."
+msgstr "    -f waarde = nummer van het alternatieve .cfg-bestand dat alleen deze keer moet worden gebruikt. Sluit af indien niet gevonden."
 
 msgid "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
 msgstr "    -F waarde = aantal te gebruiken alt .cfg-bestanden. Dit verandert de ALTCFG=-instelling in het .cfg-hoofdbestand."
 
 msgid "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
-msgstr "    -n waarde = aantal kernels om alleen deze tijd te behouden. (-n5 of -n 5 behouden 5 kernels), Min=2, Standaard=3"
+msgstr "    -n waarde = aantal kernels om alleen deze keer te behouden. (-n5 of -n 5 behoudt 5 kernels), Min=2, Standaard=3"
 
 msgid "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
 msgstr "    -N waarde = aantal te behouden kernels. Dit verandert de instelling van het configuratiebestand. (bijv. -N 5)"
@@ -70,13 +70,13 @@ msgid "     U = currently (U)sed running kernel."
 msgstr "     U = momenteel gebruikte lopende kernel."
 
 msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
-msgstr "     V = bewaren voor Virtualbox -latest. (alleen in geavanceerde modus)"
+msgstr "     V = bewaren voor (V)irtualbox -latest. (alleen in geavanceerde modus)"
 
 msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
-msgstr "     X = behouden voor Xtables-add-ons -nieuwste. (alleen in geavanceerde modus)"
+msgstr "     X = behouden voor (X)tables-add-ons -nieuwste. (alleen in geavanceerde modus)"
 
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
-msgstr "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgstr "     K = kernel-*-devel als geïnstalleerde (K)ernel behouden. (alleen in geavanceerde modus)"
 
 msgid "Must be root to edit configuration"
 msgstr "Moet root zijn om de configuratie te bewerken"
@@ -112,7 +112,7 @@ msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Welkom bij 'remove-old-kernels' Interactief"
 
 msgid "INFO: Number to keep is restricted to "
-msgstr "INFO: Aantal te behouden is beperkt tot"
+msgstr "INFO: Te behouden aantal is beperkt tot"
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 msgstr ", door de dnf 'installonly_limit' ingesteld in /etc/dnf/dnf.conf"
@@ -159,11 +159,11 @@ msgid "interactive"
 msgstr "interactief"
 
 msgid "Aborted"
-msgstr "afgebroken"
+msgstr "Afgebroken"
 
 # Only translate "yes", "no" and "quit"
 msgid "y/N/q (q=quit)"
-msgstr "y/N/q (y=ja N=nee q=vertrekken)"
+msgstr "y/N/q (y=ja N=nee q=stoppen)"
 
 msgid "DEBUG: Could execute: urpme"
 msgstr "DEBUG: Kan uitvoeren: urpme"

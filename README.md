@@ -45,6 +45,7 @@ catered for.
  * aguador (Spanish)
  * umeaboy (Swedish)  
  * Yuri Chornoivan (Ukranian)
+ * Marja van Waes (Dutch)
 
 If you would like to help with other languages, then please read TRANSLATIONS.md
 

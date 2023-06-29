@@ -474,8 +474,12 @@ if (( nbt != 0 )) ; then
         rm -f "${TMPKTR}"
         exit 0
     fi
-        # Warn if we are not root
-    RootWarn
+        # Warn if we are not root and exit hang until spacebar
+    if ! RootWarn; then
+        { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }
+        exit 0
+    fi
+    
     if [[ "${MODE}" != "A" ]] ; then
         if (( DEBUG == 1 )) ; then
             echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"

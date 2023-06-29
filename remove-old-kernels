@@ -54,7 +54,7 @@ fi
 # Warn when not root and force only exit option
 RootWarn() {
     if (( UID > 0 )); then
-        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}\n$(i18n "Tap spacebar to exit")"
+        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}\n$(i18n "Tap spacebar")"
         read -r -n1; echo -en "${ClearLine}"
         exit 0
     fi

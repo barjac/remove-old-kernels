@@ -51,13 +51,12 @@ if (( UID > 0 )); then
 fi
 }
 
-# Warn when not root
+# Warn when not root and force only exit option
 RootWarn() {
     if (( UID > 0 )); then
-        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}"
-        return 1
-    else
-        return 0
+        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}\n$(i18n "Tap spacebar to exit")"
+        read -r -n1; echo -en "${ClearLine}"
+        exit 0
     fi
 }
 
@@ -475,11 +474,7 @@ if (( nbt != 0 )) ; then
         exit 0
     fi
         # Warn if we are not root and exit hang until spacebar
-    if ! RootWarn; then
-        { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }
-        exit 0
-    fi
-    
+    RootWarn
     if [[ "${MODE}" != "A" ]] ; then
         if (( DEBUG == 1 )) ; then
             echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"

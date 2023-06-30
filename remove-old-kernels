@@ -51,15 +51,6 @@ if (( UID > 0 )); then
 fi
 }
 
-# Warn when not root and force only exit option
-RootWarn() {
-    if (( UID > 0 )); then
-        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}\n$(i18n "Tap spacebar")"
-        read -r -n1; echo -en "${ClearLine}"
-        exit 0
-    fi
-}
-
 # Function to handle -f or -F options
 altcfg() {
 cfgno=$1
@@ -475,7 +466,11 @@ if (( nbt != 0 )) ; then
         exit 0
     fi
         # Warn if we are not root and exit hang until spacebar
-    RootWarn
+        if (( UID > 0 )); then
+        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}\n$(i18n "Tap spacebar to exit")"
+        read -r -n1; echo -en "${ClearLine}"
+        exit 0
+        fi
     if [[ "${MODE}" != "A" ]] ; then
         if (( DEBUG == 1 )) ; then
             echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
@@ -486,8 +481,11 @@ if (( nbt != 0 )) ; then
         else
             kernstr="$(i18n "kernel"):"
         fi
-
-        read -p "$(i18n "Remove") ${nbktr} $kernstr ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        if (( nbt == nbktr )); then
+            read -p "$(i18n "Remove") ${nbt} $kernstr ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        else
+            read -p "$(i18n "Remove") ${nbt} (${nbktr} ${kernstr}) ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        fi
         if [[ -z ${response} ]] ; then response="n" ; fi
             case ${response} in
                 [Yy])

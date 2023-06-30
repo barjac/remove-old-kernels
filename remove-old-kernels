@@ -51,16 +51,6 @@ if (( UID > 0 )); then
 fi
 }
 
-# Warn when not root
-RootWarn() {
-    if (( UID > 0 )); then
-        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}"
-        return 1
-    else
-        return 0
-    fi
-}
-
 # Function to handle -f or -F options
 altcfg() {
 cfgno=$1
@@ -452,6 +442,7 @@ if (( ${#dnfmssg} > 0 ));then echo -e "${dnfmssg}"; fi
 #================================= Mode of execution ===================
 
 # Check there are kernels to remove
+nbktr=$(grep -vc 'devel\|source' < "${TMPKTR}")
 nbt=$(wc -l < "${TMPKTR}")
 if (( nbt != 0 )) ; then
     # Check if we are in preview mode
@@ -474,20 +465,27 @@ if (( nbt != 0 )) ; then
         rm -f "${TMPKTR}"
         exit 0
     fi
-        # Warn if we are not root
-    RootWarn
+        # Warn if we are not root and hang until spacebar hit
+        if (( UID > 0 )); then
+        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}\n$(i18n "Tap spacebar")"
+        read -r -n1; echo -en "${ClearLine}"
+        exit 0
+        fi
     if [[ "${MODE}" != "A" ]] ; then
         if (( DEBUG == 1 )) ; then
             echo -e "\n${KeepCol}>> $(i18n "Test mode is on - kernels will not be removed") <<${Normal}"
         fi
-        plural="s"; (( nbt == 1 )) && plural=""
+        plural="s"; (( nbktr == 1 )) && plural=""
         if [[ "$plural" == "s" ]]; then
             kernstr="$(i18n "kernels"):"
         else
             kernstr="$(i18n "kernel"):"
         fi
-
-        read -p "$(i18n "Remove") ${nbt} $kernstr ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        if (( nbt == nbktr )); then
+            read -p "$(i18n "Remove") ${nbt} $kernstr ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        else
+            read -p "$(i18n "Remove") ${nbt} (${nbktr} ${kernstr}) ? $(i18n "y/N/i (i=confirm for each)") " -n 1 response
+        fi
         if [[ -z ${response} ]] ; then response="n" ; fi
             case ${response} in
                 [Yy])
@@ -561,4 +559,4 @@ rm -f "${TMPKTR}"
 # Run again if some removable kernels are left
 (( UID > 0 )) && exit 0             # Not root user so exit
 [[ ${MODE} != "I" ]] &&  exit 0     # Auto so exit
-(( nbt > 0 )) && ${0}               # Root user and interactive so run again if removable kernels left
+(( nbt > 0 )) && ${0}               # Root user and interactive so run again if removable packages left

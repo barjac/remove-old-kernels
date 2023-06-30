@@ -465,7 +465,7 @@ if (( nbt != 0 )) ; then
         rm -f "${TMPKTR}"
         exit 0
     fi
-        # Warn if we are not root and exit hang until spacebar
+        # Warn if we are not root and hang until spacebar hit
         if (( UID > 0 )); then
         echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}\n$(i18n "Tap spacebar")"
         read -r -n1; echo -en "${ClearLine}"
@@ -559,4 +559,4 @@ rm -f "${TMPKTR}"
 # Run again if some removable kernels are left
 (( UID > 0 )) && exit 0             # Not root user so exit
 [[ ${MODE} != "I" ]] &&  exit 0     # Auto so exit
-(( nbt > 0 )) && ${0}               # Root user and interactive so run again if removable kernels left
+(( nbt > 0 )) && ${0}               # Root user and interactive so run again if removable packages left

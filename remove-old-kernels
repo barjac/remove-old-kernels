@@ -442,7 +442,7 @@ if (( ${#dnfmssg} > 0 ));then echo -e "${dnfmssg}"; fi
 #================================= Mode of execution ===================
 
 # Check there are kernels to remove
-nbktr=$(grep -v devel < "${TMPKTR}"|wc -l)
+nbktr=$(grep -vc 'devel\|source' < "${TMPKTR}")
 nbt=$(wc -l < "${TMPKTR}")
 if (( nbt != 0 )) ; then
     # Check if we are in preview mode
@@ -467,7 +467,7 @@ if (( nbt != 0 )) ; then
     fi
         # Warn if we are not root and exit hang until spacebar
         if (( UID > 0 )); then
-        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}\n$(i18n "Tap spacebar to exit")"
+        echo -e "${RemvCol}$(i18n "Must be root to allow removal")${Normal}\n$(i18n "Tap spacebar")"
         read -r -n1; echo -en "${ClearLine}"
         exit 0
         fi

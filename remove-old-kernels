@@ -5,7 +5,7 @@
 # The script keeps NBK most recent kernels
 # (c) Pierre Jarillon - 2018-04-03 - 2021-11-27
 # (c) Jean-Baptiste Biernacki 2021
-# (c) Barry C Jackson 2022-2023
+# (c) Barry C Jackson 2022-2024
 ####################################
 #
 ######################### Functions #########################
@@ -300,7 +300,7 @@ OCCDISK1=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
 
 #========================= Analyse /boot/ =============================
 
-NK=$(find /boot -name "vmlinuz*.mga[0-9]" | wc -l)
+NK=$(find /boot -name "vmlinuz*.mga[0-9][0-9]" | wc -l)
 
 # In automatic mode exit immediately if kernels in boot <= number allowed to be removed
    [[ "$MODE" = "A" ]] && (( NK < NBK )) && exit 0
@@ -547,7 +547,7 @@ if (( nbt != 0 )) ; then
             fi
         fi
     done
-        NK=$(find /boot -name "vmlinuz*.mga[0-9]" | wc -l)
+        NK=$(find /boot -name "vmlinuz*.mga[0-9][0-9]" | wc -l)
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
         echo -e "${HdBgCol} $(i18n "Gain"):$((OCCDISK1 - OCCDISK2)) MB - $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi

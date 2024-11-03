@@ -44,7 +44,7 @@ catered for.
  * psyca (German)
  * aguador (Spanish)
  * umeaboy (Swedish)  
- * Yuri Chornoivan (Ukranian)
+ * Yuri Chornoivan (Ukranian & Russian)
  * Marja van Waes (Dutch)
 
 If you would like to help with other languages, then please read TRANSLATIONS.md

@@ -37,7 +37,7 @@ A log file was added for the automatic runs controlled by cron.weekly with fixed
 Internationalization support has been added for the main bash script and thanks to the translators listed below we now have several languages
 catered for.  
 
-# Tranlsators
+# Translators
  * ajunior (Brazilian Portugese)
  * Philippe Didier (French)
  * Johnny A. Solbu (Norwegian Bokmål)

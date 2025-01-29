@@ -31,7 +31,7 @@ msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits
 msgstr "    -c = как автоматический, но с проверкой CRON=1 в файле .cfg или завершает работу. (требуются права root)"
 
 msgid "    -t = Test mode, nothing is removed, urpme is simulated."
-msgstr "    -t = Тестовый режим, ничего не удаляется, имитируется работа urpme."
+msgstr "    -t = режим тестирования, ничего не удаляется, имитируется работа urpme."
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
 msgstr "    -f и число = номеру альтернативного файла .cfg, который будет использован только в этот раз. Завершает работу, если файла не существует."
@@ -154,7 +154,7 @@ msgid "kernel"
 msgstr "ядро"
 
 msgid "y/N/i (i=confirm for each)"
-msgstr "y/N/i (y=да N=нет i=подтверждать каждый пункт)"
+msgstr "y/N/i (y=да/ N=нет/ i=подтверждать каждый пункт)"
 
 msgid "interactive"
 msgstr "интерактивный"

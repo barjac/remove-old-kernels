@@ -3,12 +3,15 @@
 # This file is distributed under the same license as the remove-old-kernels package.
 # algri14 <aliger14@mail.ru>, 2025.
 #
+# Line feed 27, option "-a", agreed with author Barry C Jackson.
+# Перевод строки 27, опция "-a", согласован с автором Barry C Jackson.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-01-30 10:09+0000\n"
-"PO-Revision-Date: 2025-01-29 03:56+0300\n"
+"PO-Revision-Date: 2025-02-10 15:55+0300\n"
 "Last-Translator: algri14 <aliger14@mail.ru>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -19,16 +22,16 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 
 msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Использование: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n число] [-N число] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Применение: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n и число] [-N и число] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid "    -a = automatic, no questions. Interactive if not specified. (must be root)"
-msgstr "    -a = автоматический, без вопросов. Интерактивный режим, если не указано другое. (требуются права root)"
+msgstr "    -a = автоматический режим, запустить сейчас, только один раз. (требуются права root)"
 
 msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
 msgstr "    -A и число = 1 чтобы ВКЛ или 0 чтобы ВЫКЛ автоматическое еженедельное удаление ядер. (например, -A1)"
 
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
-msgstr "    -c = как автоматический, но с проверкой CRON=1 в файле .cfg или завершает работу. (требуются права root)"
+msgstr "    -c = как автоматический, но с проверкой параметра CRON=1 в файле .cfg или завершает работу. (требуются права root)"
 
 msgid "    -t = Test mode, nothing is removed, urpme is simulated."
 msgstr "    -t = режим тестирования, ничего не удаляется, имитируется работа urpme."
@@ -40,7 +43,7 @@ msgid "    -F value = number of alt .cfg file to use. This changes the ALTCFG= s
 msgstr "    -F и число = номеру альтернативного файла .cfg. Изменяет значение ALTCFG= в основном файле .cfg."
 
 msgid "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
-msgstr "    -n и число = количеству ядер, которые нужно сохранить только в этот раз. (- n5 или -n 5 сохраняет 5 ядер), min=2, по умолчанию=3"
+msgstr "    -n и число = количеству ядер, которые нужно сохранить только в этот раз. (-n5 или -n 5 сохраняет 5 ядер), min=2, по умолчанию=3"
 
 msgid "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
 msgstr "    -N и число = количеству ядер, которые следует сохранить. Изменяет настройки конфигурационного файла. (например, -N 5)"
@@ -73,16 +76,16 @@ msgid "     U = currently (U)sed running kernel."
 msgstr "     U = текущее (U) используемое ядро."
 
 msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
-msgstr "     V = сохранение для (V)irtualbox -latest. версии (только в расширенном режиме)"
+msgstr "     V = сохранить для (V)irtualbox -latest. версии. (только в расширенном режиме)"
 
 msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
-msgstr "     X = сохранение для (X)tables-addons -latest. версии (только в расширенном режиме)"
+msgstr "     X = сохранить для (X)tables-addons -latest. версии. (только в расширенном режиме)"
 
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
-msgstr "     K = сохранение (K) kernel - * - devel версии для установленного ядра (только в расширенном режиме)"
+msgstr "     K = сохранить для kernel - * - devel версии установленного (K) ядра. (только в расширенном режиме)"
 
 msgid "Must be root to edit configuration"
-msgstr "Для редактирования настроек требуются права root"
+msgstr "Для редактирования настроек конфигурации требуются права root"
 
 msgid "Tap spacebar"
 msgstr "Нажмите пробел"
@@ -106,7 +109,7 @@ msgid "Please use 0 or 1 for OFF and ON"
 msgstr "Пожалуйста, используйте 0 для Выключения или 1 для Включения"
 
 msgid "Bad input value"
-msgstr "Введённое значение неверно"
+msgstr "Введённое значение некорректно"
 
 msgid "Tap spacebar to exit"
 msgstr "Нажмите пробел, чтобы выйти"

@@ -82,7 +82,7 @@ msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
 msgstr "     X = сохранить для Xtables-addons -latest версии. (только в расширенном режиме)"
 
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
-msgstr "     K = сохранить kernel - * - devel версию для установленного ядра. (только в расширенном режиме)"
+msgstr "     K = сохранить kernel - * - devel версии для установленного ядра. (только в расширенном режиме)"
 
 msgid "Must be root to edit configuration"
 msgstr "Для редактирования настроек конфигурации требуются права root"

@@ -19,7 +19,7 @@ For more information see: 'man remove-old-kernels' or 'man rok' in a terminal.
 # Authors
  * Pierre Jarillon 2018 - 2022.
  * Jean-Baptiste Biernacki 2021
- * Barry C Jackson 2022 - 2023
+ * Barry C Jackson 2022 - 2025
  * Johnny A Solbu 2023 
 
 # History

@@ -25,19 +25,19 @@ msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kerne
 msgstr "    -A valor = 1 ou 0 para ligar (ON) ou desligar (OFF) a remoção semanal automática de kernels. (ex. -A1)"
 
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
-msgstr "    -c = como automático mas checando também por CRON=1 no arquivo de config ou finaliza. (deve ser root)"
+msgstr "    -c = como automático, mas também verifica por CRON=1 no arquivo de cfg ou sai. (deve ser root)"
 
 msgid "    -t = Test mode, nothing is removed, urpme is simulated."
 msgstr "    -t = Modo de teste, nada é removido, urpme é simulado."
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
-msgstr "    -f valor = número do arquivo .cfg alterativo para usar apenas dessa vez. Finaliza se não encontrado."
+msgstr "    -f valor = número do arquivo .cfg alterativo para usar apenas dessa vez. Sai se estiver faltando."
 
 msgid "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
-msgstr "    -F valor = número do arquivo .cfg alternativo para usar. Isto altera a configuração ALTCFG= no arquivo .cfg principal."
+msgstr "    -F valor = número do arquivos .cfg alternativos para usar. Isto altera a configuração ALTCFG= no arquivo .cfg principal."
 
 msgid "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
-msgstr "    -n valor = número de kernels a serem mantidos apenas esta vez. (-n5 ou -n 5 mantém 5 kernels), Min=2, Padrão=3"
+msgstr "    -n valor = número de kernels para manter somente desta vez. (-n5 ou -n 5 mantém 5 kernels), Min=2, Padrão=3"
 
 msgid "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
 msgstr "    -N valor = número de kernels a serem mantidos. Isto altera o arquivo de configuração. (ex. -N 5)"
@@ -46,7 +46,7 @@ msgid "    -p = preview the urpme commands which would be used."
 msgstr "    -p = visualize os comandos urpme que seriam usados."
 
 msgid "    -q = advanced mode, this time only - see man page."
-msgstr "    -q = modo avançado, apenas esta vez - veja o manual."
+msgstr "    -q = modo avançado, somente desta vez - veja o página de manual."
 
 msgid "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
 msgstr "    -Q valor = 1 ou 0 (1 = Ligado) modo avançado, persistente. (ex. -Q1)"
@@ -55,7 +55,7 @@ msgid "    -l = list the last 1000 lines of the log."
 msgstr "    -l = lista as últimas 1000 linhas do log."
 
 msgid "    -m = mono. No colours in screen output."
-msgstr "    -m = monocromático. Sem cores na saída padrão."
+msgstr "    -m = monocromático. Sem cores na saída da tela."
 
 msgid "    -v = version."
 msgstr "    -v = versão."
@@ -67,16 +67,16 @@ msgid "KEY for column 3:"
 msgstr "TECLA para coluna 3:"
 
 msgid "     U = currently (U)sed running kernel."
-msgstr "     U = Kernel em execução (U)sado atualmente."
+msgstr "     U = Atualmente (U)sado, kernel em execução."
 
 msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
-msgstr "     V = mantendo para (V)irtualbox -latest. (apenas no modo avançado)"
+msgstr "     V = mantendo para (V)irtualbox -latest. (somente no modo avançado)"
 
 msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
-msgstr "     X = mantendo para (X)tables-addons -latest. (apenas no modo avançado)"
+msgstr "     X = mantendo para (X)tables-addons -latest. (somente no modo avançado)"
 
 msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
-msgstr "     K = mantendo kernel-*-devel para o (K)ernel instalado. (apenas modo avançado)"
+msgstr "     K = manter kernel-*-devel para o (K)ernel instalado. (somente no modo avançado)"
 
 msgid "Must be root to edit configuration"
 msgstr "Deve ser root para editar a configuração"
@@ -100,19 +100,19 @@ msgid "Either replace it or set ALTCFG=0 in"
 msgstr "Substitua-o ou configure ALTCFG=0 em"
 
 msgid "Please use 0 or 1 for OFF and ON"
-msgstr "Please use 0 or 1 for OFF and ON"
+msgstr "Use 0 ou 1 para desligar (OFF) ou ligar (ON)"
 
 msgid "Bad input value"
-msgstr "Bad input value"
+msgstr "Valor de entrada inválido"
 
 msgid "Tap spacebar to exit"
 msgstr "Aperte espaço para sair"
 
 msgid "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Bem-vindo ao 'remove-old-kernels' Interativo"
+msgstr "Bem-vindo ao 'remove-old-kernels' interativo"
 
 msgid "INFO: Number to keep is restricted to "
-msgstr "INFORMAÇÃO: O número a manter está limitado a"
+msgstr "INFORMAÇÃO: O número a ser mantido é restrito a "
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 msgstr ", pelo dnf 'installonly_limit' definido em /etc/dnf/dnf.conf"
@@ -153,7 +153,7 @@ msgstr "kernel"
 # For languages where "y/N" is not appropriate DO NOT change "y/N/i"
 # but only translate "yes", "no" and "confirm for each".
 msgid "y/N/i (i=confirm for each)"
-msgstr "y/N/i (y=ja N=não i=confirmar cada um)"
+msgstr "y/N/i (y=sim N=não i=confirmar cada um)"
 
 msgid "interactive"
 msgstr "interativo"
@@ -163,7 +163,7 @@ msgstr "Abortado"
 
 # Only translate "yes", "no" and "quit"
 msgid "y/N/q (q=quit)"
-msgstr "y/N/q (y=ja N=não q=sair)"
+msgstr "y/N/q (y=sim N=não q=sair)"
 
 msgid "DEBUG: Could execute: urpme"
 msgstr "DEBUG: Poderia executar: urpme"

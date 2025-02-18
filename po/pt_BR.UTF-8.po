@@ -153,7 +153,7 @@ msgstr "kernel"
 # For languages where "y/N" is not appropriate DO NOT change "y/N/i"
 # but only translate "yes", "no" and "confirm for each".
 msgid "y/N/i (i=confirm for each)"
-msgstr "y/N/i (y=sim/N=não/i=confirmar para cada um)"
+msgstr "y/N/i (y=sim N=não i=confirmar para cada um)"
 
 msgid "interactive"
 msgstr "interativo"
@@ -163,7 +163,7 @@ msgstr "Abortado"
 
 # Only translate "yes", "no" and "quit"
 msgid "y/N/q (q=quit)"
-msgstr "y/N/q (y=sim/N=não/q=sair)"
+msgstr "y/N/q (y=sim N=não q=sair)"
 
 msgid "DEBUG: Could execute: urpme"
 msgstr "DEBUG: Poderia executar: urpme"

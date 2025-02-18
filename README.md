@@ -38,7 +38,8 @@ Internationalization support has been added for the main bash script and thanks 
 catered for.  
 
 # Translators
- * ajunior (Brazilian Portugese)
+ * ajunior (Brazilian Portuguese)
+ * Michael Martins (Brazilian Portuguese)
  * Philippe Didier (French)
  * Johnny A. Solbu (Norwegian Bokmål)
  * psyca (German)

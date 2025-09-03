@@ -382,8 +382,8 @@ rpmqaList=$(echo "$allkernels"|grep -v latest)
 # Check for LISTK and either create it and or merge it with MLISTK.
     if (( ${#LISTK} > 0 )); then
         LISTK="$(echo "$LISTK$MLISTK"|sort -u)"
-#        echo $LISTK | tr ' ' '\n'
-#        exit 0
+        echo $LISTK | tr ' ' '\n'
+        exit 0
     fi
 
 # Loop through kernel types in LISTK

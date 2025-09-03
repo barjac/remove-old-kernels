@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+#set -x
 # Remove old kernels safely and cleanly using urpme.
 #
 # LISTK contains the list of kernels to analyse
@@ -21,7 +22,7 @@ echo "$(i18n "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [
 echo "$(i18n "    -a = automatic, no questions. Interactive if not specified. (must be root)")"
 echo "$(i18n "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)")"
 echo "$(i18n "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)")"
-echo "$(i18n "    -t = Test mode, nothing is removed, urpme is simulated.")"
+echo "$(i18n "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated")"
 echo "$(i18n "    -f value = number of the alternate .cfg file to use this time only. Exits if missing.")"
 echo "$(i18n "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file.")"
 echo "$(i18n "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3")"
@@ -154,20 +155,32 @@ WarnBgCol="\e[101m"     # Light Red Background      Warnings in heading
 ClearLine="\r\e[2K"     # Clear the line
 
 # List of kernel types to include.
-# This list is only used if LISTK is omitted from the .cfg file in use.
-LISTK=\
-"kernel-desktop586
+# This list is merged with LISTK if it exists in the .cfg file in use.
+MLISTK="\
 kernel-desktop
 kernel-desktop-devel
-kernel-server
-kernel-server-devel
-kernel-source
-kernel-tmb-desktop
-kernel-tmb-desktop-devel
-kernel-tmb-source
 kernel-linus
 kernel-linus-devel
 kernel-linus-source
+kernel-lts-desktop
+kernel-lts-desktop-devel
+kernel-lts-server
+kernel-lts-server-devel
+kernel-lts-source
+kernel-mainline-desktop
+kernel-mainline-desktop-devel
+kernel-mainline-source
+kernel-server
+kernel-server-devel
+kernel-source
+kernel-stable-desktop
+kernel-stable-desktop-devel
+kernel-stablenew-desktop
+kernel-stablenew-desktop-devel
+kernel-stablenew-source
+kernel-stable-server
+kernel-stable-server-devel
+kernel-stable-source
 "
 prog="remove-old-kernels"
 cfgpath="/etc/"
@@ -178,7 +191,7 @@ currcfg="${maincfg}"
 o=$(echo "$1"|cut -d- -f2)
 [[ "$o" == "?" ]] && o="h"
 if (( ${#@} == 1 )) && [[ "h" =~ $o ]]; then
-        clear; usage; exit 0
+        usage; exit 0
 fi
 
 # Check dnf limit before option parsing
@@ -239,14 +252,15 @@ if (( ${#} > 0 )) ; then
                     dnfmsg=1
                 fi
                 ;;
-            l)  tail -n1000 /var/log/remove-old-kernels.log && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -r -n1; echo -en "${ClearLine}"; }
-                ;;
+            l)  LOG=1
+                tail -n1000 /var/log/remove-old-kernels.log && (( QA < 1 )) && { echo -e "\n$(i18n "Tap spacebar to exit")\n"; read -r -n1; echo -en "${ClearLine}"; }
+                                ;;
             m)  Normal=""; RemvCol=""; KeepCol=""; InfoCol=""; HdBgCol=""; WarnBgCol=""; ClearLine=""
                 ;;
             v)  printf '%s'"$(rpm -q remove-old-kernels)\n"
                 exit 2
                 ;;
-            h|?)  clear; usage; exit 0
+            h|?) usage
                 ;;
          esac
     done
@@ -257,10 +271,15 @@ if (( NBK < 2 )); then
     NBK=2
 fi
 
-# Only use greeting in interactive mode
-if [[ "$MODE" == "I" ]]; then
-clear
-echo -e "                        $(i18n "Welcome to 'remove-old-kernels' Interactive")\n"
+# Only use greeting in interactive mode except in QA mode
+if [[ "$MODE" == "I" ]] && (( QA < 1 )); then
+    clear
+    echo -e "                        $(i18n "Welcome to 'remove-old-kernels' Interactive")\n"
+fi
+
+# Don't run main program after -l or -h/-? options in QA mode
+if (( QA == 1 )); then
+    (( LOG == 1 )) && exit 0
 fi
 
 # Use dnf kernel 'number to keep' if installed and greater than ours
@@ -366,6 +385,13 @@ pkg=; kpkgname=; nnk=""
 
 # Exclude 'latest' packages from installed kernel list
 rpmqaList=$(echo "$allkernels"|grep -v latest)
+
+# Check for LISTK and either create it and or merge it with MLISTK.
+    if (( ${#LISTK} > 0 )); then
+        LISTK="$(echo "$LISTK$MLISTK"|sort -u)"
+    else
+        LISTK="$(echo "$MLISTK"|sort -u)"
+    fi
 
 # Loop through kernel types in LISTK
 for kernelType in ${LISTK}; do
@@ -552,11 +578,12 @@ if (( nbt != 0 )) ; then
         echo -e "${HdBgCol} $(i18n "Gain"):$((OCCDISK1 - OCCDISK2)) MB - $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi
 
-[[ $MODE == "I" ]] && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }
+[[ $MODE == "I" ]] && (( QA < 1 )) && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }
 
 rm -f "${TMPKTR}"
 
 # Run again if some removable kernels are left
+(( QA = 1 )) && exit 0              # Always just exit in QA mode
 (( UID > 0 )) && exit 0             # Not root user so exit
 [[ ${MODE} != "I" ]] &&  exit 0     # Auto so exit
-(( nbt > 0 )) && ${0}               # Root user and interactive so run again if removable packages left
+(( nbt > 0 )) &&  ${0}   # Root user and interactive so run again if removable packages left

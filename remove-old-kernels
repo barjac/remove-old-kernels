@@ -164,6 +164,9 @@ kernel-source
 kernel-stable-desktop
 kernel-stable-desktop-devel
 kernel-stable-source
+kernel-stable-testing-desktop
+kernel-stable-testing-desktop-devel
+kernel-stable-testing-source
 kernel-mainline-desktop
 kernel-mainline-desktop-devel
 kernel-mainline-source

@@ -28,20 +28,12 @@ HdBgCol="\e[44m"        # Blue Background               Heading background
 WarnBgCol="\e[101m"     # Light Red Background          Warnings in heading
 ClearLine="\r\e[2K"     # Clear the line
 
-# Kernel types to test for removal - keep the same order i.e. kernels before -devel etc. or leave alone.
-LISTK=\
-"kernel-desktop586
+# Additional kernel types to test for removal - keep the same order i.e. kernel before -devel etc.
+# The currently available kernels are now hard coded in the current remove-old-kernels.
+# Duplicates are ignored, others may be added here replacing the (duplicated) examples:
+LISTK="\
 kernel-desktop
 kernel-desktop-devel
-kernel-server
-kernel-server-devel
-kernel-source
-kernel-tmb-desktop
-kernel-tmb-desktop-devel
-kernel-tmb-source
-kernel-linus
-kernel-linus-devel
-kernel-linus-source
 "
 
 # Allow cron to run remove-old-kernels. 0=OFF 1=ON.

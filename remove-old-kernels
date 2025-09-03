@@ -191,7 +191,6 @@ currcfg="${maincfg}"
 o=$(echo "$1"|cut -d- -f2)
 [[ "$o" == "?" ]] && o="h"
 if (( ${#@} == 1 )) && [[ "h" =~ $o ]]; then
-#     (( QA < 1 )) &&  clear
         usage; exit 0
 fi
 
@@ -391,8 +390,8 @@ rpmqaList=$(echo "$allkernels"|grep -v latest)
 # Check for LISTK and either create it and or merge it with MLISTK.
     if (( ${#LISTK} > 0 )); then
         LISTK="$(echo "$LISTK$MLISTK"|sort -u)"
-#        echo $LISTK | tr ' ' '\n'
-#        exit 0
+    else
+        LISTK="$(echo "$MLISTK"|sort -u)"
     fi
 
 # Loop through kernel types in LISTK

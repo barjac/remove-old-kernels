@@ -313,7 +313,7 @@ echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /b
 
 #================================= Analyse rpms =============================
 # Get master list from rpm -qa --last
-allkernels="$(rpm -qa --last|grep "^kernel")"
+allkernels="$(rpm -qa --last|grep "kernel-")"
 
 # Get the kernel version and release required by the installed virtualbox-flavour-latest
 get_vbox_kern() {

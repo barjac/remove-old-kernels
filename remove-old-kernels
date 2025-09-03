@@ -260,8 +260,7 @@ if (( ${#} > 0 )) ; then
             v)  printf '%s'"$(rpm -q remove-old-kernels)\n"
                 exit 2
                 ;;
-            h|?) HELP=1
-                usage
+            h|?) usage
                 ;;
          esac
     done

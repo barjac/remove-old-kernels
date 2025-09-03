@@ -22,7 +22,7 @@ echo "$(i18n "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [
 echo "$(i18n "    -a = automatic, no questions. Interactive if not specified. (must be root)")"
 echo "$(i18n "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)")"
 echo "$(i18n "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)")"
-echo "$(i18n "    -t = Test mode, nothing is removed, urpme is simulated.")"
+echo "$(i18n "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated")"
 echo "$(i18n "    -f value = number of the alternate .cfg file to use this time only. Exits if missing.")"
 echo "$(i18n "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file.")"
 echo "$(i18n "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3")"
@@ -262,8 +262,7 @@ if (( ${#} > 0 )) ; then
                 exit 2
                 ;;
             h|?) HELP=1
- #               (( QA < 1 )) && clear
-                usage #; exit 0
+                usage
                 ;;
          esac
     done

@@ -16,6 +16,35 @@ i18n() {
 gettext "$prog" "$1"
 }
 
+# NEW: Detect if running on a LIVE system
+is_live_system() {
+    # Check for common LIVE system indicators
+    if grep -q 'rd.live.image' /proc/cmdline 2>/dev/null; then
+        return 0
+    fi
+
+    if [ -d /run/initramfs/live ]; then
+        return 0
+    fi
+
+    # Check for persistence indicators
+    if grep -q 'persistence' /proc/cmdline 2>/dev/null; then
+        return 0
+    fi
+
+    return 1
+}
+
+# NEW: Get the oldest installed kernel (the original on LIVE systems)
+get_original_kernel() {
+    rpm -qa 'kernel-*' --queryformat '%{INSTALLTIME}\t%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}\n' | \
+    grep -E 'kernel-(desktop|server|latest|linus|lts|mainline|stable|stablenew)' | \
+    grep -Ev 'kernel-(firmware|headers|tools|doc)' | \
+    sort -n | \
+    head -1 | \
+    cut -f2
+}
+
 # Display -help
 usage() {
 echo "$(i18n "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]")"
@@ -37,9 +66,10 @@ echo "$(i18n "    -? or -h = show this help.")"
 echo ""
 echo "$(i18n "KEY for column 3:")"
 echo "$(i18n "     U = currently (U)sed running kernel.")"
+echo "$(i18n "     L = (L)IVE system original kernel - protected.")"  # NEW
 echo "$(i18n "     V = keeping for (V)irtualbox -latest. (only in advanced mode)")"
 echo "$(i18n "     X = keeping for (X)tables-addons -latest. (only in advanced mode)")"
-echo "$(i18n "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)")"
+echo "$(i18n "     K = keeping for installed (K)ernel. (only advanced mode)")"
 echo ""
 }
 
@@ -286,13 +316,28 @@ fi
 if (( dnfNBK > NBK )) || (( dnfmsg == 1 )); then
     NBK=$dnfNBK
     dnfmssg="${InfoCol}$(i18n "INFO: Number to keep is restricted to ")${dnfNBK}\
-$(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}" 
+$(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}"
 fi
 
 # Get info for status message
 if (( CRON == 1 )); then autostat="1"; else autostat="${Normal}${WarnBgCol}0${HdBgCol}"; fi
 if (( QA == 1 )) ; then qamssg="| Q "; fi
 if (( ALTCFG > 0 )); then cfgmssg="|${Normal}${WarnBgCol}F:${ALTCFG}${HdBgCol} "; fi
+
+# NEW: Detect LIVE system and get original kernel to protect
+LIVE_MODE=0
+PROTECT_KERNEL=""
+if is_live_system; then
+    LIVE_MODE=1
+    PROTECT_KERNEL=$(get_original_kernel)
+    if [ -n "$PROTECT_KERNEL" ]; then
+        livemssg="${InfoCol}$(i18n "LIVE system detected - protecting original kernel:")${Normal} ${PROTECT_KERNEL}"
+        # Log this for automatic runs
+        if [[ "$MODE" == "A" ]]; then
+            echo "$(date '+%Y-%m-%d %H:%M:%S') - LIVE system detected, protecting: $PROTECT_KERNEL" >> /var/log/remove-old-kernels.log
+        fi
+    fi
+fi
 
 # Check that the running kernel is still installed: https://bugs.mageia.org/show_bug.cgi?id=31015
 [[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}$(i18n "FATAL: Has the running kernel been uninstalled since last boot? - Aborting.")"; exit 1; }
@@ -327,6 +372,10 @@ NK=$(find /boot -regextype egrep -regex '.*vmlinuz.*.mga([0-9]|[0-9][0-9])' | wc
 #================================ Show status ==============================
 
 echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
+# NEW: Show LIVE system message if applicable
+if [ -n "$livemssg" ]; then
+    echo -e "$livemssg"
+fi
 
 #================================= Analyse rpms =============================
 # Get master list from rpm -qa --last
@@ -340,7 +389,7 @@ else
      qavkern=; return
 fi
 depkern=$(echo "$allkernels"|cut -d' ' -f1|grep "$vb_latest_ver"|grep -v latest|grep "virtualbox-kernel-[0-9]")
-kern_ver=$(echo "$depkern"|cut -d- -f3-|cut -d- -f1) 
+kern_ver=$(echo "$depkern"|cut -d- -f3-|cut -d- -f1)
 kern_rel=$(echo "$depkern"|cut -d- -f5-|cut -d. -f1)
 (( ${#kern_ver} > 0 )) && (( ${#kern_rel} > 0 )) && qavkern="${kern_ver}-${kern_rel}"
 }
@@ -353,7 +402,7 @@ else
      qaxkern=; return
 fi
 depkern=$(echo "$allkernels"|cut -d' ' -f1|grep "$xt_latest_ver"|grep "xtables-addons-kernel-[0-9]"|cut -d ' ' -f1)
-kern_ver=$(echo "$depkern"|cut -d- -f4) 
+kern_ver=$(echo "$depkern"|cut -d- -f4)
 kern_rel=$(echo "$depkern"|cut -d- -f6 -|cut -d. -f1)
 (( ${#kern_ver} > 0 )) && (( ${#kern_rel} > 0 )) && qaxkern="${kern_ver}-${kern_rel}"
 }
@@ -419,6 +468,14 @@ for kernelType in ${LISTK}; do
             REMVBL=0       # not removable
         fi
 
+# NEW: Check if this is the protected LIVE kernel
+        if (( LIVE_MODE == 1 )) && [ -n "$PROTECT_KERNEL" ]; then
+            if [ "$installedKernelPackage" = "$PROTECT_KERNEL" ]; then
+                NOTA="${NOTA}L"    # LIVE original kernel
+                REMVBL=0           # not removable
+            fi
+        fi
+
 # Check if kernel is required by vbox latest kernel
         if (( QA == 1 )) && (( ${#qavkern} > 0 )) && (( $(echo "${installedKernel}" | grep -c "$qavkern") == 1 )); then
             NOTA="${NOTA}V"     # Required by VBox
@@ -463,6 +520,10 @@ while (( ${#padstr} < padUse )); do padstr="${padstr} "; done
 
 echo -en "${ClearLine}"
 echo -e "${padstr}${KeepCol}U${InfoCol} = $(i18n "In use now")${Normal}"
+# NEW: Add LIVE key explanation
+if (( LIVE_MODE == 1 )); then
+    echo -e "${padstr}${KeepCol}L${InfoCol} = $(i18n "LIVE system original kernel")${Normal}"
+fi
 if (( ${#dnfmssg} > 0 ));then echo -e "${dnfmssg}"; fi
 
 #================================= Mode of execution ===================

@@ -38,8 +38,8 @@ is_live_system() {
 # NEW: Get the oldest installed kernel (the original on LIVE systems)
 get_original_kernel() {
     rpm -qa 'kernel-*' --queryformat '%{INSTALLTIME}\t%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}\n' | \
-    grep -E 'kernel-(desktop|server|latest|linus|lts|mainline|stable|stablenew)' | \
-    grep -Ev 'kernel-(firmware|headers|tools|doc)' | \
+    grep -E 'kernel-(desktop|server|linus|lts|mainline|stable|stablenew)' | \
+    grep -Ev 'kernel-(firmware|headers|tools|doc|latest)' | \
     sort -n | \
     head -1 | \
     cut -f2
@@ -67,8 +67,8 @@ echo ""
 echo "$(i18n "KEY for column 3:")"
 echo "$(i18n "     U = currently (U)sed running kernel.")"
 echo "$(i18n "     L = (L)IVE system original kernel - protected.")"  # NEW
-echo "$(i18n "     V = keeping for (V)irtualbox -latest. (only in advanced mode)")"
-echo "$(i18n "     X = keeping for (X)tables-addons -latest. (only in advanced mode)")"
+echo "$(i18n "     V = keeping for (V)irtualbox. (only in advanced mode)")"
+echo "$(i18n "     X = keeping for (X)tables-addons (only in advanced mode)")"
 echo "$(i18n "     K = keeping for installed (K)ernel. (only advanced mode)")"
 echo ""
 }

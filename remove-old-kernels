@@ -28,8 +28,12 @@ is_live_system() {
 
 # NEW: Get the oldest installed kernel (the original on LIVE systems)
 get_original_kernel() {
+    # Build grep pattern from LISTK (which includes user config + MLISTK)
+    # Convert newline-separated list to grep -E pattern: kernel-desktop|kernel-server|...
+    local pattern=$(echo "$LISTK" | tr '\n' '|' | sed 's/|$//')
+
     rpm -qa 'kernel-*' --queryformat '%{INSTALLTIME}\t%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}\n' | \
-    grep -E 'kernel-(desktop|server|linus|lts|mainline|stable|stablenew)' | \
+    grep -E "${pattern}" | \
     grep -Ev 'kernel-(firmware|headers|tools|doc|latest)' | \
     sort -n | \
     head -1 | \
@@ -221,6 +225,14 @@ dnfNBK=0; dnfmsg=false
 
 # Run all config file checks before option parsing
 chk_cfg
+
+# NEW: Merge LISTK early so it's available for LIVE detection
+# Check for LISTK and either create it or merge it with MLISTK.
+if (( ${#LISTK} > 0 )); then
+    LISTK="$(echo "$LISTK$MLISTK"|sort -u)"
+else
+    LISTK="$(echo "$MLISTK"|sort -u)"
+fi
 
 # Parse command line options which take precedence over script and cfg file
 if (( ${#} > 0 )) ; then
@@ -427,12 +439,12 @@ pkg=; kpkgname=; nnk=""
 # Exclude 'latest' packages from installed kernel list
 rpmqaList=$(echo "$allkernels"|grep -v latest)
 
-# Check for LISTK and either create it and or merge it with MLISTK.
-    if (( ${#LISTK} > 0 )); then
-        LISTK="$(echo "$LISTK$MLISTK"|sort -u)"
-    else
-        LISTK="$(echo "$MLISTK"|sort -u)"
-    fi
+# Check for LISTK and either create it and or merge it with MLISTK. ## MOVED EARLIER
+#    if (( ${#LISTK} > 0 )); then
+#        LISTK="$(echo "$LISTK$MLISTK"|sort -u)"
+#    else
+#       LISTK="$(echo "$MLISTK"|sort -u)"
+#    fi
 
 # Loop through kernel types in LISTK
 for kernelType in ${LISTK}; do

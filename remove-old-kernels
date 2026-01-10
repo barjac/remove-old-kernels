@@ -18,21 +18,12 @@ gettext "$prog" "$1"
 
 # NEW: Detect if running on a LIVE system
 is_live_system() {
-    # Check for common LIVE system indicators
-    if grep -q 'rd.live.image' /proc/cmdline 2>/dev/null; then
+    # Check for Mageia LIVE system
+    if grep -q 'mgalive' /proc/cmdline 2>/dev/null; then
         return 0
     fi
 
-    if [ -d /run/initramfs/live ]; then
-        return 0
-    fi
-
-    # Check for persistence indicators
-    if grep -q 'persistence' /proc/cmdline 2>/dev/null; then
-        return 0
-    fi
-
-    return 1
+    return 1  # set 0 to fake LIVE tests in non-live
 }
 
 # NEW: Get the oldest installed kernel (the original on LIVE systems)
@@ -329,6 +320,7 @@ LIVE_MODE=0
 PROTECT_KERNEL=""
 if is_live_system; then
     LIVE_MODE=1
+    NBK=2                                   # Only keep current and original in LIVE mode
     PROTECT_KERNEL=$(get_original_kernel)
     if [ -n "$PROTECT_KERNEL" ]; then
         livemssg="${InfoCol}$(i18n "LIVE system detected - protecting original kernel:")${Normal} ${PROTECT_KERNEL}"

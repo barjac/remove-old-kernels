@@ -6,7 +6,7 @@
 # The script keeps NBK most recent kernels
 # (c) Pierre Jarillon - 2018-04-03 - 2021-11-27
 # (c) Jean-Baptiste Biernacki 2021
-# (c) Barry C Jackson 2022-2024
+# (c) Barry C Jackson 2022-2026
 ####################################
 #
 ######################### Functions #########################
@@ -125,7 +125,7 @@ fi
 # Check cfg file(s) and source
 chk_cfg() {
 # Source main .cfg file if it exists, or issue warning and abort.
-source ${maincfg} || { echo -e "${RemvCol}$(i18n "FATAL: Failed to read:")${Normal} ${maincfg}"; exit 1; }
+source ${maincfg} || { echo -e "${RemvCol}FATAL: $(i18n "Failed to read:")${Normal} ${maincfg}"; exit 1; }
 
 # If an alt .cfg is set in main .cfg
 if grep -qF "ALTCFG=" "${maincfg}" && (( ALTCFG > 0 )); then
@@ -304,7 +304,7 @@ if (( NBK < 2 )); then
     NBK=2
 fi
 
-# Only use greeting in interactive mode except in QA mode
+# Only use greeting in interactive mode not in QA mode
 if [[ "$MODE" == "I" ]] && (( QA < 1 )); then
     clear
     echo -e "                        $(i18n "Welcome to 'remove-old-kernels' Interactive")\n"
@@ -318,7 +318,7 @@ fi
 # Use dnf kernel 'number to keep' if installed and greater than ours
 if (( dnfNBK > NBK )) || (( dnfmsg == 1 )); then
     NBK=$dnfNBK
-    dnfmssg="${InfoCol}$(i18n "INFO: Number to keep is restricted to ")${dnfNBK}\
+    dnfmssg="${InfoCol} INFO: $(i18n "Number to keep is restricted to ")${dnfNBK}\
 $(i18n ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf")${Normal}"
 fi
 
@@ -332,19 +332,23 @@ LIVE_MODE=0
 PROTECT_KERNEL=""
 if is_live_system; then
     LIVE_MODE=1
-    NBK=2                                   # Only keep current and original in LIVE mode
     PROTECT_KERNEL=$(get_original_kernel)
     if [ -n "$PROTECT_KERNEL" ]; then
         livemssg="${InfoCol}$(i18n "LIVE system detected - protecting original kernel:")${Normal} ${PROTECT_KERNEL}"
-        # Log this for automatic runs
+        # Force NBK=2 for LIVE systems (only latest and original are bootable)
+        NBK=2
+        # Disable automatic mode for LIVE systems - user should have control
         if [[ "$MODE" == "A" ]]; then
-            echo "$(date '+%Y-%m-%d %H:%M:%S') - LIVE system detected, protecting: $PROTECT_KERNEL" >> /var/log/remove-old-kernels.log
+            # Exit silently in cron mode on LIVE systems as they may be too slow when in use.
+            exit 0
         fi
+        # Log this for manual runs
+        echo "$(date '+%Y-%m-%d %H:%M:%S') - LIVE system detected, protecting: $PROTECT_KERNEL, NBK forced to 2" >> /var/log/remove-old-kernels.log 2>/dev/null || true
     fi
 fi
 
 # Check that the running kernel is still installed: https://bugs.mageia.org/show_bug.cgi?id=31015
-[[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}$(i18n "FATAL: Has the running kernel been uninstalled since last boot? - Aborting.")"; exit 1; }
+[[ -e /lib/modules/$(uname -r) ]] || { echo -e "${RemvCol}FATAL: $(i18n "Has the running kernel been uninstalled since last boot? - Aborting.")"; exit 1; }
 
 # Get the full name of the current running kernel
 CURK=$(rpm -qf /lib/modules/"$(uname -r)")

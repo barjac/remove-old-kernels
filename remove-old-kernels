@@ -439,13 +439,6 @@ pkg=; kpkgname=; nnk=""
 # Exclude 'latest' packages from installed kernel list
 rpmqaList=$(echo "$allkernels"|grep -v latest)
 
-# Check for LISTK and either create it and or merge it with MLISTK. ## MOVED EARLIER
-#    if (( ${#LISTK} > 0 )); then
-#        LISTK="$(echo "$LISTK$MLISTK"|sort -u)"
-#    else
-#       LISTK="$(echo "$MLISTK"|sort -u)"
-#    fi
-
 # Loop through kernel types in LISTK
 for kernelType in ${LISTK}; do
     (( QA == 1 )) && get_vbox_kern && get_xtables_kern

@@ -334,16 +334,8 @@ if is_live_system; then
     LIVE_MODE=1
     PROTECT_KERNEL=$(get_original_kernel)
     if [ -n "$PROTECT_KERNEL" ]; then
-        livemssg="${InfoCol}$(i18n "LIVE system detected - protecting original kernel:")${Normal} ${PROTECT_KERNEL}"
         # Force NBK=2 for LIVE systems (only latest and original are bootable)
         NBK=2
-        # Disable automatic mode for LIVE systems - user should have control
-        if [[ "$MODE" == "A" ]]; then
-            # Exit silently in cron mode on LIVE systems as they may be too slow when in use.
-            exit 0
-        fi
-        # Log this for manual runs
-        echo "$(date '+%Y-%m-%d %H:%M:%S') - LIVE system detected, protecting: $PROTECT_KERNEL, NBK forced to 2" >> /var/log/remove-old-kernels.log 2>/dev/null || true
     fi
 fi
 
@@ -606,7 +598,7 @@ if (( nbt != 0 )) ; then
             case ${response} in
                 [Yy])
                     if (( DEBUG == 1 )) ; then
-                        echo -e "\n${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
+                        echo -e "\n${InfoCol}DEBUG: $(i18n "Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                         ((nbt--))
                     else
                         urpme "${installedKernelPackage}"
@@ -625,7 +617,7 @@ if (( nbt != 0 )) ; then
         else             # --- automatic mode ---
             AUTO="--auto"
             if (( DEBUG == 1 )) ; then
-                echo -e "${InfoCol}$(i18n "DEBUG: Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
+                echo -e "${InfoCol}DEBUG: $(i18n "Could execute: urpme") ${AUTO} ${installedKernelPackage}${Normal}"
                 ((nbt--))
             else
                 # --- automatic execution ---

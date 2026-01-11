@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-30 10:09+0000\n"
+"POT-Creation-Date: 2026-01-11 14:48+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: psyca\n"
 "Language-Team: psyca and Google\n"
@@ -27,7 +27,9 @@ msgstr "    -A Wert = 1 oder 0, um die automatische wöchentliche Entfernung von
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
 msgstr "    -c = wie automatisch, prüft aber auch auf CRON=1 in der cfg-Datei oder beendet sich. (muss root sein)"
 
-msgid "    -t = Test mode, nothing is removed, urpme is simulated."
+#, fuzzy
+#| msgid "    -t = Test mode, nothing is removed, urpme is simulated."
+msgid "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
 msgstr "    -t = Testmodus, es wird nichts entfernt, urpme wird simuliert."
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
@@ -69,13 +71,22 @@ msgstr "SCHLÜSSEL für Spalte 3:"
 msgid "     U = currently (U)sed running kernel."
 msgstr "     U = aktuell gen(U)tzte laufende Kernel."
 
-msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgid "     L = (L)IVE system original kernel - protected."
+msgstr ""
+
+#, fuzzy
+#| msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgid "     V = keeping for (V)irtualbox. (only in advanced mode)"
 msgstr "     V = Behalten für (V)irtualbox -neueste. (nur im erweiterten Modus)"
 
-msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+#, fuzzy
+#| msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgid "     X = keeping for (X)tables-addons (only in advanced mode)"
 msgstr "     X = Behalten für (X)tables-addons -neuste. (nur im erweiterten Modus)"
 
-msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+#, fuzzy
+#| msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = Behalte kernel-*-devel für installierte (K)ernel. (nur im erweiterten Modus)"
 
 msgid "Must be root to edit configuration"
@@ -84,13 +95,12 @@ msgstr "Muss root sein, um die Konfiguration zu bearbeiten"
 msgid "Tap spacebar"
 msgstr "Drücken Sie auf die Leertaste"
 
-msgid "Must be root to allow removal"
-msgstr "Muss root sein, um das Entfernen zu ermöglichen"
-
 msgid "No such alternative configuration file:"
 msgstr "Keine solche alternative Konfigurationsdatei:"
 
-msgid "FATAL: Failed to read:"
+#, fuzzy
+#| msgid "FATAL: Failed to read:"
+msgid "Failed to read:"
 msgstr "FATAL: Lesen fehlgeschlagen:"
 
 msgid "Your alternative configuration file does not exist:"
@@ -111,13 +121,17 @@ msgstr "Drücken Sie zum Beenden auf die Leertaste"
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Willkommen bei 'remove-old-kernels' Interactive"
 
-msgid "INFO: Number to keep is restricted to "
+#, fuzzy
+#| msgid "INFO: Number to keep is restricted to "
+msgid "Number to keep is restricted to "
 msgstr "INFO: Anzahl der behaltenen Kernel ist beschränkt auf "
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 msgstr ", durch die dnf 'installonly_limit' Einstellung in /etc/dnf/dnf.conf"
 
-msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+#, fuzzy
+#| msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgid "Has the running kernel been uninstalled since last boot? - Aborting."
 msgstr "FATAL: Wurde der laufende Kernel seit dem letzten Start deinstalliert? - Abbruch."
 
 msgid "Keep"
@@ -135,11 +149,17 @@ msgstr "BEHALTEN"
 msgid "In use now"
 msgstr "Aktuell im Einsatz"
 
+msgid "LIVE system original kernel"
+msgstr ""
+
 msgid "Commands that would be used"
 msgstr "Befehle, die verwendet werden würden"
 
 msgid "Command that would be used"
 msgstr "Befehl, der verwendet werden würde"
+
+msgid "Must be root to allow removal"
+msgstr "Muss root sein, um das Entfernen zu ermöglichen"
 
 msgid "Test mode is on - kernels will not be removed"
 msgstr "Der Testmodus ist aktiviert – Kernel werden nicht entfernt"
@@ -165,7 +185,9 @@ msgstr "Abgebrochen"
 msgid "y/N/q (q=quit)"
 msgstr "y/N/q (y=ja N=nein q=verlassen)"
 
-msgid "DEBUG: Could execute: urpme"
+#, fuzzy
+#| msgid "DEBUG: Could execute: urpme"
+msgid "Could execute: urpme"
 msgstr "DEBUG: Könnte ausführen: urpme"
 
 msgid "Gain"

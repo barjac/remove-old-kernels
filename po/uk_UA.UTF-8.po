@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-30 10:09+0000\n"
+"POT-Creation-Date: 2026-01-11 14:48+0000\n"
 "PO-Revision-Date: 2023-01-29 17:55+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -28,7 +28,9 @@ msgstr "    -A значення = 1 або 0, щоб увімкнути або �
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
 msgstr "    -c = те саме, що і автоматичне, але із перевіркою CRON=1 у файлі налаштувань або виходом. (потрібні права root)"
 
-msgid "    -t = Test mode, nothing is removed, urpme is simulated."
+#, fuzzy
+#| msgid "    -t = Test mode, nothing is removed, urpme is simulated."
+msgid "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
 msgstr "    -t = режим перевірки, нічого не вилучати, імітація роботи urpme."
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
@@ -70,13 +72,22 @@ msgstr "КЛЮЧ для стовпчика 3:"
 msgid "     U = currently (U)sed running kernel."
 msgstr "     U = поточне використане ядро."
 
-msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgid "     L = (L)IVE system original kernel - protected."
+msgstr ""
+
+#, fuzzy
+#| msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
+msgid "     V = keeping for (V)irtualbox. (only in advanced mode)"
 msgstr "     V = збереження для Virtualbox -latest. (лише у розширеному режимі)"
 
-msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+#, fuzzy
+#| msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
+msgid "     X = keeping for (X)tables-addons (only in advanced mode)"
 msgstr "     X = збереження для Xtables-addons -latest. (лише у розширеному режимі)"
 
-msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+#, fuzzy
+#| msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
+msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = збереження kernel-*-devel для встановленого ядра. (лише у розширеному ержимі)"
 
 msgid "Must be root to edit configuration"
@@ -85,13 +96,12 @@ msgstr "Для редагування налаштувань потрібні п
 msgid "Tap spacebar"
 msgstr "Натисніть пробіл"
 
-msgid "Must be root to allow removal"
-msgstr "Для уможливлення вилучення потрібні права root"
-
 msgid "No such alternative configuration file:"
 msgstr "Немає такого альтернативного файла налаштувань:"
 
-msgid "FATAL: Failed to read:"
+#, fuzzy
+#| msgid "FATAL: Failed to read:"
+msgid "Failed to read:"
 msgstr "КРИТИЧНА ПОМИЛКА: не вдалося прочитати:"
 
 msgid "Your alternative configuration file does not exist:"
@@ -112,13 +122,17 @@ msgstr "Натисніть пробіл, щоб вийти"
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Вітаємо в інтерактивному режимі remove-old-kernels"
 
-msgid "INFO: Number to keep is restricted to "
+#, fuzzy
+#| msgid "INFO: Number to keep is restricted to "
+msgid "Number to keep is restricted to "
 msgstr "УВАГА: кількість збережених ядер обмежено до "
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 msgstr "значенням dnf installonly_limit, яке встановлено у /etc/dnf/dnf.conf"
 
-msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+#, fuzzy
+#| msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
+msgid "Has the running kernel been uninstalled since last boot? - Aborting."
 msgstr "КРИТИЧНА ПОМИЛКА: можливо, запущене ядро вилучено з часу останнього завантаження? - Перериваємо обробку."
 
 msgid "Keep"
@@ -136,11 +150,17 @@ msgstr "ЗБЕРЕГТИ"
 msgid "In use now"
 msgstr "Зараз використовується"
 
+msgid "LIVE system original kernel"
+msgstr ""
+
 msgid "Commands that would be used"
 msgstr "Команди, які було б використано"
 
 msgid "Command that would be used"
 msgstr "Команда, яку було б використано"
+
+msgid "Must be root to allow removal"
+msgstr "Для уможливлення вилучення потрібні права root"
 
 msgid "Test mode is on - kernels will not be removed"
 msgstr "Увімкнено тестовий режим — ядра не буде вилучено"
@@ -166,7 +186,9 @@ msgstr "Перервано"
 msgid "y/N/q (q=quit)"
 msgstr "y/N/q (q=вийти)"
 
-msgid "DEBUG: Could execute: urpme"
+#, fuzzy
+#| msgid "DEBUG: Could execute: urpme"
+msgid "Could execute: urpme"
 msgstr "ДІАГНОСТИКА: могло бути виконано: urpme"
 
 msgid "Gain"

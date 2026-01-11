@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: 2023-01-29 17:55+0200\n"
+"PO-Revision-Date: 2026-01-11 16:10+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk_UA\n"
@@ -28,10 +28,8 @@ msgstr "    -A значення = 1 або 0, щоб увімкнути або �
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
 msgstr "    -c = те саме, що і автоматичне, але із перевіркою CRON=1 у файлі налаштувань або виходом. (потрібні права root)"
 
-#, fuzzy
-#| msgid "    -t = Test mode, nothing is removed, urpme is simulated."
 msgid "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
-msgstr "    -t = режим перевірки, нічого не вилучати, імітація роботи urpme."
+msgstr "    -t = режим перевірки, нічого не вилучати, імітація роботи urpme. Примітка: Від імені root налаштування може бути оновлено"
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
 msgstr "    -f значення = номер альтернативного файла .cfg, який буде використано лише цього разу. Вихід, якщо файла не існує."
@@ -73,22 +71,16 @@ msgid "     U = currently (U)sed running kernel."
 msgstr "     U = поточне використане ядро."
 
 msgid "     L = (L)IVE system original kernel - protected."
-msgstr ""
+msgstr "     L = початкове ядро системи (L)IVE - захищене."
 
-#, fuzzy
-#| msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
 msgid "     V = keeping for (V)irtualbox. (only in advanced mode)"
-msgstr "     V = збереження для Virtualbox -latest. (лише у розширеному режимі)"
+msgstr "     V = збереження для (V)irtualbox. (лише у розширеному режимі)"
 
-#, fuzzy
-#| msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
 msgid "     X = keeping for (X)tables-addons (only in advanced mode)"
-msgstr "     X = збереження для Xtables-addons -latest. (лише у розширеному режимі)"
+msgstr "     X = збереження для (X)tables-addons (лише у розширеному режимі)"
 
-#, fuzzy
-#| msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
-msgstr "     K = збереження kernel-*-devel для встановленого ядра. (лише у розширеному ержимі)"
+msgstr "     K = збереження для встановленого (K) ядра. (лише у розширеному режимі)"
 
 msgid "Must be root to edit configuration"
 msgstr "Для редагування налаштувань потрібні права доступу root"
@@ -99,10 +91,8 @@ msgstr "Натисніть пробіл"
 msgid "No such alternative configuration file:"
 msgstr "Немає такого альтернативного файла налаштувань:"
 
-#, fuzzy
-#| msgid "FATAL: Failed to read:"
 msgid "Failed to read:"
-msgstr "КРИТИЧНА ПОМИЛКА: не вдалося прочитати:"
+msgstr "Не вдалося прочитати:"
 
 msgid "Your alternative configuration file does not exist:"
 msgstr "Вашого альтернативного файла налаштувань не існує:"
@@ -122,18 +112,14 @@ msgstr "Натисніть пробіл, щоб вийти"
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Вітаємо в інтерактивному режимі remove-old-kernels"
 
-#, fuzzy
-#| msgid "INFO: Number to keep is restricted to "
 msgid "Number to keep is restricted to "
-msgstr "УВАГА: кількість збережених ядер обмежено до "
+msgstr "Кількість збережених ядер обмежено до "
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 msgstr "значенням dnf installonly_limit, яке встановлено у /etc/dnf/dnf.conf"
 
-#, fuzzy
-#| msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
 msgid "Has the running kernel been uninstalled since last boot? - Aborting."
-msgstr "КРИТИЧНА ПОМИЛКА: можливо, запущене ядро вилучено з часу останнього завантаження? - Перериваємо обробку."
+msgstr "Можливо, запущене ядро вилучено з часу останнього завантаження? - Перериваємо обробку."
 
 msgid "Keep"
 msgstr "Зберегти"
@@ -151,7 +137,7 @@ msgid "In use now"
 msgstr "Зараз використовується"
 
 msgid "LIVE system original kernel"
-msgstr ""
+msgstr "Початкове ядро системи LIVE"
 
 msgid "Commands that would be used"
 msgstr "Команди, які було б використано"
@@ -186,10 +172,8 @@ msgstr "Перервано"
 msgid "y/N/q (q=quit)"
 msgstr "y/N/q (q=вийти)"
 
-#, fuzzy
-#| msgid "DEBUG: Could execute: urpme"
 msgid "Could execute: urpme"
-msgstr "ДІАГНОСТИКА: могло бути виконано: urpme"
+msgstr "Могло бути виконано: urpme"
 
 msgid "Gain"
 msgstr "Отримати"

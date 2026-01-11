@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2026-01-11 15:50+0000\n"
 "Last-Translator: RWR\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -16,10 +16,10 @@ msgstr ""
 "X-Poedit-KeywordsList: \n"
 
 msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Uso: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n número] [-N número] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Uso: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n número] [-N número] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid "    -a = automatic, no questions. Interactive if not specified. (must be root)"
-msgstr "    -a = automático, sin preguntas. Interactivo si no se especifica. (debes ser administrador)"
+msgstr "    -a = automático, sin preguntas. Interactivo si no se especifica. (debe ser administrador)"
 
 msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
 msgstr "    -A valor = 1 o 0 para QUITAR o NO QUITAR los kernels cada semana. (ej. -A1)"
@@ -27,10 +27,8 @@ msgstr "    -A valor = 1 o 0 para QUITAR o NO QUITAR los kernels cada semana. (e
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
 msgstr "    -c = automático, pero también verifica si CRON=1 en el archivo cfg o sale. (debe ser administrador)"
 
-#, fuzzy
-#| msgid "    -t = Test mode, nothing is removed, urpme is simulated."
 msgid "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
-msgstr "    -t = Modo de prueba, no se quita nada, se simula urpme."
+msgstr "    -t = Modo de prueba, no se quita nada, se simula urpme. Nota: Como administrador la configuración se puede actualizar"
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
 msgstr "    -f valor = número de archivos .cfg alternativos a usar sólo esta vez. Sale si no hay."
@@ -72,70 +70,55 @@ msgid "     U = currently (U)sed running kernel."
 msgstr "     U = kernel actualmente en (U)so (ejecutándose)."
 
 msgid "     L = (L)IVE system original kernel - protected."
-msgstr ""
+msgstr "     L = kernel original del sistema (L)IVE - protegido."
 
-# "latest" se usa en el nombre el kernel más reciente
-#, fuzzy
-#| msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
 msgid "     V = keeping for (V)irtualbox. (only in advanced mode)"
-msgstr "     V = conservando para (V)irtualbox -latest. (sólo en modo avanzado)"
+msgstr "     V = conservando para (V)irtualbox. (sólo en modo avanzado)"
 
-#, fuzzy
-#| msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
 msgid "     X = keeping for (X)tables-addons (only in advanced mode)"
-msgstr "     X = conservando para (X)tables-addons -latest. (sólo en modo avanzado)"
+msgstr "     X = conservando para (X)tables-addons (sólo en modo avanzado)"
 
-#, fuzzy
-#| msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
-msgstr "     K = conservando kernel-*-devel para el (K)ernel instalado. (sólo en modo avanzado)"
+msgstr "     K = conservando para el (K)ernel instalado. (sólo en modo avanzado)"
 
 msgid "Must be root to edit configuration"
-msgstr "Debes ser administrador para editar la configuración"
+msgstr "Debe ser administrador para editar la configuración"
 
 msgid "Tap spacebar"
-msgstr "Pulsa espaciador"
+msgstr "Pulse espaciador"
 
 msgid "No such alternative configuration file:"
 msgstr "No existe tal archivo de configuración:"
 
-#, fuzzy
-#| msgid "FATAL: Failed to read:"
 msgid "Failed to read:"
-msgstr "FATAL: No se ha leído:"
+msgstr "No se leyó:"
 
 msgid "Your alternative configuration file does not exist:"
 msgstr "No existe ningún archivo de configuración alternativo:"
 
 msgid "Either replace it or set ALTCFG=0 in"
-msgstr "Reemplázalo o asigne ALTCFG=0 en"
+msgstr "Reemplácelo o asigne ALTCFG=0 en"
 
-# Sin más contexto, no estoy seguro si habla de habilitado/deshabilitado o..., pero creo que se entenderá en el contexto con las palabras inglesas
 msgid "Please use 0 or 1 for OFF and ON"
-msgstr "Por favor usa 0 o 1 para OFF y ON"
+msgstr "Por favor use 0 o 1 para OFF y ON"
 
 msgid "Bad input value"
 msgstr "Valor de entrada equivocado"
 
 msgid "Tap spacebar to exit"
-msgstr "Pulsa espaciador para salir"
+msgstr "Pulse espaciador para salir"
 
-# "kernel" se usa en español también y aparece en los nombres de los archivos
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Bienvenido a 'remove-old-kernels' interactivo"
 
-#, fuzzy
-#| msgid "INFO: Number to keep is restricted to "
 msgid "Number to keep is restricted to "
-msgstr "INFO: Número a conservar se limita a "
+msgstr "Número a conservar se limita a "
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 msgstr ", por el dnf 'installonly_limit' asignado en /etc/dnf/dnf.conf"
 
-#, fuzzy
-#| msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
 msgid "Has the running kernel been uninstalled since last boot? - Aborting."
-msgstr "FATAL: ¿Se ha quitado el kernel ejecutandose después del último arranque? - Abortando."
+msgstr "¿Se ha quitado el kernel ejecutandose después del último arranque? - Abortando."
 
 msgid "Keep"
 msgstr "Conservar"
@@ -143,7 +126,6 @@ msgstr "Conservar"
 msgid "Remove"
 msgstr "Quitar"
 
-# Supongo es para un listado de kernels instalados, pero no estoy seguro
 msgid "Kernels in"
 msgstr "Kernels en"
 
@@ -154,7 +136,7 @@ msgid "In use now"
 msgstr "Ejecutándose ahora"
 
 msgid "LIVE system original kernel"
-msgstr ""
+msgstr "Kernel original del sistema LIVE"
 
 msgid "Commands that would be used"
 msgstr "Comandos que se usarían"
@@ -163,7 +145,7 @@ msgid "Command that would be used"
 msgstr "Comando que se usaría"
 
 msgid "Must be root to allow removal"
-msgstr "Debes ser administrador para quitar"
+msgstr "Debe ser administrador para quitar"
 
 msgid "Test mode is on - kernels will not be removed"
 msgstr "En modo de prueba - no se quitará ningún kernel"
@@ -189,19 +171,8 @@ msgstr "Abortado"
 msgid "y/N/q (q=quit)"
 msgstr "y/N/q (q=salir)"
 
-#, fuzzy
-#| msgid "DEBUG: Could execute: urpme"
 msgid "Could execute: urpme"
-msgstr "DEPURAR: Podría ejecutar: urpme"
+msgstr "Podría ejecutar: urpme"
 
 msgid "Gain"
 msgstr "Conseguir"
-
-#~ msgid "AUTO"
-#~ msgstr "AUTO"
-
-#~ msgid "abort"
-#~ msgstr "abortar"
-
-#~ msgid "quit"
-#~ msgstr "salir"

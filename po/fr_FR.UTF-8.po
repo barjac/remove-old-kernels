@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2026-01-11 15:52+0000\n"
 "Last-Translator: Google\n"
 "Language-Team: Google\n"
 "Language: fr_FR\n"
@@ -27,10 +27,8 @@ msgstr "    -A valeur = 1 ou 0 pour activer ou désactiver la suppression automa
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
 msgstr "    -c = comme automatique mais vérifie également CRON=1 dans le fichier cfg ou quitte. (il faut être root)"
 
-#, fuzzy
-#| msgid "    -t = Test mode, nothing is removed, urpme is simulated."
 msgid "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
-msgstr "    -t = Mode test, rien n'est supprimé, urpme est simulé."
+msgstr "    -t = Mode test, rien n'est supprimé, urpme est simulé. Remarque : En tant que root la configuration peut être mise à jour"
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
 msgstr "    -f valeur = numéro du fichier .cfg alternatif à utiliser cette fois uniquement. Quitte si manquant."
@@ -72,22 +70,16 @@ msgid "     U = currently (U)sed running kernel."
 msgstr "     U = noyau en cours d'exécution actuellement."
 
 msgid "     L = (L)IVE system original kernel - protected."
-msgstr ""
+msgstr "     L = noyau d'origine du système (L)IVE - protégé."
 
-#, fuzzy
-#| msgid "     V = keeping for (V)irtualbox -latest. (only in advanced mode)"
 msgid "     V = keeping for (V)irtualbox. (only in advanced mode)"
-msgstr "     V = à conserver pour (V)irtualbox -latest. (uniquement en mode avancé)"
+msgstr "     V = à conserver pour (V)irtualbox. (uniquement en mode avancé)"
 
-#, fuzzy
-#| msgid "     X = keeping for (X)tables-addons -latest. (only in advanced mode)"
 msgid "     X = keeping for (X)tables-addons (only in advanced mode)"
-msgstr "     X = à conserver pour (X)tables-addons -latest. (uniquement en mode avancé)"
+msgstr "     X = à conserver pour (X)tables-addons (uniquement en mode avancé)"
 
-#, fuzzy
-#| msgid "     K = keeping kernel-*-devel for installed (K)ernel. (only advanced mode)"
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
-msgstr "     K = conserver kernel-*-devel pour le noyau installé. (uniquement en mode avancé)"
+msgstr "     K = à conserver pour le noyau installé. (uniquement en mode avancé)"
 
 msgid "Must be root to edit configuration"
 msgstr "Il faut être root pour modifier la configuration"
@@ -98,10 +90,8 @@ msgstr "Appuyez sur la barre d'espace"
 msgid "No such alternative configuration file:"
 msgstr "Aucun fichier de configuration alternatif de ce type :"
 
-#, fuzzy
-#| msgid "FATAL: Failed to read:"
 msgid "Failed to read:"
-msgstr "FATAL : Échec de la lecture :"
+msgstr "Échec de la lecture :"
 
 msgid "Your alternative configuration file does not exist:"
 msgstr "Votre fichier de configuration alternatif n'existe pas :"
@@ -121,18 +111,14 @@ msgstr "Appuyez sur la barre d'espace pour quitter"
 msgid "Welcome to 'remove-old-kernels' Interactive"
 msgstr "Bienvenue à 'remove-old-kernels' Interactive"
 
-#, fuzzy
-#| msgid "INFO: Number to keep is restricted to "
 msgid "Number to keep is restricted to "
-msgstr "INFO : Le numbre à conserver est limité à "
+msgstr "Le nombre à conserver est limité à "
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 msgstr ", par le dnf 'installonly_limit' défini dans /etc/dnf/dnf.conf"
 
-#, fuzzy
-#| msgid "FATAL: Has the running kernel been uninstalled since last boot? - Aborting."
 msgid "Has the running kernel been uninstalled since last boot? - Aborting."
-msgstr "FATAL : le noyau en cours d'exécution a-t-il été désinstallé depuis le dernier démarrage ? - Abandonner."
+msgstr "Le noyau en cours d'exécution a-t-il été désinstallé depuis le dernier démarrage ? - Abandon."
 
 msgid "Keep"
 msgstr "Garder"
@@ -150,7 +136,7 @@ msgid "In use now"
 msgstr "En usage maintenant"
 
 msgid "LIVE system original kernel"
-msgstr ""
+msgstr "Noyau d'origine du système LIVE"
 
 msgid "Commands that would be used"
 msgstr "Commandes qui seraient utilisées"
@@ -185,19 +171,8 @@ msgstr "Avorté"
 msgid "y/N/q (q=quit)"
 msgstr "y/N/q (y=oui N=non q=quitter)"
 
-#, fuzzy
-#| msgid "DEBUG: Could execute: urpme"
 msgid "Could execute: urpme"
-msgstr "DEBUG : Peut s'exécuter : urpme"
+msgstr "Peut s'exécuter : urpme"
 
 msgid "Gain"
 msgstr "Gain"
-
-#~ msgid "AUTO"
-#~ msgstr "AUTO"
-
-#~ msgid "abort"
-#~ msgstr "abandonner"
-
-#~ msgid "quit"
-#~ msgstr "quitter"

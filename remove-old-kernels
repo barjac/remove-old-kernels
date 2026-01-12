@@ -66,6 +66,13 @@ echo "$(i18n "     V = keeping for (V)irtualbox. (only in advanced mode)")"
 echo "$(i18n "     X = keeping for (X)tables-addons (only in advanced mode)")"
 echo "$(i18n "     K = keeping for installed (K)ernel. (only advanced mode)")"
 echo ""
+echo "$(i18n "Standard Message explanations:")"
+echo "     DEBUG   $(i18n "— Diagnostic information useful for developers.")"
+echo "     INFO    $(i18n "— Information only. No action required.")"
+echo "     WARNING $(i18n "— Warning of an unexpected or suspicious event.")"
+echo "     ERROR   $(i18n "— An error occured, program stopped.")"
+echo "     FATAL   $(i18n "— A critical error occured. Program stopped.")"
+echo ""
 }
 
 # Function to check we are root or exit
@@ -275,9 +282,11 @@ if (( ${#} > 0 )) ; then
                     echo "QA=${QAN}" >> "${currcfg}" && QA="${QAN}"
                 fi
                 ;;
-            n)  [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK="${OPTARG}"
+            n)  is_live_system && { echo -e "${RemvCol}ERROR - $(i18n "In a LIVE system N is fixed at 2.")${Normal}"; exit 0; }
+                [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK="${OPTARG}"
                 ;;
-            N)  chkroot
+            N)  is_live_system && { echo -e "${RemvCol}ERROR - $(i18n "In a LIVE system N is fixed at 2.")${Normal}"; exit 0; }
+                chkroot
                 NBKN=${OPTARG}
                 if [[ $NBKN =~ ^[0-9]+$ ]] && (( NBKN >= dnfNBK )); then
                     /usr/bin/sed -i "s/NBK=.*/NBK=$NBKN/" "${currcfg}" && NBK="$NBKN"

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: 2026-01-11 16:10+0000\n"
+"POT-Creation-Date: 2026-01-12 20:10+0000\n"
+"PO-Revision-Date: 2026-01-12 16:10+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk_UA\n"
@@ -82,6 +82,24 @@ msgstr "     X = збереження для (X)tables-addons (лише у ро�
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = збереження для встановленого (K) ядра. (лише у розширеному режимі)"
 
+msgid "Standard Message explanations:"
+msgstr "Пояснення стандартних повідомлень:"
+
+msgid "— Diagnostic information useful for developers."
+msgstr "— Діагностична інформація, корисна для розробників."
+
+msgid "— Information only. No action required."
+msgstr "— Лише інформація. Жодних дій не потрібно."
+
+msgid "— Warning of an unexpected or suspicious event."
+msgstr "— Попередження про неочікувану або підозрілу подію."
+
+msgid "— An error occurred, program stopped."
+msgstr "— Сталася помилка, програму зупинено."
+
+msgid "— A critical error occurred. Program stopped."
+msgstr "— Сталася критична помилка. Програму зупинено."
+
 msgid "Must be root to edit configuration"
 msgstr "Для редагування налаштувань потрібні права доступу root"
 
@@ -105,6 +123,9 @@ msgstr "Будь ласка, скористайтеся 0 або 1, щоб ви�
 
 msgid "Bad input value"
 msgstr "Помилкове вхідне значення"
+
+msgid "In a LIVE system N is fixed at 2."
+msgstr "У системі LIVE N фіксовано на значенні 2."
 
 msgid "Tap spacebar to exit"
 msgstr "Натисніть пробіл, щоб вийти"

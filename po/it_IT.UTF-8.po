@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: 2026-01-11 15:55+0000\n"
+"POT-Creation-Date: 2026-01-12 20:10+0000\n"
+"PO-Revision-Date: 2026-01-12 15:55+0000\n"
 "Last-Translator: Barry Jackson (Google translate) <barjac@mageia.org>\n"
 "Language-Team: English (British) <(nothing)>\n"
 "Language: it_IT\n"
@@ -83,6 +83,24 @@ msgstr "     X = mantenere per (X)tables-addons (solo in modalità avanzata)"
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = mantenendo per (K)ernel installato. (solo modalità avanzata)"
 
+msgid "Standard Message explanations:"
+msgstr "Spiegazioni dei messaggi standard:"
+
+msgid "— Diagnostic information useful for developers."
+msgstr "— Informazioni diagnostiche utili per gli sviluppatori."
+
+msgid "— Information only. No action required."
+msgstr "— Solo informazioni. Nessuna azione richiesta."
+
+msgid "— Warning of an unexpected or suspicious event."
+msgstr "— Avviso di un evento imprevisto o sospetto."
+
+msgid "— An error occurred, program stopped."
+msgstr "— Si è verificato un errore, programma interrotto."
+
+msgid "— A critical error occurred. Program stopped."
+msgstr "— Si è verificato un errore critico. Programma interrotto."
+
 msgid "Must be root to edit configuration"
 msgstr "Devi essere root per modificare la configurazione"
 
@@ -106,6 +124,9 @@ msgstr "Utilizzare 0 o 1 per OFF e ON"
 
 msgid "Bad input value"
 msgstr "Valore di input errato"
+
+msgid "In a LIVE system N is fixed at 2."
+msgstr "In un sistema LIVE N è fissato a 2."
 
 msgid "Tap spacebar to exit"
 msgstr "Tocca la barra spaziatrice per uscire"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: 2026-01-11 16:00+0000\n"
+"POT-Creation-Date: 2026-01-12 20:10+0000\n"
+"PO-Revision-Date: 2026-01-12 16:00+0000\n"
 "Last-Translator: Marja van Waes\n"
 "Language-Team: Mageia -i18n\n"
 "Language: nl_NL\n"
@@ -81,6 +81,24 @@ msgstr "     X = behouden voor (X)tables-addons (alleen in geavanceerde modus)"
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = behouden voor geïnstalleerde (K)ernel. (alleen in geavanceerde modus)"
 
+msgid "Standard Message explanations:"
+msgstr "Standaard berichtuitleg:"
+
+msgid "— Diagnostic information useful for developers."
+msgstr "— Diagnostische informatie nuttig voor ontwikkelaars."
+
+msgid "— Information only. No action required."
+msgstr "— Alleen informatie. Geen actie vereist."
+
+msgid "— Warning of an unexpected or suspicious event."
+msgstr "— Waarschuwing voor een onverwachte of verdachte gebeurtenis."
+
+msgid "— An error occurred, program stopped."
+msgstr "— Er is een fout opgetreden, programma gestopt."
+
+msgid "— A critical error occurred. Program stopped."
+msgstr "— Er is een kritieke fout opgetreden. Programma gestopt."
+
 msgid "Must be root to edit configuration"
 msgstr "Moet root zijn om de configuratie te bewerken"
 
@@ -104,6 +122,9 @@ msgstr "Gebruik 0 of 1 voor UIT en AAN"
 
 msgid "Bad input value"
 msgstr "Slechte invoerwaarde"
+
+msgid "In a LIVE system N is fixed at 2."
+msgstr "In een LIVE-systeem is N vastgesteld op 2."
 
 msgid "Tap spacebar to exit"
 msgstr "Tik op de spatiebalk om af te sluiten"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: 2026-01-11 15:57+0000\n"
+"POT-Creation-Date: 2026-01-12 20:10+0000\n"
+"PO-Revision-Date: 2026-01-12 15:57+0000\n"
 "Last-Translator: Johnny A. Solbu <johnny@solbu.net>\n"
 "Language-Team: Norwegian Bokmaal <i10n-no@lister.huftis.org>\n"
 "Language: nb_NO\n"
@@ -84,6 +84,24 @@ msgstr "     X = behold for (X)tables-addons (bare i avansert modus)"
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = behold for installert (K)jerne. (bare i avansert modus)"
 
+msgid "Standard Message explanations:"
+msgstr "Standard meldingsforklaringer:"
+
+msgid "— Diagnostic information useful for developers."
+msgstr "— Diagnoseinformasjon nyttig for utviklere."
+
+msgid "— Information only. No action required."
+msgstr "— Kun informasjon. Ingen handling nødvendig."
+
+msgid "— Warning of an unexpected or suspicious event."
+msgstr "— Advarsel om en uventet eller mistenkelig hendelse."
+
+msgid "— An error occurred, program stopped."
+msgstr "— En feil oppstod, program stoppet."
+
+msgid "— A critical error occurred. Program stopped."
+msgstr "— En kritisk feil oppstod. Program stoppet."
+
 msgid "Must be root to edit configuration"
 msgstr "Du må være root for å redigere konfigurasjonen"
 
@@ -107,6 +125,9 @@ msgstr "Bruk 0 eller 1 for AV og PÅ"
 
 msgid "Bad input value"
 msgstr "Ugyldig inngangsverdi"
+
+msgid "In a LIVE system N is fixed at 2."
+msgstr "I et LIVE-system er N fast satt til 2."
 
 msgid "Tap spacebar to exit"
 msgstr "Trykk på mellomromstasten for å avslutte"

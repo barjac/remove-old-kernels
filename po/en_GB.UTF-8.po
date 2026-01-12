@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 14:48+0000\n"
+"POT-Creation-Date: 2026-01-12 16:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,7 +28,7 @@ msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits
 msgstr "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
 
 msgid "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
-msgstr"    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
+msgstr "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
 msgstr "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
@@ -81,6 +81,24 @@ msgstr "     X = keeping for (X)tables-addons (only in advanced mode)"
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = keeping for installed (K)ernel. (only advanced mode)"
 
+msgid "Standard Message explanations:"
+msgstr "Standard Message explanations:"
+
+msgid "— Diagnostic information useful for developers."
+msgstr "— Diagnostic information useful for developers."
+
+msgid "— Information only. No action required."
+msgstr "— Information only. No action required."
+
+msgid "— Warning of an unexpected or suspicious event."
+msgstr "— Warning of an unexpected or suspicious event."
+
+msgid "— An error occurred, program stopped."
+msgstr "— An error occurred, program stopped."
+
+msgid "— A critical error occurred. Program stopped."
+msgstr "— A critical error occurred. Program stopped."
+
 msgid "Must be root to edit configuration"
 msgstr "Must be root to edit configuration"
 
@@ -104,6 +122,9 @@ msgstr "Please use 0 or 1 for OFF and ON"
 
 msgid "Bad input value"
 msgstr "Bad input value"
+
+msgid "In a LIVE system N is fixed at 2."
+msgstr "In a LIVE system N is fixed at 2."
 
 msgid "Tap spacebar to exit"
 msgstr "Tap spacebar to exit"

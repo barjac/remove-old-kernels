@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: remove-old-kernels\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2026-01-11 14:48+0000\n"
+        "POT-Creation-Date: 2026-01-12 20:31+0000\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,6 +82,24 @@ msgstr ""
 msgid  "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr ""
 
+msgid  "Standard Message explanations:"
+msgstr ""
+
+msgid  "— Diagnostic information useful for developers."
+msgstr ""
+
+msgid  "— Information only. No action required."
+msgstr ""
+
+msgid  "— Warning of an unexpected or suspicious event."
+msgstr ""
+
+msgid  "— An error occurred, program stopped."
+msgstr ""
+
+msgid  "— A critical error occurred. Program stopped."
+msgstr ""
+
 msgid  "Must be root to edit configuration"
 msgstr ""
 
@@ -104,6 +122,9 @@ msgid  "Please use 0 or 1 for OFF and ON"
 msgstr ""
 
 msgid  "Bad input value"
+msgstr ""
+
+msgid  "In a LIVE system N is fixed at 2."
 msgstr ""
 
 msgid  "Tap spacebar to exit"

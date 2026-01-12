@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: 2026-01-11 16:05+0000\n"
+"POT-Creation-Date: 2026-01-12 20:10+0000\n"
+"PO-Revision-Date: 2026-01-12 16:05+0000\n"
 "Last-Translator: algri14 <aliger14@mail.ru>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -87,6 +87,24 @@ msgstr "     X = сохранить для (X)tables-addons (только в р�
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = сохранить для установленного (K) ядра. (только в расширенном режиме)"
 
+msgid "Standard Message explanations:"
+msgstr "Пояснения стандартных сообщений:"
+
+msgid "— Diagnostic information useful for developers."
+msgstr "— Диагностическая информация, полезная для разработчиков."
+
+msgid "— Information only. No action required."
+msgstr "— Только информация. Никаких действий не требуется."
+
+msgid "— Warning of an unexpected or suspicious event."
+msgstr "— Предупреждение о неожиданном или подозрительном событии."
+
+msgid "— An error occurred, program stopped."
+msgstr "— Произошла ошибка, программа остановлена."
+
+msgid "— A critical error occurred. Program stopped."
+msgstr "— Произошла критическая ошибка. Программа остановлена."
+
 msgid "Must be root to edit configuration"
 msgstr "Для редактирования настроек конфигурации требуются права root"
 
@@ -110,6 +128,9 @@ msgstr "Пожалуйста, используйте 0 для Выключени
 
 msgid "Bad input value"
 msgstr "Введённое значение некорректно"
+
+msgid "In a LIVE system N is fixed at 2."
+msgstr "В системе LIVE N зафиксировано на значении 2."
 
 msgid "Tap spacebar to exit"
 msgstr "Нажмите пробел, чтобы выйти"

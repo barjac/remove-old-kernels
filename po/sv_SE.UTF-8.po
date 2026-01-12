@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: 2026-01-11 16:07+0000\n"
+"POT-Creation-Date: 2026-01-12 20:10+0000\n"
+"PO-Revision-Date: 2026-01-12 16:07+0000\n"
 "Last-Translator: Kristoffer Grundström <swedishsailfishosuser@tutanota.com>\n"
 "Language-Team: Mageia\n"
 "Language: sv_SE\n"
@@ -81,6 +81,24 @@ msgstr "     X = behåller för (X)tables-addons (endast i avancerat läge)"
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = behåller för installerad (K)ärna. (endast i avancerat läge)"
 
+msgid "Standard Message explanations:"
+msgstr "Förklaringar av standardmeddelanden:"
+
+msgid "— Diagnostic information useful for developers."
+msgstr "— Diagnostikinformation användbar för utvecklare."
+
+msgid "— Information only. No action required."
+msgstr "— Endast information. Ingen åtgärd krävs."
+
+msgid "— Warning of an unexpected or suspicious event."
+msgstr "— Varning om en oväntad eller misstänkt händelse."
+
+msgid "— An error occurred, program stopped."
+msgstr "— Ett fel uppstod, programmet stoppades."
+
+msgid "— A critical error occurred. Program stopped."
+msgstr "— Ett kritiskt fel uppstod. Programmet stoppades."
+
 msgid "Must be root to edit configuration"
 msgstr "Måste vara root för att redigera konfiguration"
 
@@ -104,6 +122,9 @@ msgstr "Vänligen använd 0 eller 1 för AV och PÅ"
 
 msgid "Bad input value"
 msgstr "Felaktigt inmatningsvärde"
+
+msgid "In a LIVE system N is fixed at 2."
+msgstr "I ett LIVE-system är N fixerat till 2."
 
 msgid "Tap spacebar to exit"
 msgstr "Tryck på mellanslag för att avsluta"

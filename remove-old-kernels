@@ -70,8 +70,8 @@ echo "$(i18n "Standard Message explanations:")"
 echo "     DEBUG   $(i18n "— Diagnostic information useful for developers.")"
 echo "     INFO    $(i18n "— Information only. No action required.")"
 echo "     WARNING $(i18n "— Warning of an unexpected or suspicious event.")"
-echo "     ERROR   $(i18n "— An error occured, program stopped.")"
-echo "     FATAL   $(i18n "— A critical error occured. Program stopped.")"
+echo "     ERROR   $(i18n "— An error occurred, program stopped.")"
+echo "     FATAL   $(i18n "— A critical error occurred. Program stopped.")"
 echo ""
 }
 

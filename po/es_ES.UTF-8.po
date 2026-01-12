@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: 2026-01-11 15:50+0000\n"
+"POT-Creation-Date: 2026-01-12 20:10+0000\n"
+"PO-Revision-Date: 2026-01-12 15:50+0000\n"
 "Last-Translator: RWR\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -81,6 +81,24 @@ msgstr "     X = conservando para (X)tables-addons (sólo en modo avanzado)"
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
 msgstr "     K = conservando para el (K)ernel instalado. (sólo en modo avanzado)"
 
+msgid "Standard Message explanations:"
+msgstr "Explicaciones de mensajes estándar:"
+
+msgid "— Diagnostic information useful for developers."
+msgstr "— Información de diagnóstico útil para desarrolladores."
+
+msgid "— Information only. No action required."
+msgstr "— Solo información. No se requiere acción."
+
+msgid "— Warning of an unexpected or suspicious event."
+msgstr "— Advertencia de un evento inesperado o sospechoso."
+
+msgid "— An error occurred, program stopped."
+msgstr "— Ocurrió un error, programa detenido."
+
+msgid "— A critical error occurred. Program stopped."
+msgstr "— Ocurrió un error crítico. Programa detenido."
+
 msgid "Must be root to edit configuration"
 msgstr "Debe ser administrador para editar la configuración"
 
@@ -104,6 +122,9 @@ msgstr "Por favor use 0 o 1 para OFF y ON"
 
 msgid "Bad input value"
 msgstr "Valor de entrada equivocado"
+
+msgid "In a LIVE system N is fixed at 2."
+msgstr "En un sistema LIVE N está fijado en 2."
 
 msgid "Tap spacebar to exit"
 msgstr "Pulse espaciador para salir"

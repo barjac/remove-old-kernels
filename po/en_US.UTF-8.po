@@ -2,177 +2,198 @@ msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-11 14:48+0000\n"
-"PO-Revision-Date: 2026-01-11 15:45+0000\n"
-"Last-Translator: psyca\n"
-"Language-Team: psyca and Google\n"
-"Language: de_DE\n"
+"POT-Creation-Date: 2026-01-12 20:10+0000\n"
+"PO-Revision-Date: 2026-01-12 16:15+0000\n"
+"Last-Translator: Barry Jackson <barjac@mageia.org>\n"
+"Language-Team: English (US)\n"
+"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: \n"
 
 msgid "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
-msgstr "Verwendung: <remove-old kernels|rok> [-a] [-A <1|0>] [-c] [-t] [-f 0-9] [-F 0-9] [-n Anzahl] [-N Anzahl] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
+msgstr "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 
 msgid "    -a = automatic, no questions. Interactive if not specified. (must be root)"
-msgstr "    -a = Automatisch, keine Fragen. Interaktiv, falls nicht angegeben. (muss root sein)"
+msgstr "    -a = automatic, no questions. Interactive if not specified. (must be root)"
 
 msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
-msgstr "    -A Wert = 1 oder 0, um die automatische wöchentliche Entfernung von Kerneln ein- oder auszuschalten. (zB -A1)"
+msgstr "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kernels. (e.g. -A1)"
 
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
-msgstr "    -c = wie automatisch, prüft aber auch auf CRON=1 in der cfg-Datei oder beendet sich. (muss root sein)"
+msgstr "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
 
 msgid "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
-msgstr "    -t = Testmodus, es wird nichts entfernt, urpme wird simuliert. Hinweis: Als root kann die Konfiguration aktualisiert werden"
+msgstr "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
-msgstr "    -f Wert = Nummer der alternativen .cfg-Datei, die nur dieses Mal verwendet werden soll. Beendet sich, falls fehlend."
+msgstr "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
 
 msgid "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
-msgstr "    -F Wert = Nummer der zu verwendenden alternativen .cfg-Datei. Dadurch wird die Einstellung ALTCFG= in der .cfg-Hauptdatei geändert."
+msgstr "    -F value = number of alt .cfg file to use. This changes the ALTCFG= setting in the main .cfg file."
 
 msgid "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
-msgstr "    -n Wert = Anzahl der Kernel, die nur dieses Mal behalten werden sollen. (-n5 oder -n 5 behält 5 Kernel), Min=2, Standard=3"
+msgstr "    -n value = number of kernels to keep this time only. (-n5 or -n 5 keep 5 kernels), Min=2, Default=3"
 
 msgid "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
-msgstr "    -N Wert = Anzahl der zu behaltenden Kernel. Dies ändert die Einstellung der Konfigurationsdatei. (zB -N 5)"
+msgstr "    -N value = number of kernels to keep. This changes the config file setting. (e.g. -N 5)"
 
 msgid "    -p = preview the urpme commands which would be used."
-msgstr "    -p = Vorschau der urpme-Befehle, die verwendet werden würden."
+msgstr "    -p = preview the urpme commands which would be used."
 
 msgid "    -q = advanced mode, this time only - see man page."
-msgstr "    -q = Erweiterter Modus, nur dieses Mal - siehe Manpage."
+msgstr "    -q = advanced mode, this time only - see man page."
 
 msgid "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
-msgstr "    -Q Wert = 1 oder 0 (1 = EIN) erweiterter Modus, dauerhaft. (zB -Q 1)"
+msgstr "    -Q value = 1 or 0 (1 = ON) advanced mode, persistent. (e.g. -Q1)"
 
 msgid "    -l = list the last 1000 lines of the log."
-msgstr "    -l = listet die letzten 1000 Zeilen des Protokolls auf."
+msgstr "    -l = list the last 1000 lines of the log."
 
 msgid "    -m = mono. No colours in screen output."
-msgstr "    -m = Mono. Keine Farben in der Bildschirmausgabe."
+msgstr "    -m = mono. No colors in screen output."
 
 msgid "    -v = version."
-msgstr "    -v = Version."
+msgstr "    -v = version."
 
 msgid "    -? or -h = show this help."
-msgstr "    -? or -h = Zeigt diese Hilfe."
+msgstr "    -? or -h = show this help."
 
 msgid "KEY for column 3:"
-msgstr "SCHLÜSSEL für Spalte 3:"
+msgstr "KEY for column 3:"
 
 msgid "     U = currently (U)sed running kernel."
-msgstr "     U = aktuell gen(U)tzte laufende Kernel."
+msgstr "     U = currently (U)sed running kernel."
 
 msgid "     L = (L)IVE system original kernel - protected."
-msgstr "     L = (L)IVE-System Original-Kernel - geschützt."
+msgstr "     L = (L)IVE system original kernel - protected."
 
 msgid "     V = keeping for (V)irtualbox. (only in advanced mode)"
-msgstr "     V = Behalten für (V)irtualbox. (nur im erweiterten Modus)"
+msgstr "     V = keeping for (V)irtualbox. (only in advanced mode)"
 
 msgid "     X = keeping for (X)tables-addons (only in advanced mode)"
-msgstr "     X = Behalten für (X)tables-addons (nur im erweiterten Modus)"
+msgstr "     X = keeping for (X)tables-addons (only in advanced mode)"
 
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
-msgstr "     K = Behalten für installierten (K)ernel. (nur im erweiterten Modus)"
+msgstr "     K = keeping for installed (K)ernel. (only advanced mode)"
+
+msgid "Standard Message explanations:"
+msgstr "Standard Message explanations:"
+
+msgid "— Diagnostic information useful for developers."
+msgstr "— Diagnostic information useful for developers."
+
+msgid "— Information only. No action required."
+msgstr "— Information only. No action required."
+
+msgid "— Warning of an unexpected or suspicious event."
+msgstr "— Warning of an unexpected or suspicious event."
+
+msgid "— An error occurred, program stopped."
+msgstr "— An error occurred, program stopped."
+
+msgid "— A critical error occurred. Program stopped."
+msgstr "— A critical error occurred. Program stopped."
 
 msgid "Must be root to edit configuration"
-msgstr "Muss root sein, um die Konfiguration zu bearbeiten"
+msgstr "Must be root to edit configuration"
 
 msgid "Tap spacebar"
-msgstr "Drücken Sie auf die Leertaste"
+msgstr "Tap spacebar"
 
 msgid "No such alternative configuration file:"
-msgstr "Keine solche alternative Konfigurationsdatei:"
+msgstr "No such alternative configuration file:"
 
 msgid "Failed to read:"
-msgstr "Lesen fehlgeschlagen:"
+msgstr "Failed to read:"
 
 msgid "Your alternative configuration file does not exist:"
-msgstr "Ihre alternative Konfigurationsdatei existiert nicht:"
+msgstr "Your alternative configuration file does not exist:"
 
 msgid "Either replace it or set ALTCFG=0 in"
-msgstr "Entweder ersetzen oder ALTCFG=0 setzen in"
+msgstr "Either replace it or set ALTCFG=0 in"
 
 msgid "Please use 0 or 1 for OFF and ON"
-msgstr "Bitte verwenden Sie 0 oder 1 für AUS und EIN"
+msgstr "Please use 0 or 1 for OFF and ON"
 
 msgid "Bad input value"
-msgstr "Falscher Eingabewert"
+msgstr "Bad input value"
+
+msgid "In a LIVE system N is fixed at 2."
+msgstr "In a LIVE system N is fixed at 2."
 
 msgid "Tap spacebar to exit"
-msgstr "Drücken Sie zum Beenden auf die Leertaste"
+msgstr "Tap spacebar to exit"
 
 msgid "Welcome to 'remove-old-kernels' Interactive"
-msgstr "Willkommen bei 'remove-old-kernels' Interactive"
+msgstr "Welcome to 'remove-old-kernels' Interactive"
 
 msgid "Number to keep is restricted to "
-msgstr "Anzahl der behaltenen Kernel ist beschränkt auf "
+msgstr "Number to keep is restricted to "
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
-msgstr ", durch die dnf 'installonly_limit' Einstellung in /etc/dnf/dnf.conf"
+msgstr ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
 
 msgid "Has the running kernel been uninstalled since last boot? - Aborting."
-msgstr "Wurde der laufende Kernel seit dem letzten Start deinstalliert? - Abbruch."
+msgstr "Has the running kernel been uninstalled since last boot? - Aborting."
 
 msgid "Keep"
-msgstr "Behalten"
+msgstr "Keep"
 
 msgid "Remove"
-msgstr "Entferne"
+msgstr "Remove"
 
 msgid "Kernels in"
-msgstr "Kernel in"
+msgstr "Kernels in"
 
 msgid "KEEP"
-msgstr "BEHALTEN"
+msgstr "KEEP"
 
 msgid "In use now"
-msgstr "Aktuell im Einsatz"
+msgstr "In use now"
 
 msgid "LIVE system original kernel"
-msgstr "LIVE-System Original-Kernel"
+msgstr "LIVE system original kernel"
 
 msgid "Commands that would be used"
-msgstr "Befehle, die verwendet werden würden"
+msgstr "Commands that would be used"
 
 msgid "Command that would be used"
-msgstr "Befehl, der verwendet werden würde"
+msgstr "Command that would be used"
 
 msgid "Must be root to allow removal"
-msgstr "Muss root sein, um das Entfernen zu ermöglichen"
+msgstr "Must be root to allow removal"
 
 msgid "Test mode is on - kernels will not be removed"
-msgstr "Der Testmodus ist aktiviert – Kernel werden nicht entfernt"
+msgstr "Test mode is on - kernels will not be removed"
 
 msgid "kernels"
-msgstr "Kernel"
+msgstr "kernels"
 
 msgid "kernel"
-msgstr "Kernel"
+msgstr "kernel"
 
 # For languages where "y/N" is not appropriate DO NOT change "y/N/i"
 # but only translate "yes", "no" and "confirm for each".
 msgid "y/N/i (i=confirm for each)"
-msgstr "y/N/i (y=ja N=nein i=einzeln bestätigen)"
+msgstr "y/N/i (i=confirm for each)"
 
 msgid "interactive"
-msgstr "interaktiv"
+msgstr "interactive"
 
 msgid "Aborted"
-msgstr "Abgebrochen"
+msgstr "Aborted"
 
 # Only translate "yes", "no" and "quit"
 msgid "y/N/q (q=quit)"
-msgstr "y/N/q (y=ja N=nein q=verlassen)"
+msgstr "y/N/q (q=quit)"
 
 msgid "Could execute: urpme"
-msgstr "Könnte ausführen: urpme"
+msgstr "Could execute: urpme"
 
 msgid "Gain"
-msgstr "Erhalten"
+msgstr "Gain"

@@ -321,7 +321,15 @@ fi
 
 # Don't run main program after -l or -h/-? options in QA mode
 if (( QA == 1 )); then
-    (( LOG == 1 )) && exit 0
+    if (( LOG == 1 )); then
+        # If launched from desktop, pause before exit so user can read output
+        if [[ -n "$ROK_FROM_DESKTOP" ]]; then
+            echo -e "\n$(i18n "Tap spacebar to exit")"
+            read -n1
+            echo -en "${ClearLine}"
+        fi
+        exit 0
+    fi
 fi
 
 # Use dnf kernel 'number to keep' if installed and greater than ours

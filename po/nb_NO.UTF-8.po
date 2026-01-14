@@ -126,8 +126,8 @@ msgstr "Bruk 0 eller 1 for AV og PÅ"
 msgid "Bad input value"
 msgstr "Ugyldig inngangsverdi"
 
-msgid "In a LIVE system N is fixed at 2."
-msgstr "I et LIVE-system er N fast satt til 2."
+msgid "In a LIVE system N is fixed."
+msgstr "I et LIVE-system er N fast."
 
 msgid "Tap spacebar to exit"
 msgstr "Trykk på mellomromstasten for å avslutte"

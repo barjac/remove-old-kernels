@@ -123,8 +123,8 @@ msgstr "Use 0 ou 1 para DESLIGAR e LIGAR"
 msgid "Bad input value"
 msgstr "Valor de entrada incorreto"
 
-msgid "In a LIVE system N is fixed at 2."
-msgstr "Em um sistema LIVE N é fixado em 2."
+msgid "In a LIVE system N is fixed."
+msgstr "Em um sistema LIVE N é fixo."
 
 msgid "Tap spacebar to exit"
 msgstr "Toque na barra de espaço para sair"

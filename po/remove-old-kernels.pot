@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: remove-old-kernels\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2026-01-12 20:31+0000\n"
+        "POT-Creation-Date: 2026-01-14 11:48+0000\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,7 +124,7 @@ msgstr ""
 msgid  "Bad input value"
 msgstr ""
 
-msgid  "In a LIVE system N is fixed at 2."
+msgid  "In a LIVE system N is fixed."
 msgstr ""
 
 msgid  "Tap spacebar to exit"

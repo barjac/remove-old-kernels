@@ -123,8 +123,8 @@ msgstr "Gebruik 0 of 1 voor UIT en AAN"
 msgid "Bad input value"
 msgstr "Slechte invoerwaarde"
 
-msgid "In a LIVE system N is fixed at 2."
-msgstr "In een LIVE-systeem is N vastgesteld op 2."
+msgid "In a LIVE system N is fixed."
+msgstr "In een live systeem is N vast."
 
 msgid "Tap spacebar to exit"
 msgstr "Tik op de spatiebalk om af te sluiten"

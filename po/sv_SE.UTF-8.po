@@ -123,8 +123,8 @@ msgstr "Vänligen använd 0 eller 1 för AV och PÅ"
 msgid "Bad input value"
 msgstr "Felaktigt inmatningsvärde"
 
-msgid "In a LIVE system N is fixed at 2."
-msgstr "I ett LIVE-system är N fixerat till 2."
+msgid "In a LIVE system N is fixed."
+msgstr "I et LIVE-system er N fast."
 
 msgid "Tap spacebar to exit"
 msgstr "Tryck på mellanslag för att avsluta"

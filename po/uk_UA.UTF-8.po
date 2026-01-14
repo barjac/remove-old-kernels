@@ -124,8 +124,8 @@ msgstr "Будь ласка, скористайтеся 0 або 1, щоб ви�
 msgid "Bad input value"
 msgstr "Помилкове вхідне значення"
 
-msgid "In a LIVE system N is fixed at 2."
-msgstr "У системі LIVE N фіксовано на значенні 2."
+msgid "In a LIVE system N is fixed."
+msgstr "У системі LIVE N є фіксованим."
 
 msgid "Tap spacebar to exit"
 msgstr "Натисніть пробіл, щоб вийти"

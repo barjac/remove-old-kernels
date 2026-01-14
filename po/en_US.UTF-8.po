@@ -123,8 +123,8 @@ msgstr "Please use 0 or 1 for OFF and ON"
 msgid "Bad input value"
 msgstr "Bad input value"
 
-msgid "In a LIVE system N is fixed at 2."
-msgstr "In a LIVE system N is fixed at 2."
+msgid "In a LIVE system N is fixed."
+msgstr "In a LIVE system N is fixed."
 
 msgid "Tap spacebar to exit"
 msgstr "Tap spacebar to exit"

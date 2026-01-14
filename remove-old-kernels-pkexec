@@ -1,3 +1,5 @@
-#!/bin/sh
-pkexec "/usr/sbin/remove-old-kernels" "$@"
+#!/bin/bash
+# Set environment variable to indicate desktop launch
+export ROK_FROM_DESKTOP=1
+exec pkexec /usr/sbin/remove-old-kernels "$@"
 

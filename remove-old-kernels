@@ -23,7 +23,7 @@ is_live_system() {
         return 0
     fi
 
-    return 0  # set 0 to fake LIVE tests in non-live
+    return 1  # set 0 to fake LIVE tests in non-live
 }
 
 # NEW: Get the oldest installed kernel (the original on LIVE systems)

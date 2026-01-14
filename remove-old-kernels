@@ -23,7 +23,7 @@ is_live_system() {
         return 0
     fi
 
-    return 1  # set 0 to fake LIVE tests in non-live
+    return 0  # set 0 to fake LIVE tests in non-live
 }
 
 # NEW: Get the oldest installed kernel (the original on LIVE systems)
@@ -282,10 +282,10 @@ if (( ${#} > 0 )) ; then
                     echo "QA=${QAN}" >> "${currcfg}" && QA="${QAN}"
                 fi
                 ;;
-            n)  is_live_system && { echo -e "${RemvCol}ERROR - $(i18n "In a LIVE system N is fixed at 2.")${Normal}"; exit 0; }
+            n)  is_live_system && { echo -e "${RemvCol}ERROR - $(i18n "In a LIVE system N is fixed.")${Normal}"; exit 0; }
                 [[ ${OPTARG} =~ ^[0-9]+$ ]] && NBK="${OPTARG}"
                 ;;
-            N)  is_live_system && { echo -e "${RemvCol}ERROR - $(i18n "In a LIVE system N is fixed at 2.")${Normal}"; exit 0; }
+            N)  is_live_system && { echo -e "${RemvCol}ERROR - $(i18n "In a LIVE system N is fixed.")${Normal}"; exit 0; }
                 chkroot
                 NBKN=${OPTARG}
                 if [[ $NBKN =~ ^[0-9]+$ ]] && (( NBKN >= dnfNBK )); then
@@ -343,8 +343,8 @@ if is_live_system; then
     LIVE_MODE=1
     PROTECT_KERNEL=$(get_original_kernel)
     if [ -n "$PROTECT_KERNEL" ]; then
-        # Force NBK=2 for LIVE systems (only latest and original are bootable)
-        NBK=2
+        # Force NBK=1 for LIVE systems (only latest and original are bootable)
+        NBK=1
     fi
 fi
 
@@ -381,10 +381,6 @@ NK=$(find /boot -regextype egrep -regex '.*vmlinuz.*.mga([0-9]|[0-9][0-9])' | wc
 #================================ Show status ==============================
 
 echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
-# NEW: Show LIVE system message if applicable
-if [ -n "$livemssg" ]; then
-    echo -e "$livemssg"
-fi
 
 #================================= Analyse rpms =============================
 # Get master list from rpm -qa --last
@@ -646,7 +642,8 @@ fi
 rm -f "${TMPKTR}"
 
 # Run again if some removable kernels are left
-(( QA = 1 )) && exit 0              # Always just exit in QA mode
+## TODO
+(( QA = 1 )) && exit 0              # Always just exit in QA mode if in terminal
 (( UID > 0 )) && exit 0             # Not root user so exit
 [[ ${MODE} != "I" ]] &&  exit 0     # Auto so exit
 (( nbt > 0 )) &&  ${0}   # Root user and interactive so run again if removable packages left

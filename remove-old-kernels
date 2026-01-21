@@ -20,10 +20,10 @@ gettext "$prog" "$1"
 is_live_system() {
     # Check for Mageia LIVE system
     if grep -q 'mgalive' /proc/cmdline 2>/dev/null; then
+        live="LIVE"
         return 0
     fi
-
-    return 1  # set 0 to fake LIVE tests in non-live
+    return 1
 }
 
 # NEW: Get the oldest installed kernel (the original on LIVE systems)
@@ -388,7 +388,7 @@ NK=$(find /boot -regextype egrep -regex '.*vmlinuz.*.mga([0-9]|[0-9][0-9])' | wc
 
 #================================ Show status ==============================
 
-echo -e "${HdBgCol} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
+echo -e "${HdBgCol} ${live} System: $(cat /etc/mageia-release) | $(i18n "Kernels in") /boot/:${NK} | AUTO:$autostat | $(i18n "KEEP"):$NBK ${qamssg}${cfgmssg}${Normal} "
 
 #================================= Analyse rpms =============================
 # Get master list from rpm -qa --last

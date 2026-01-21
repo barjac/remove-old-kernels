@@ -15,7 +15,10 @@ For most users it can be left, as installed, to do it's job without any user int
 It keeps the default (3) kernels of EACH kernel flavour, NOT 3 in total. If there are kernels of various flavours installed, then only the flavours with more than 3 would see any removed.
 
 .br
-It will never remove the running kernel.
+In a LIVE system with persistence only one kernel plus the original is kept, since only those two are bootable.
+
+.br
+It will never remove the running kernel, or the original kernel in a LIVE system with persistence.
 
 .br
 If the running kernel has been accidentally removed by some utility since boot then it will report the error and abort, removing nothing.
@@ -24,7 +27,7 @@ If the running kernel has been accidentally removed by some utility since boot t
 
 \fBremove-old-kernels\fR with no arguments as a regular user, will display the current kernel(s) installed, the one in use, marked with 'U', and the ones it suggests to remove in red, if any.
 .br
-This is a good way to make a quick check without any risk of error. 
+This is a good way to make a quick check without any risk of error.
 
 \fBremove-old-kernels\fP is also available from the Mageia main menu system in graphical desktops for ease of use by users unfamiliar with the command line. Usually found under Tools -> System Tools. It will ask for the root password.
 
@@ -185,5 +188,5 @@ Display the log file.
 None known. Report any issues with the program or documentation to https://bugs.mageia.org/
 
 .SH AUTHOR
-\fBremove-old-kernels is by Pierre Jarillon (2018-2021) Jean-Baptiste Biernacki (2021) Barry C Jackson (2022)\fP
+\fBremove-old-kernels is by Pierre Jarillon (2018-2021) Jean-Baptiste Biernacki (2021) Barry C Jackson (2022-2026)\fP
 This document is by Barry C Jackson <barjac@mageia.org>.

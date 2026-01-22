@@ -640,7 +640,7 @@ if (( nbt != 0 )) ; then
             fi
         fi
     done
-        NK=$(find /boot -maxdepth 1 -regextype egrep -regex '.*vmlinuz.*.mga([0-9]|[0-9][0-9])' | wc -l)
+        NK=$(find /boot -regextype egrep -regex '.*vmlinuz.*.mga([0-9]|[0-9][0-9])' | wc -l) 2>/dev/null
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
         echo -e "${HdBgCol} $(i18n "Gain"):$((OCCDISK1 - OCCDISK2)) MB - $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi

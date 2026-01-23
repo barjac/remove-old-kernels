@@ -242,9 +242,21 @@ else
 fi
 
 # Parse command line options which take precedence over script and cfg file
+DESKTOP_LAUNCH=0
 if (( ${#} > 0 )) ; then
-    while getopts aA:ctf:F:plmvn:N:qQ:?h NAME; do
+     while getopts aA:ctf:F:plmvn:N:qQ:?h-: NAME; do
         case ${NAME} in
+            -)  # Handle long options
+                case ${OPTARG} in
+                    desktop)
+                        DESKTOP_LAUNCH=1
+                        ;;
+                    *)
+                        echo "$(i18n "Unknown option"): --${OPTARG}" >&2
+                        exit 1
+                        ;;
+                esac
+                ;;
             a)  MODE="A";
                 ;;
             A)  chkroot
@@ -322,13 +334,7 @@ fi
 # Don't run main program after -l or -h/-? options in QA mode
 if (( QA == 1 )); then
     if (( LOG == 1 )); then
-        # If launched from desktop, pause before exit so user can read output
-        if [[ -n "$ROK_FROM_DESKTOP" ]]; then
-            echo -e "\n$(i18n "Tap spacebar to exit")"
-            read -n1
-            echo -en "${ClearLine}"
-        fi
-        exit 0
+       exit 0
     fi
 fi
 
@@ -646,6 +652,13 @@ if (( nbt != 0 )) ; then
 fi
 
 [[ $MODE == "I" ]] && (( QA < 1 )) && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }
+
+# NEW: In QA mode launched from desktop, pause if there was nothing to remove
+if (( QA == 1 )) && (( DESKTOP_LAUNCH == 1 )) && (( nbt == 0 )); then
+    echo "$(i18n "Tap spacebar to exit")"
+    read -n1
+    echo -en "${ClearLine}"
+fi
 
 rm -f "${TMPKTR}"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
-# Pass --desktop flag to indicate desktop launch
-pkexec /usr/sbin/remove-old-kernels --desktop "$@"
+# Pass -d flag to indicate desktop launch
+pkexec /usr/sbin/remove-old-kernels -d "$@"
 exit_code=$?
 
 if (( exit_code == 126 )) || (( exit_code == 127 )); then

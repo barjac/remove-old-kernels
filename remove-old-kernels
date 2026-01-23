@@ -84,6 +84,11 @@ if (( UID > 0 )); then
 fi
 }
 
+# Get number of kernels in /boot as user or root without errors
+get_NK() {
+    find /boot -name EFI -prune -o -regextype egrep -regex '.*vmlinuz.*.mga([0-9]|[0-9][0-9])' -print | wc -l
+}
+
 # Function to handle -f or -F options
 altcfg() {
 cfgno=$1
@@ -244,19 +249,8 @@ fi
 # Parse command line options which take precedence over script and cfg file
 DESKTOP_LAUNCH=0
 if (( ${#} > 0 )) ; then
-     while getopts aA:ctf:F:plmvn:N:qQ:?h-: NAME; do
+     while getopts aA:ctf:F:plmvn:N:qQ:d?h-: NAME; do
         case ${NAME} in
-            -)  # Handle long options
-                case ${OPTARG} in
-                    desktop)
-                        DESKTOP_LAUNCH=1
-                        ;;
-                    *)
-                        echo "$(i18n "Unknown option"): --${OPTARG}" >&2
-                        exit 1
-                        ;;
-                esac
-                ;;
             a)  MODE="A";
                 ;;
             A)  chkroot
@@ -274,6 +268,8 @@ if (( ${#} > 0 )) ; then
                 fi
                 ;;
             c)  MODE="A" && (( ${#CRON} > 0 )) && [[ "1y" =~ $CRON ]] || exit 0
+                ;;
+            d)  DESKTOP_LAUNCH=1   # Internal flag - desktop menu launch
                 ;;
             t)  DEBUG=1
                 ;;
@@ -386,9 +382,7 @@ OCCDISK1=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
     fi
 
 #========================= Analyse /boot/ =============================
-
-NK=$(find /boot -regextype egrep -regex '.*vmlinuz.*.mga([0-9]|[0-9][0-9])' | wc -l)
-
+NK=$(get_NK)
 # In automatic mode exit immediately if kernels in boot <= number allowed to be removed
    [[ "$MODE" = "A" ]] && (( NK < NBK )) && exit 0
 
@@ -646,15 +640,15 @@ if (( nbt != 0 )) ; then
             fi
         fi
     done
-        NK=$(find /boot -name EFI -prune -o -regextype egrep -regex '.*vmlinuz.*.mga([0-9]|[0-9][0-9])' -print | wc -l)
+        NK=$(get_NK)
         OCCDISK2=$(df -B 1M -l --output=used / | tail -n1 | awk '{ print $1 }')
         echo -e "${HdBgCol} $(i18n "Gain"):$((OCCDISK1 - OCCDISK2)) MB - $(i18n "Kernels in") /boot/: ${NK} ${Normal}"
 fi
 
 [[ $MODE == "I" ]] && (( QA < 1 )) && { echo "$(i18n "Tap spacebar to exit")"; read -n1; echo -en "${ClearLine}"; }
 
-# NEW: In QA mode launched from desktop, pause if there was nothing to remove
-if (( QA == 1 )) && (( DESKTOP_LAUNCH == 1 )) && (( nbt == 0 )); then
+# NEW: In QA mode launched from desktop, pause before closing
+if (( QA == 1 )) && (( DESKTOP_LAUNCH == 1 )) ; then
     echo "$(i18n "Tap spacebar to exit")"
     read -n1
     echo -en "${ClearLine}"

@@ -1,4 +1,5 @@
-You have installed or updated remove-old-kernels which will automatically remove obsolete system kernels safely, using urpme.
+You have installed or updated remove-old-kernels (AKA rok) which will automatically remove obsolete
+system kernels safely, using urpme.
 
 A large accumulation of these can break systems with limited disk space.
 See: https://bugs.mageia.org/show_bug.cgi?id=24403
@@ -8,15 +9,23 @@ of each flavour installed. e.g. If you have 3 kernel-desktops and 3 kernel-linus
 then nothing will be removed. If there are 4 of one flavour then the one installed FIRST will
 be removed, or suggested for removal in interactive mode.
 
+In LIVE persistent systems it will always keep the original installed kernel and the latest installed
+kernel, as these are the only two kernels bootable.
+This is fixed while LIVE and not affected by the config file.
+
+If a LIVE system is subsequently permanently installed to a hard drive, then remove-old-kernels behaves
+as it would in any other normal installation, with the standard defaults or with changes made while it
+was LIVE.
+
 It is intended primarily for regular users and those without the technical knowledge or motivation
 to do this manually.
 
-It also has an advanced mode to suit developers and testers. Please read the -h help or, for full details
-the man page.
+It also has an advanced mode to suit developers and testers. Please read the -h help, or for full details
+the man page.  (man rok)
 
 If this is NOT what you want, then there are several options:
 
-1. Use the available options to adjust the settings to be more appropriate for your use.
+1. Use the available options to adjust the settings to be more appropriate for your use case.
 Such as, turning off the automatic mode, invoking the advanced mode or increasing the number to keep.
 Please read the man page.
 

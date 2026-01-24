@@ -1,10 +1,13 @@
-# remove-old-kernels
+# remove-old-kernels (AKA rok)
 Mageia removal tool for old kernels using urpme.
 Once installed it may be left to do it's job without user intervention.
 
 It is run by cron.weekly to retain a minimum number of installed kernels
-of each flavour. (Default is three)
+of each flavour. 
 This may be adjusted or disabled using simple command line options if desired.
+
+The default is three except in LIVE systems where only the original and latest 
+installed kernels are bootable and kept.
 
 There is also an advanced mode, offering features for power users.
 
@@ -19,7 +22,7 @@ For more information see: 'man remove-old-kernels' or 'man rok' in a terminal.
 # Authors
  * Pierre Jarillon 2018 - 2022.
  * Jean-Baptiste Biernacki 2021
- * Barry C Jackson 2022 - 2025
+ * Barry C Jackson 2022 - 2026
  * Johnny A Solbu 2023 
 
 # History

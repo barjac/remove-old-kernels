@@ -9,13 +9,12 @@ of each flavour installed. e.g. If you have 3 kernel-desktops and 3 kernel-linus
 then nothing will be removed. If there are 4 of one flavour then the one installed FIRST will
 be removed, or suggested for removal in interactive mode.
 
-In LIVE persistent systems it will always keep the original installed kernel and the latest installed
+In LIVE persistent systems it will always keep the originally installed kernel and the latest installed
 kernel, as these are the only two kernels bootable.
-This is fixed while LIVE and not affected by the config file.
 
 If a LIVE system is subsequently permanently installed to a hard drive, then remove-old-kernels behaves
-as it would in any other normal installation, with the standard defaults or with changes made while it
-was LIVE.
+as it would in any other normal installation, with the standard defaults or with any changes made while
+it was run LIVE.
 
 It is intended primarily for regular users and those without the technical knowledge or motivation
 to do this manually.

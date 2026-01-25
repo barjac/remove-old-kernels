@@ -7,14 +7,20 @@
 msgid   ""
 msgstr  "Project-Id-Version: remove-old-kernels\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2026-01-14 11:48+0000\n"
+        "POT-Creation-Date: 2026-01-25 11:46+0000\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
         "Language: \n"
         "MIME-Version: 1.0\n"
-        "Content-Type: text/plain; charset=CHARSET\n"
+        "Content-Type: text/plain; charset=UTF-8\n"
         "Content-Transfer-Encoding: 8bit\n"
+
+msgid  "LIVE System"
+msgstr ""
+
+msgid  "System"
+msgstr ""
 
 msgid  "Usage: <remove-old kernels|rok> [-a] [-A 0|1] [-c] [-t] [-f 0-9] [-F 0-9] [-n number] [-N number] [-p] [-q] [-Q 0|1][-l] [-m] [-v] [-h|-?]"
 msgstr ""

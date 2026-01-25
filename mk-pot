@@ -54,5 +54,5 @@ sed -i "s/POT-Creation-Date: /&$(date '+%F %R%z')/" $outpot
 # Update po files with any string changes from the pot file
 echo "Updating *.po files with any string changes"
 pushd po || exit 1
-make update-po
+make update-po || { echo "update-po to other langs failed"; exit 1; }
 popd || exit 1

@@ -11,7 +11,6 @@ be removed, or suggested for removal in interactive mode.
 
 In LIVE persistent systems it will always keep the original installed kernel and the latest installed
 kernel, as these are the only two kernels bootable.
-This is fixed while LIVE and not affected by the config file.
 
 If a LIVE system is subsequently permanently installed to a hard drive, then remove-old-kernels behaves
 as it would in any other normal installation, with the standard defaults or with changes made while it

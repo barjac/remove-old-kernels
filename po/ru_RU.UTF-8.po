@@ -40,7 +40,7 @@ msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits
 msgstr "    -c = как автоматический, но с проверкой параметра CRON=1 в файле .cfg или завершает работу. (требуются права root)"
 
 msgid "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
-msgstr "    -t = режим тестирования, ничего не удаляется, имитируется работа urpme. Примечание: Как root конфигурация может быть обновлена"
+msgstr "    -t = режим тестирования, ничего не удаляется, имитируется работа urpme. Примечание: при запуске от root, совместно с другими опциями, конфигурация может быть изменена."
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
 msgstr "    -f и число = номеру альтернативного файла .cfg, который будет использован только в этот раз. Завершает работу, если файла не существует."

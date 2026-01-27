@@ -82,7 +82,7 @@ msgid "     U = currently (U)sed running kernel."
 msgstr "     U = текущее (U)sed) используемое ядро."
 
 msgid "     L = (L)IVE system original kernel - protected."
-msgstr "     L = исходное ядро (L)IVE системы - защищено."
+msgstr "     L = исходное ядро (L)IVE-системы — защищено."
 
 msgid "     V = keeping for (V)irtualbox. (only in advanced mode)"
 msgstr "     V = сохранить для (V)irtualbox. (только в расширенном режиме)"
@@ -136,7 +136,7 @@ msgid "Bad input value"
 msgstr "Введённое значение некорректно"
 
 msgid "In a LIVE system N is fixed."
-msgstr "В LIVE системе значение \"N\" является фиксированным."
+msgstr "В LIVE-системе значение \"N\" является фиксированным."
 
 msgid "Tap spacebar to exit"
 msgstr "Нажмите пробел, чтобы выйти"
@@ -169,7 +169,7 @@ msgid "In use now"
 msgstr "Используется сейчас"
 
 msgid "LIVE system original kernel"
-msgstr "Исходное ядро LIVE системы"
+msgstr "Исходное ядро LIVE-системы"
 
 msgid "Commands that would be used"
 msgstr "Команды которые будут использоваться"

@@ -97,19 +97,19 @@ msgid "Standard Message explanations:"
 msgstr "Пояснения стандартных сообщений:"
 
 msgid "— Diagnostic information useful for developers."
-msgstr "— Диагностическая информация, полезная для разработчиков."
+msgstr "— диагностическая информация, полезна для разработчиков."
 
 msgid "— Information only. No action required."
-msgstr "— Только информация. Никаких действий не требуется."
+msgstr "— только информация. Никаких действий не требуется."
 
 msgid "— Warning of an unexpected or suspicious event."
-msgstr "— Предупреждение о неожиданном или подозрительном событии."
+msgstr "— предупреждение о неожиданном или подозрительном событии."
 
 msgid "— An error occurred, program stopped."
-msgstr "— Произошла ошибка, программа остановлена."
+msgstr "— произошла ошибка, программа остановлена."
 
 msgid "— A critical error occurred. Program stopped."
-msgstr "— Произошла критическая ошибка. Программа остановлена."
+msgstr "— произошла критическая ошибка. Программа остановлена."
 
 msgid "Must be root to edit configuration"
 msgstr "Для редактирования настроек конфигурации требуются права root"

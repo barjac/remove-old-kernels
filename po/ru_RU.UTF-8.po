@@ -100,7 +100,7 @@ msgid "— Diagnostic information useful for developers."
 msgstr "— диагностическая информация, полезна для разработчиков."
 
 msgid "— Information only. No action required."
-msgstr "— только информация. Никаких действий не требуется."
+msgstr "— только информация, никаких действий не требуется."
 
 msgid "— Warning of an unexpected or suspicious event."
 msgstr "— предупреждение о неожиданном или подозрительном событии."
@@ -109,7 +109,7 @@ msgid "— An error occurred, program stopped."
 msgstr "— произошла ошибка, программа остановлена."
 
 msgid "— A critical error occurred. Program stopped."
-msgstr "— произошла критическая ошибка. Программа остановлена."
+msgstr "— произошла критическая ошибка, программа остановлена."
 
 msgid "Must be root to edit configuration"
 msgstr "Для редактирования настроек конфигурации требуются права root"

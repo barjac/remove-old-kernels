@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the remove-old-kernels package.
 # algri14 <aliger14@mail.ru>, 2025.
 #
-# Line feed 27, option "-a", agreed with author Barry C Jackson.
-# Перевод строки 27, опция "-a", согласован с автором Barry C Jackson.
+# Line feed 27, option '-a', agreed with author Barry C Jackson.
+# Перевод строки 27, опция '-a', согласован с автором Barry C Jackson.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: remove-old-kernels\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-25 11:46+0000\n"
-"PO-Revision-Date: 2026-01-12 16:05+0000\n"
+"PO-Revision-Date: 2026-01-29 20:53+0300\n"
 "Last-Translator: algri14 <aliger14@mail.ru>\n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -37,10 +37,10 @@ msgid "    -A value = 1 or 0 to turn ON or OFF automatic weekly removal of kerne
 msgstr "    -A и число = 1 чтобы ВКЛ или 0 чтобы ВЫКЛ автоматическое еженедельное удаление ядер. (например, -A1)"
 
 msgid "    -c = as automatic but also checks for CRON=1 in the cfg file or exits. (must be root)"
-msgstr "    -c = как автоматический, но с проверкой параметра CRON=1 в файле .cfg или завершает работу. (требуются права root)"
+msgstr "    -c = как автоматический, но с проверкой параметра CRON=1 в файле .cfg, в случае отсутствия завершает работу. (требуются права root)"
 
 msgid "    -t = Test mode, nothing is removed, urpme is simulated. Note: As root config may be updated"
-msgstr "    -t = режим тестирования, ничего не удаляется, имитируется работа urpme. Примечание: при запуске от root, совместно с другими опциями, конфигурация может быть изменена."
+msgstr "    -t = режим тестирования, ничего не удаляется, имитируется работа urpme. Примечание: при запуске от root, в сочетании с другими опциями, конфигурация может быть изменена."
 
 msgid "    -f value = number of the alternate .cfg file to use this time only. Exits if missing."
 msgstr "    -f и число = номеру альтернативного файла .cfg, который будет использован только в этот раз. Завершает работу, если файла не существует."
@@ -79,10 +79,10 @@ msgid "KEY for column 3:"
 msgstr "КЛЮЧ для столбца 3:"
 
 msgid "     U = currently (U)sed running kernel."
-msgstr "     U = текущее (U) используемое ядро."
+msgstr "     U = текущее (U)sed) используемое ядро."
 
 msgid "     L = (L)IVE system original kernel - protected."
-msgstr "     L = исходное ядро системы (L)IVE - защищено."
+msgstr "     L = исходное ядро (L)IVE-системы — защищено."
 
 msgid "     V = keeping for (V)irtualbox. (only in advanced mode)"
 msgstr "     V = сохранить для (V)irtualbox. (только в расширенном режиме)"
@@ -91,25 +91,25 @@ msgid "     X = keeping for (X)tables-addons (only in advanced mode)"
 msgstr "     X = сохранить для (X)tables-addons (только в расширенном режиме)"
 
 msgid "     K = keeping for installed (K)ernel. (only advanced mode)"
-msgstr "     K = сохранить для установленного (K) ядра. (только в расширенном режиме)"
+msgstr "     K = сохранить для установленного ядра (K)ernel). (только в расширенном режиме)"
 
 msgid "Standard Message explanations:"
 msgstr "Пояснения стандартных сообщений:"
 
 msgid "— Diagnostic information useful for developers."
-msgstr "— Диагностическая информация, полезная для разработчиков."
+msgstr "— диагностическая информация, полезна для разработчиков."
 
 msgid "— Information only. No action required."
-msgstr "— Только информация. Никаких действий не требуется."
+msgstr "— только информация, никаких действий не требуется."
 
 msgid "— Warning of an unexpected or suspicious event."
-msgstr "— Предупреждение о неожиданном или подозрительном событии."
+msgstr "— предупреждение о неожиданном или подозрительном событии."
 
 msgid "— An error occurred, program stopped."
-msgstr "— Произошла ошибка, программа остановлена."
+msgstr "— произошла ошибка, программа остановлена."
 
 msgid "— A critical error occurred. Program stopped."
-msgstr "— Произошла критическая ошибка. Программа остановлена."
+msgstr "— произошла критическая ошибка, программа остановлена."
 
 msgid "Must be root to edit configuration"
 msgstr "Для редактирования настроек конфигурации требуются права root"
@@ -136,7 +136,7 @@ msgid "Bad input value"
 msgstr "Введённое значение некорректно"
 
 msgid "In a LIVE system N is fixed."
-msgstr "В системе LIVE N является фиксированным."
+msgstr "В LIVE-системе значение 'N' является фиксированным."
 
 msgid "Tap spacebar to exit"
 msgstr "Нажмите пробел, чтобы выйти"
@@ -148,7 +148,7 @@ msgid "Number to keep is restricted to "
 msgstr "Количество сохраняемых ядер ограничено до "
 
 msgid ", by the dnf 'installonly_limit' set in /etc/dnf/dnf.conf"
-msgstr ", параметр dnf 'installonly_limit', установлен в /etc/dnf/dnf.conf"
+msgstr ", параметр dnf 'installonly_limit', установлен в файле /etc/dnf/dnf.conf"
 
 msgid "Has the running kernel been uninstalled since last boot? - Aborting."
 msgstr "Возможно с момента последней загрузки запущенное ядро было уже удалено. - Выполнение прервано."
@@ -169,7 +169,7 @@ msgid "In use now"
 msgstr "Используется сейчас"
 
 msgid "LIVE system original kernel"
-msgstr "Исходное ядро системы LIVE"
+msgstr "Исходное ядро LIVE-системы"
 
 msgid "Commands that would be used"
 msgstr "Команды которые будут использоваться"
@@ -181,7 +181,7 @@ msgid "Must be root to allow removal"
 msgstr "Для удаления ядер требуются права root"
 
 msgid "Test mode is on - kernels will not be removed"
-msgstr "Включен режим тестирования - ядра удаляться не будут"
+msgstr "Включён режим тестирования - ядра удаляться не будут"
 
 msgid "kernels"
 msgstr "ядра"
@@ -196,7 +196,7 @@ msgid "interactive"
 msgstr "интерактивный"
 
 msgid "Aborted"
-msgstr "Прервано"
+msgstr "Отменено"
 
 msgid "y/N/q (q=quit)"
 msgstr "y/N/q (q=выйти)"

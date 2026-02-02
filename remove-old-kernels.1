@@ -40,30 +40,30 @@ This is a good way to make a quick check without any risk of error.
 \fB\The header bar.
 This shows:
 .br
-The system release information.
+1 - The system release information.
 .br
-The number of kernels found in the /boot directory
+2 - The number of kernels found in the /boot directory
 .br
-Whether the automatic mode is on (1) or off (0). '0' is highlighted in red as a warning when off.
+3 - Whether the automatic mode is on (1) or off (0). '0' is highlighted in red as a warning when off.
 .br
-The number of kernels to be kept per flavour.
+4 - The number of kernels to be kept per flavour.
 .br
-Whether in advanced mode. e.g.| Q | Not shown when OFF.
+5 - Whether in advanced mode. e.g.| Q | Not shown when OFF.
 .br
-The alternate configuration file in use. Not shown for the main configuration file. e.g. F:1 
+6 - The alternate configuration file in use. Not shown for the main configuration file. e.g. F:1
 
 .TP 
 \fB\The list columns.
 .br
-Column 1 shows the number of kernels found of each flavour.
+1 - shows the number of kernels found of each flavour.
 .br
-Column 2 indicates whether the kernel will be kept or removed.
+2 - indicates whether the kernel will be kept or removed.
 .br
-Column 3 shows a key letter to indicate the reason for keeping. Run 'rok -h' for key.
+3 - shows a key letter to indicate the reason for keeping. Run 'rok -h' for key.
 .br
-Column 4 shows the full kernel package name concerned.
+4 - shows the full kernel package name concerned.
 .br
-Column 5 shows the date and time that the kernel was installed.
+5 - shows the date and time that the kernel was installed.
 
 .SH CONFIGURATION
 
@@ -94,12 +94,12 @@ To switch back to the original configuration use -F 0.
 Displays the available options and a key to column 3 of the display.
 
 .TP
-\fI\-n N\fP Set the number of kernels to keep. ONLY for the current run.
+\fI\-n N\fP Set the number of kernels to keep. ONLY for the current run. (No effect in LIVE Systems)
 
 This parameter sets the number of kernels to keep (this time) in interactive mode. It must be 2 or more, it's value may be restricted by the setting in etc/dnf/dnf.conf if dnf is installed, in which case there is an on-screen warning. dnf sets a default value of 3. 
 
 .TP
-\fI\-N N\fP Like -n but stores the 'number of kernels to keep' persistently in the config file. e.g. -N 4
+\fI\-N N\fP Like -n but stores the 'number of kernels to keep' persistently in the config file. e.g. -N 4 (No effect in LIVE Systems)
 
 It must be run as root to take effect.
 

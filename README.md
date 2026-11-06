@@ -47,8 +47,9 @@ catered for.
  * Johnny A. Solbu (Norwegian Bokmål)
  * psyca (German)
  * aguador (Spanish)
- * umeaboy (Swedish)  
- * Yuri Chornoivan (Ukranian & Russian)
+ * umeaboy (Swedish)
+ * algri14 (Russian)  
+ * Yuri Chornoivan (Ukranian)
  * Marja van Waes (Dutch)
 
 If you would like to help with other languages, then please read TRANSLATIONS.md

@@ -43,13 +43,14 @@ catered for.
 # Translators
  * ajunior (Brazilian Portuguese)
  * Michael Martins (Brazilian Portuguese)
+ * Marja van Waes (Dutch)
  * Philippe Didier (French)
- * Johnny A. Solbu (Norwegian Bokmål)
  * psyca (German)
+ * Johnny A. Solbu (Norwegian Bokmål)
+ * algri14 (Russian)
  * aguador (Spanish)
  * umeaboy (Swedish)  
- * Yuri Chornoivan (Ukranian & Russian)
- * Marja van Waes (Dutch)
+ * Yuri Chornoivan (Ukranian)
 
 If you would like to help with other languages, then please read TRANSLATIONS.md
 
